@@ -23,7 +23,7 @@ USE `universidad` ;
 DROP TABLE IF EXISTS `universidad`.`carrera` ;
 
 CREATE TABLE IF NOT EXISTS `universidad`.`carrera` (
-  `codigo` INT NOT NULL,
+  `codigo` VARCHAR(45) NOT NULL,
   `nombre` VARCHAR(45) NULL,
   `titulo` VARCHAR(45) NULL,
   PRIMARY KEY (`codigo`))
@@ -36,7 +36,7 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `universidad`.`curso` ;
 
 CREATE TABLE IF NOT EXISTS `universidad`.`curso` (
-  `codigo` INT NOT NULL,
+  `codigo` VARCHAR(45) NOT NULL,
   `nombre` VARCHAR(45) NULL,
   `creditos` INT NULL,
   `horas` INT NULL,
