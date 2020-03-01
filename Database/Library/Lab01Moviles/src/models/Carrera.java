@@ -52,20 +52,16 @@ public class Carrera {
         this.cursos = cursos;
     }
     
-    
-    
-    
     public Carrera(){
         this(null,null,null,null);
     }
 
     @Override
     public String toString() {
-        return "Carrera{" + "codigo=" + codigo + ", nombre=" + nombre + ", titulo=" + titulo + ", cursos=" + cursos + '}';
+        return "Carrera{" + "codigo=" + codigo + ", nombre=" + nombre + ", titulo=" + titulo + '}';
     }
 
-    
-    
+ 
     private String codigo;
     private String nombre;
     private String titulo;
