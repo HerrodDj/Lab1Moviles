@@ -32,21 +32,21 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `universidad`.`cursos`
+-- Table `universidad`.`curso`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `universidad`.`cursos` ;
+DROP TABLE IF EXISTS `universidad`.`curso` ;
 
-CREATE TABLE IF NOT EXISTS `universidad`.`cursos` (
+CREATE TABLE IF NOT EXISTS `universidad`.`curso` (
   `codigo` VARCHAR(20) NOT NULL,
   `nombre` VARCHAR(45) NULL,
   `creditos` INT NULL,
   `horas` INT NULL,
   `carrera_codigo` VARCHAR(20) NOT NULL,
   `ciclo` INT NULL,
-  `anio` VARCHAR(45) NULL,
+  `anio` INT NULL,
   PRIMARY KEY (`codigo`),
-  INDEX `fk_cursos_carrera_idx` (`carrera_codigo` ASC) VISIBLE,
-  CONSTRAINT `fk_cursos_carrera`
+  INDEX `fk_curso_carrera_idx` (`carrera_codigo` ASC) VISIBLE,
+  CONSTRAINT `fk_curso_carrera`
     FOREIGN KEY (`carrera_codigo`)
     REFERENCES `universidad`.`carrera` (`codigo`)
     ON DELETE NO ACTION
