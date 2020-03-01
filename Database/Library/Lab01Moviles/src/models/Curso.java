@@ -11,11 +11,13 @@ package models;
  */
 public class Curso {
 
-    public Curso(String codigo, String nombre, int creditos, int horasSemanales, int ciclo, int anio) {
+
+    public Curso(String codigo, String nombre, int creditos, int horasSemanales, String codigoCarrera, int ciclo, int anio) {
         this.codigo = codigo;
         this.nombre = nombre;
         this.creditos = creditos;
         this.horasSemanales = horasSemanales;
+        this.codigoCarrera= codigoCarrera;
         this.ciclo = ciclo;
         this.anio = anio;
     }
@@ -23,7 +25,7 @@ public class Curso {
    
 
     public Curso() {
-        this(null,null,0,0,0,0);
+        this(null,null,0,0,null,0,0);
     }
     
     
@@ -59,6 +61,14 @@ public class Curso {
     public void setHorasSemanales(int horasSemanales) {
         this.horasSemanales = horasSemanales;
     }
+    
+    public String getCodigoCarrera() {
+        return codigoCarrera;
+    }
+
+    public void setCodigoCarrera(String codigoCarrera) {
+        this.codigoCarrera = codigoCarrera;
+    }
 
     public int getCiclo() {
         return ciclo;
@@ -78,7 +88,7 @@ public class Curso {
 
     @Override
     public String toString() {
-        return "Curso{" + "codigo=" + codigo + ", nombre=" + nombre + ", creditos=" + creditos + ", horasSemanales=" + horasSemanales + ", ciclo=" + ciclo + ", anio=" + anio + '}';
+        return "Curso{" + "codigo=" + codigo + ", nombre=" + nombre +"codigo Carrera="+ codigoCarrera + ", creditos=" + creditos + ", horasSemanales=" + horasSemanales + ", ciclo=" + ciclo + ", anio=" + anio + '}';
     }
 
     
@@ -86,6 +96,7 @@ public class Curso {
     private String nombre;
     private int creditos;
     private int horasSemanales;
+    private String codigoCarrera;
     private int ciclo;
     private int anio;
 }

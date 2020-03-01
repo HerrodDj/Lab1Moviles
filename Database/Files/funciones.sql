@@ -104,3 +104,14 @@ begin
 delete from curso where curso.codigo=_codigo;
 end$$
 DELIMITER ;
+
+USE `universidad`;
+DROP procedure IF EXISTS listarCursoPorCarrera;
+DELIMITER $$
+USE `universidad`$$
+create procedure listarCursoPorCarrera(in _carrera_codigo VARCHAR(20))
+begin 
+select codigo, nombre, creditos, horas, carrera_codigo, ciclo, anio from curso where curso.carrera_codigo=_carrera_codigo;
+end $$
+DELIMITER ;
+

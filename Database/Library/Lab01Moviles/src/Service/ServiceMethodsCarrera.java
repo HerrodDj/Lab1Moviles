@@ -9,7 +9,6 @@ import exceptions.GlobalException;
 import exceptions.NoDataException;
 import java.sql.CallableStatement;
 import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import models.Carrera;
@@ -20,45 +19,76 @@ import models.Carrera;
  */
 public class ServiceMethodsCarrera extends SQLConnection {
 
-    private static final String INSERTARCARRERA = "{?=call  buscarFactura(?)}";
-    private static final String EDITARCARRERA = "{?=call buscarProducto(?)}";
-    private static final String ELIMINARCARRERA = "{call insertarDetalle(?,?,?,?)}";
-    private static final String BUSCARCARRERA = "{call insertarFactura(?,?,?)}";
+private static final String INSERTARCARRERA = "{call crearCarrera(?,?,?)}";
+    private static final String EDITARCARRERA = "{call actualizarCarrera(?,?,?)}";
+    private static final String ELIMINARCARRERA = "{call eliminarCarrera(?)}";
+    private static final String BUSCARCARRERA = "{call buscarCarreraCodigo(?)}";
 
     private static final String CONEXION
             = "jdbc:mysql://localhost/universidad";
     private static final String USUARIO = "root";
-    private static final String CLAVE = "root";
+    private static final String CLAVE = "root1234";
 
     public void insertarCarrera(Carrera Ncarrera) throws GlobalException, NoDataException, Exception {
         try {
-            obtenerConexion(CONEXION, USUARIO, CLAVE);
-            PreparedStatement stm = cnx.prepareStatement(INSERTARCARRERA);
+            Connection c = obtenerConexion(CONEXION, USUARIO, CLAVE);
+            CallableStatement stm = c.prepareCall(INSERTARCARRERA);
             stm.clearParameters();
             stm.setString(1, Ncarrera.getCodigo());
             stm.setString(2, Ncarrera.getNombre());
             stm.setString(3, Ncarrera.getTitulo());
-            if (stm.executeUpdate() != 1) {
-                throw new GlobalException("No se pudo insertar la carrera");
-            }
+            stm.executeUpdate();
+            stm.close();
+            c.close();
         } catch (SQLException e) {
-            throw new NoDataException("La base de datos no se encuentra disponible");
+            throw new GlobalException("La base de datos no se encuentra disponible");
         }
     }
 
-    public Carrera BuscarCarreraNombre(String nombre) throws GlobalException, NoDataException, Exception {
+    public Carrera BuscarCarreraCodigo(String cod) throws GlobalException, NoDataException, Exception {
         try {
             Connection c = obtenerConexion(CONEXION, USUARIO, CLAVE);
-            Carrera car;
+            Carrera car = null;
             try (CallableStatement statement = c.prepareCall(BUSCARCARRERA)) {
-                statement.setString(1, nombre);
+                statement.setString(1, cod);
                 ResultSet rs = statement.executeQuery();
-                car = new Carrera(rs.getString("codigo"),rs.getString("nombre"),rs.getString("titulo"),null);
+                while (rs.next()) {
+                    car = new Carrera(rs.getString("codigo"), rs.getString("nombre"), rs.getString("titulo"), null);
+                }
             }
             disconnect();
             return car;
         } catch (SQLException e) {
-            throw new GlobalException("No se pudo completar la operacion");
+            throw new GlobalException("Error en base de datos");
         }
+    }
+
+    public void actualizarCarrera(Carrera car1) throws SQLException, GlobalException {
+        try {
+            try (Connection c = obtenerConexion(CONEXION, USUARIO, CLAVE);
+                    CallableStatement statement = c.prepareCall(EDITARCARRERA)) {
+                statement.setString(1, car1.getCodigo());
+                statement.setString(2, car1.getNombre());
+                statement.setString(3, car1.getTitulo());
+                statement.executeUpdate();
+            }
+            disconnect();
+        } catch (SQLException e) {
+            throw new GlobalException("Error en base de datos");
+        }
+    }
+
+    public boolean eliminarCarrera(String cod) throws SQLException {
+        try {
+            Connection c = obtenerConexion(CONEXION, USUARIO, CLAVE);
+            try (CallableStatement statement = c.prepareCall(ELIMINARCARRERA)) {
+                statement.setString(1, cod);
+                statement.executeUpdate();
+            }
+            disconnect();
+        } catch (SQLException e) {
+            return false;
+        }
+        return true;
     }
 }

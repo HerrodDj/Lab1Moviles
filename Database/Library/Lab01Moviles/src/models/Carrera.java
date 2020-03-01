@@ -19,6 +19,13 @@ public class Carrera {
         this.titulo = titulo;
         this.cursos = new ArrayList<>();
     }
+    
+    public Carrera(String codigo, String nombre, String titulo) {
+        this.codigo = codigo;
+        this.nombre = nombre;
+        this.titulo = titulo;
+        this.cursos = new ArrayList<>();
+    }
 
     public String getCodigo() {
         return codigo;
