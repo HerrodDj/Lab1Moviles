@@ -88,7 +88,7 @@ public class Curso {
 
     @Override
     public String toString() {
-        return "Curso{" + "codigo=" + codigo + ", nombre=" + nombre +"codigo Carrera="+ codigoCarrera + ", creditos=" + creditos + ", horasSemanales=" + horasSemanales + ", ciclo=" + ciclo + ", anio=" + anio + '}';
+        return "Curso{" + "codigo=" + codigo + ", nombre=" + nombre +", codigo Carrera="+ codigoCarrera + ", creditos=" + creditos + ", horasSemanales=" + horasSemanales + ", ciclo=" + ciclo + ", anio=" + anio + '}';
     }
 
     

@@ -13,9 +13,8 @@ import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import models.Carrera;
+import java.util.ArrayList;
 import models.Curso;
-import Service.SQLConnection;
 
 /**
  *
@@ -23,8 +22,8 @@ import Service.SQLConnection;
  */
 public class ServiceMethodsCurso extends SQLConnection {
 
-    private static final String INSERTARCURSO = "{?=call crearCurso(?,?,?,?,?,?,?)}";
-    private static final String ACTUALIZARCURSO = "{?=call actualizarCurso(?,?,?,?,?,?,?)}";
+    private static final String INSERTARCURSO = "{call crearCurso(?,?,?,?,?,?,?)}";
+    private static final String ACTUALIZARCURSO = "{call actualizarCurso(?,?,?,?,?,?,?)}";
     private static final String ELIMINARCURSO = "{call eliminarCurso(?)}";
     private static final String BUSCARCURSOCODIGO = "{call buscarCursoCodigo(?)}";
     private static final String LISTARTODOCURSO = "{call listarTodoCurso()}";
@@ -35,42 +34,90 @@ public class ServiceMethodsCurso extends SQLConnection {
     private static final String USUARIO = "root";
     private static final String CLAVE = "root1234";
 
-    public void insertarCurso(Curso curso) throws GlobalException, NoDataException, Exception {
-        try {
+    public void insertarCurso(Curso Ncurso) throws GlobalException, NoDataException, Exception {
+       try {
             Connection c = obtenerConexion(CONEXION, USUARIO, CLAVE);
             CallableStatement stm = c.prepareCall(INSERTARCURSO);
             stm.clearParameters();
-            stm.setString(1, curso.getCodigo());
-            stm.setString(2, curso.getNombre());
-            stm.setInt(3, curso.getCreditos());
-            stm.setInt(4, curso.getHorasSemanales());
-            stm.setString(5, curso.getCodigoCarrera());
-            stm.setInt(6, curso.getCiclo());
-            stm.setInt(7, curso.getAnio());
+            stm.setString(1, Ncurso.getCodigo());
+            stm.setString(2, Ncurso.getNombre());
+            stm.setInt(3, Ncurso.getCreditos());
+            stm.setInt(4,Ncurso.getHorasSemanales());
+            stm.setString(5, Ncurso.getCodigoCarrera());
+            stm.setInt(6, Ncurso.getCiclo());
+            stm.setInt(7, Ncurso.getAnio());
             stm.executeUpdate();
             stm.close();
             c.close();
-
         } catch (SQLException e) {
             throw new GlobalException("La base de datos no se encuentra disponible");
         }
     }
 
-    public Carrera BuscarCursoPorCodigo(String codigo) throws GlobalException, NoDataException, Exception {
-        try {
+    public Curso BuscarCursoPorCodigo(String codigo) throws GlobalException, NoDataException, Exception {
+    try {
             Connection c = obtenerConexion(CONEXION, USUARIO, CLAVE);
-            CallableStatement stm = c.prepareCall(BUSCARCURSOCODIGO);
-            Carrera car;
-
-            stm.setString(1, codigo);
-            ResultSet rs = stm.executeQuery();
-            car = new Carrera(rs.getString("codigo"), rs.getString("nombre"), rs.getString("titulo"), null);
-
+            Curso cur = null;
+            try (CallableStatement statement = c.prepareCall(BUSCARCURSOCODIGO)) {
+                statement.setString(1, codigo);
+                ResultSet rs = statement.executeQuery();
+                while (rs.next()) {
+                    cur = new Curso(rs.getString("codigo"), rs.getString("nombre"),
+                            rs.getInt("creditos"), rs.getInt("horas"), 
+                            rs.getString("carrera_Codigo"), rs.getInt("ciclo"), rs.getInt("anio"));
+                }
+            }
             disconnect();
-            return car;
+            return cur;
         } catch (SQLException e) {
-            throw new GlobalException("No se pudo completar la operacion");
+            throw new GlobalException("Error en base de datos");
+        }
+
+    }
+    
+        public void actualizarCurso(Curso cur) throws SQLException, GlobalException {
+        try {
+            try (Connection c = obtenerConexion(CONEXION, USUARIO, CLAVE);
+                    CallableStatement statement = c.prepareCall(ACTUALIZARCURSO)) {
+                statement.setString(1, cur.getCodigo());
+                statement.setString(2, cur.getNombre());
+                statement.setInt(3, cur.getCreditos());
+                statement.setInt(4, cur.getHorasSemanales());
+                statement.setString(5, cur.getCodigoCarrera());
+                statement.setInt(6, cur.getCiclo());
+                statement.setInt(6, cur.getAnio());
+                statement.executeUpdate();
+            }
+            disconnect();
+        } catch (SQLException e) {
+            throw new GlobalException("Error en base de datos");
         }
     }
+        
+    public boolean eliminarCurso(String cod){
+            try {
+            Connection c = obtenerConexion(CONEXION, USUARIO, CLAVE);
+            try (CallableStatement statement = c.prepareCall(ELIMINARCURSO)) {
+                statement.setString(1, cod);
+                statement.executeUpdate();
+            }
+            disconnect();
+        } catch (SQLException e) {
+            return false;
+        }
+        return true;
+    
+    }
+    
+    public ArrayList<Curso> listarTodos() {
+        ArrayList<Curso> list = new ArrayList<Curso>();
+        
+        
+        
+        
+        
+        return list;
+    }
+        
 
 }
