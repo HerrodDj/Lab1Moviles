@@ -56,7 +56,7 @@ public class ServiceMethodsCurso extends SQLConnection {
         }
     }
 
-    public Curso BuscarCursoPorCodigo(String codigo) throws GlobalException, NoDataException, Exception {
+    public Curso buscarCursoPorCodigo(String codigo) throws GlobalException, NoDataException, Exception {
         try {
             Connection c = obtenerConexion(CONEXION, USUARIO, CLAVE);
             Curso cur = null;
