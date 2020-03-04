@@ -14,6 +14,8 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import models.Curso;
 
 /**
@@ -35,14 +37,14 @@ public class ServiceMethodsCurso extends SQLConnection {
     private static final String CLAVE = "root1234";
 
     public void insertarCurso(Curso Ncurso) throws GlobalException, NoDataException, Exception {
-       try {
+        try {
             Connection c = obtenerConexion(CONEXION, USUARIO, CLAVE);
             CallableStatement stm = c.prepareCall(INSERTARCURSO);
             stm.clearParameters();
             stm.setString(1, Ncurso.getCodigo());
             stm.setString(2, Ncurso.getNombre());
             stm.setInt(3, Ncurso.getCreditos());
-            stm.setInt(4,Ncurso.getHorasSemanales());
+            stm.setInt(4, Ncurso.getHorasSemanales());
             stm.setString(5, Ncurso.getCodigoCarrera());
             stm.setInt(6, Ncurso.getCiclo());
             stm.setInt(7, Ncurso.getAnio());
@@ -55,7 +57,7 @@ public class ServiceMethodsCurso extends SQLConnection {
     }
 
     public Curso BuscarCursoPorCodigo(String codigo) throws GlobalException, NoDataException, Exception {
-    try {
+        try {
             Connection c = obtenerConexion(CONEXION, USUARIO, CLAVE);
             Curso cur = null;
             try (CallableStatement statement = c.prepareCall(BUSCARCURSOCODIGO)) {
@@ -63,7 +65,7 @@ public class ServiceMethodsCurso extends SQLConnection {
                 ResultSet rs = statement.executeQuery();
                 while (rs.next()) {
                     cur = new Curso(rs.getString("codigo"), rs.getString("nombre"),
-                            rs.getInt("creditos"), rs.getInt("horas"), 
+                            rs.getInt("creditos"), rs.getInt("horas"),
                             rs.getString("carrera_Codigo"), rs.getInt("ciclo"), rs.getInt("anio"));
                 }
             }
@@ -74,8 +76,8 @@ public class ServiceMethodsCurso extends SQLConnection {
         }
 
     }
-    
-        public void actualizarCurso(Curso cur) throws SQLException, GlobalException {
+
+    public void actualizarCurso(Curso cur) throws SQLException, GlobalException {
         try {
             try (Connection c = obtenerConexion(CONEXION, USUARIO, CLAVE);
                     CallableStatement statement = c.prepareCall(ACTUALIZARCURSO)) {
@@ -93,9 +95,9 @@ public class ServiceMethodsCurso extends SQLConnection {
             throw new GlobalException("Error en base de datos");
         }
     }
-        
-    public boolean eliminarCurso(String cod){
-            try {
+
+    public boolean eliminarCurso(String cod) {
+        try {
             Connection c = obtenerConexion(CONEXION, USUARIO, CLAVE);
             try (CallableStatement statement = c.prepareCall(ELIMINARCURSO)) {
                 statement.setString(1, cod);
@@ -106,18 +108,64 @@ public class ServiceMethodsCurso extends SQLConnection {
             return false;
         }
         return true;
-    
+
+    }
+
+    public ArrayList<Curso> listarTodos() throws SQLException {
+        Connection c = obtenerConexion(CONEXION, USUARIO, CLAVE);
+        CallableStatement statement = c.prepareCall(LISTARTODOCURSO);
+        ResultSet rs = statement.executeQuery();
+        Map<String, Curso> map = new HashMap();
+        while (rs.next()) {
+            String codigo = rs.getNString("codigo");
+            if (map.isEmpty() || !map.containsKey(codigo)) {
+                Curso cur = new Curso();
+                cur.setCodigo(codigo);
+                cur.setNombre(rs.getString("nombre"));
+                cur.setCreditos(rs.getInt("creditos"));
+                cur.setHorasSemanales(rs.getInt("horas"));
+                cur.setCodigoCarrera(rs.getString("carrera_codigo"));
+                cur.setCiclo(rs.getInt("ciclo"));
+                cur.setAnio(rs.getInt("anio"));
+                map.put(codigo, cur);
+
+            }
+
+        }
+        statement.close();
+        disconnect();
+        return new ArrayList<>(map.values());
+
     }
     
-    public ArrayList<Curso> listarTodos() {
-        ArrayList<Curso> list = new ArrayList<Curso>();
-        
-        
-        
-        
-        
-        return list;
+    public ArrayList<Curso> listarCursosPorCarrera(String carreraCodigo) throws SQLException{
+       Connection c = obtenerConexion(CONEXION, USUARIO, CLAVE);
+        CallableStatement statement = c.prepareCall(LISTARCURSOPORCARRERA);
+        statement.setString(1, carreraCodigo);
+        ResultSet rs = statement.executeQuery();
+        Map<String, Curso> map = new HashMap();
+        while (rs.next()) {
+            String codigo = rs.getNString("codigo");
+            if (map.isEmpty() || !map.containsKey(codigo)) {
+                Curso cur = new Curso();
+                cur.setCodigo(codigo);
+                cur.setNombre(rs.getString("nombre"));
+                cur.setCreditos(rs.getInt("creditos"));
+                cur.setHorasSemanales(rs.getInt("horas"));
+                cur.setCodigoCarrera(rs.getString("carrera_codigo"));
+                cur.setCiclo(rs.getInt("ciclo"));
+                cur.setAnio(rs.getInt("anio"));
+                map.put(codigo, cur);
+
+            }
+
+        }
+        statement.close();
+        disconnect();
+        return new ArrayList<>(map.values());
+    
     }
+
         
 
 }

@@ -1,5 +1,8 @@
 -- Funciones para Lab1 Moviles
+-- =============================
 -- CRUD para carreras
+-- =============================
+
 USE `universidad`;
 DROP procedure IF EXISTS crearCarrera;
 DELIMITER $$
@@ -52,7 +55,10 @@ delete from carrera where carrera.codigo=_codigo;
 end$$
 DELIMITER ;
 
+-- =============================
 -- CRUD de curso
+-- =============================
+
 USE `universidad`;
 DROP procedure IF EXISTS crearCurso;
 DELIMITER $$
@@ -113,5 +119,30 @@ create procedure listarCursoPorCarrera(in _carrera_codigo VARCHAR(20))
 begin 
 select codigo, nombre, creditos, horas, carrera_codigo, ciclo, anio from curso where curso.carrera_codigo=_carrera_codigo;
 end $$
+DELIMITER ;
+
+-- =============================
+-- Procedimientos para usuarios
+-- =============================
+
+USE `universidad`;
+DROP procedure IF EXISTS creaUsuario;
+DELIMITER $$
+USE `universidad`$$
+create procedure creaUsuario(in _cedula VARCHAR(10), in _nombre VARCHAR(20), in _apellido1 VARCHAR(20), in _apellido2 VARCHAR(20), in _contrasenia VARCHAR(45))
+begin 
+insert into usuarios(cedula, nombre, apellido1, apellido2,  contrasenia ) values(_cedula, _nombre, _apellido1, _apellido2, _contrasenia);
+commit;
+END$$
+DELIMITER ;
+
+USE `universidad`;
+DROP procedure IF EXISTS getUsuario;
+DELIMITER $$
+USE `universidad`$$
+create procedure getUsuario(in _cedula VARCHAR(10), in _contrasenia VARCHAR(45))
+begin 
+select cedula, nombre, apellido1, apellido2, contrasenia from usuarios where usuarios.cedula=_cedula and usuarios.contrasenia=_contrasenia; 
+end$$
 DELIMITER ;
 

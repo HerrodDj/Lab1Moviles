@@ -22,10 +22,10 @@ public class Main {
         // ServiceMethodsCarrera nS = new ServiceMethodsCarrera();
         //Carrera car = new Carrera("EIF1","Informatica2","Bachillerato");
         ServiceMethodsCurso sm = new ServiceMethodsCurso();
-        Curso cur = new Curso("LIX1066", "Ingenieria1", 5, 5, "INFO", 1, 2021);
-        System.out.println(cur.toString());
+       // Curso cur = new Curso("LIX1066", "Ingenieria1", 5, 5, "INFO", 1, 2021);
+        //System.out.println(cur.toString());
        // try {
-            System.out.println(sm.eliminarCurso("LIX1066"));
+          //  System.out.println(sm.eliminarCurso("LIX1066"));
             //  Boolean s=nS.eliminarCarrera(car.getCodigo());
             // System.out.print(s.booleanValue());
             //  System.out.println(sm.BuscarCursoPorCodigo("ING556").toString());
@@ -33,6 +33,8 @@ public class Main {
        // } catch (SQLException c) {
          //   System.out.printf("No funco");
         //}
+        
+        System.out.println(sm.listarCursosPorCarrera("LIX").toString());
         
     }
 }

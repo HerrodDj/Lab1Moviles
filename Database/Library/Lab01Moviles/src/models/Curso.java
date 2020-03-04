@@ -99,4 +99,6 @@ public class Curso {
     private String codigoCarrera;
     private int ciclo;
     private int anio;
+
+    
 }
