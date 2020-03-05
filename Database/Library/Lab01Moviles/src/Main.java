@@ -1,10 +1,7 @@
 
-import Service.ServiceMethodsCarrera;
 import Service.ServiceMethodsCurso;
+import Service.ServiceMethodsUsuario;
 import exceptions.NoDataException;
-import java.sql.SQLException;
-import models.Carrera;
-import models.Curso;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -22,6 +19,7 @@ public class Main {
         // ServiceMethodsCarrera nS = new ServiceMethodsCarrera();
         //Carrera car = new Carrera("EIF1","Informatica2","Bachillerato");
         ServiceMethodsCurso sm = new ServiceMethodsCurso();
+        ServiceMethodsUsuario su = new ServiceMethodsUsuario();
        // Curso cur = new Curso("LIX1066", "Ingenieria1", 5, 5, "INFO", 1, 2021);
         //System.out.println(cur.toString());
        // try {
@@ -34,7 +32,7 @@ public class Main {
          //   System.out.printf("No funco");
         //}
         
-        System.out.println(sm.listarCursosPorCarrera("LIX").toString());
-        
+        //System.out.println(sm.listarCursosPorCarrera("LIX").toString());
+        System.out.println(su.getUsuario("11111", "Dje1234"));
     }
 }
