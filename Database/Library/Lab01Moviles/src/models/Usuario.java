@@ -65,6 +65,7 @@ public class Usuario {
         this.contrasenia = contrasenia;
     }
     
+    @Override
     public String toString(){
     return String.format("Ced: %s, %s %s %s",cedula, nombre, apellido1, apellido2);
     
