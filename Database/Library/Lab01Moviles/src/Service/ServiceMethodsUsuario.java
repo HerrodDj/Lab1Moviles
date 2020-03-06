@@ -44,9 +44,6 @@ public class ServiceMethodsUsuario extends SQLConnection{
         } catch (SQLException e) {
             throw new GlobalException("Error en base de datos");
         }
-
-    
-    
     }
     
     
