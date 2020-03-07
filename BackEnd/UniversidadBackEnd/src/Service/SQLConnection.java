@@ -18,7 +18,7 @@ public class SQLConnection {
     private static final String CONNECTOR = "com.mysql.jdbc.Driver";
     private static final String PROTOCOLO = "jdbc:mysql:";
     private static final String USERNAME = "root";
-    private static final String PASSWORD = "root1234";
+    private static final String PASSWORD = "root";
     private static final String DATA_BASE = "jdbc:mysql://localhost/universidad";
 
     public SQLConnection() {
@@ -37,11 +37,10 @@ public class SQLConnection {
 
     public Connection obtenerConexion(String baseDatos,String usuario, String claveAcceso)throws SQLException {
         try{
-            
             cnx = DriverManager.getConnection(DATA_BASE, usuario, claveAcceso);
             return cnx;
         }catch(SQLException e){
-            System.err.println("No se pudo conectar" + e.getMessage());
+            System.err.println("No se pudo conectar " + e.getMessage());
         }
         return null;
     }

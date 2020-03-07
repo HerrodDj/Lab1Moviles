@@ -27,7 +27,7 @@ private static final String INSERTARCARRERA = "{call crearCarrera(?,?,?)}";
     private static final String CONEXION
             = "jdbc:mysql://localhost/universidad";
     private static final String USUARIO = "root";
-    private static final String CLAVE = "root1234";
+    private static final String CLAVE = "root";
 
     public void insertarCarrera(Carrera Ncarrera) throws GlobalException, NoDataException, Exception {
         try {

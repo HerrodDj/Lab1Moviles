@@ -34,7 +34,7 @@ public class ServiceMethodsCurso extends SQLConnection {
     private static final String CONEXION
             = "jdbc:mysql://localhost/universidad";
     private static final String USUARIO = "root";
-    private static final String CLAVE = "root1234";
+    private static final String CLAVE = "root";
 
     public void insertarCurso(Curso Ncurso) throws GlobalException, NoDataException, Exception {
         try {
