@@ -5,6 +5,8 @@
  */
 package models;
 
+import Service.ServiceMethodsUsuario;
+import exceptions.GlobalException;
 import java.util.ArrayList;
 import java.util.Observable;
 
@@ -17,6 +19,7 @@ public class Model extends Observable{
     public Model() {
         this.carreras = new ArrayList<>();
         this.tabla = new Tabla(carreras);
+        this.su = new ServiceMethodsUsuario();
     }
     
     public void actualizarTabla(ArrayList<Carrera> nC) {
@@ -25,6 +28,10 @@ public class Model extends Observable{
         this.commit();
     }
     
+    
+    public Usuario getUser(String cedula, String password) throws GlobalException{
+        return su.getUsuario(cedula, password);
+    }
     
     
     public Tabla getTabla() {
@@ -49,4 +56,6 @@ public class Model extends Observable{
 
     private Tabla tabla;
     private ArrayList<Carrera> carreras;
+    ServiceMethodsUsuario su;
+    
 }
