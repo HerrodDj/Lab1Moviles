@@ -2,32 +2,41 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link href="css/bootstrap/bootstrap.css" rel="stylesheet" type="text/css"/>
-        <link href="css/bootstrap/bootstrap.min.css" rel="stylesheet" type="text/css"/>
-        <link href="css/bootstrap/bootstrap-reboot.css" rel="stylesheet" type="text/css"/>
-        <link href="css/bootstrap/bootstrap-reboot.min.css" rel="stylesheet" type="text/css"/>
-        <link href="css/bootstrap/bootstrap-grid.min.css" rel="stylesheet" type="text/css"/>
-        <link href="css/bootstrap/bootstrap-grid.css" rel="stylesheet" type="text/css"/>
-        <script src="js/bootstrap/bootstrap.bundle.js" type="text/javascript"></script>
-        <script src="js/bootstrap/bootstrap.bundle.min.js" type="text/javascript"></script>
-        <script src="js/bootstrap/bootstrap.js" type="text/javascript"></script>
-        <script src="js/bootstrap/bootstrap.min.js" type="text/javascript"></script>
-        <title>Universidad</title>
+        <meta charset="UTF-8" />
         
+        <link href="css/default.css" rel="stylesheet" type="text/css"/>
+        <link rel="shortcut icon" href="politics.ico" type="image/x-icon" />
+                <link href="css/bootstrap/bootstrap.css" rel="stylesheet" type="text/css"/>
+        <script src="js/bootstrap/bootstrap.min.js" type="text/javascript"></script>
+        
+        <title>Login</title>
     </head>
     <body>
-        <div class="container">
-            <div class="login-reg-panel">
-                <div class="white-panel">
-                    <div class="login-show">
-                        <h2>LOGIN</h2>
-                        <input type="user" placeholder="Usuario">
-                        <input type="password" placeholder="Contraseña">
-                        <input type="submit" value="Ingresar">
-                    </div>
-                </div>
-            </div>
+<body>
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+        <div class="card card-signin my-5">
+          <div class="card-body">
+            <h5 class="card-title text-center">Bienvenido Nuevamente</h5>
+            <form class="form-signin">
+              <div class="form-label-group">
+                <input type="text" id="inputUser" class="form-control" placeholder="Usuario" required autofocus>
+                <label for="User">Usuario</label>
+              </div>
+
+              <div class="form-label-group">
+                <input type="password" id="inputPassword" class="form-control" placeholder="Contraseña" required>
+                <label for="inputPassword">Password</label>
+              </div>
+                
+              <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Ingresar</button>
+            </form>
+          </div>
         </div>
+      </div>
+    </div>
+  </div>
+</body>
     </body>
 </html>

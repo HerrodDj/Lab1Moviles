@@ -1,6 +1,6 @@
 <%-- 
     Document   : home
-    Created on : 29-feb-2020, 20:25:34
+    Created on : 07-mar-2020, 23:37:09
     Author     : djenanehernandezrodriguez
 --%>
 
@@ -9,9 +9,9 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Universidad</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <h1>Bienvenido</h1>
     </body>
 </html>

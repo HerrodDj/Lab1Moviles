@@ -11,6 +11,8 @@ import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import models.Carrera;
 
 /**
@@ -23,13 +25,14 @@ private static final String INSERTARCARRERA = "{call crearCarrera(?,?,?)}";
     private static final String EDITARCARRERA = "{call actualizarCarrera(?,?,?)}";
     private static final String ELIMINARCARRERA = "{call eliminarCarrera(?)}";
     private static final String BUSCARCARRERA = "{call buscarCarreraCodigo(?)}";
+    private static final String BUSCARCARRERAALL = "{call listarTodaCarrera()}";
 
     private static final String CONEXION
             = "jdbc:mysql://localhost/universidad";
     private static final String USUARIO = "root";
     private static final String CLAVE = "root";
 
-    public void insertarCarrera(Carrera Ncarrera) throws GlobalException, NoDataException, Exception {
+    public boolean insertarCarrera(Carrera Ncarrera) throws GlobalException, NoDataException, Exception {
         try {
             Connection c = obtenerConexion(CONEXION, USUARIO, CLAVE);
             CallableStatement stm = c.prepareCall(INSERTARCARRERA);
@@ -40,9 +43,29 @@ private static final String INSERTARCARRERA = "{call crearCarrera(?,?,?)}";
             stm.executeUpdate();
             stm.close();
             c.close();
+            return true;
         } catch (SQLException e) {
             throw new GlobalException("La base de datos no se encuentra disponible");
         }
+    }
+    
+    public List<Carrera> buscarTodasCarreras() throws GlobalException{
+        List<Carrera> Nc = new ArrayList();
+        try {
+            Connection c = obtenerConexion(CONEXION, USUARIO, CLAVE);
+            Carrera car = null;
+            try (CallableStatement statement = c.prepareCall(BUSCARCARRERAALL)) {
+                ResultSet rs = statement.executeQuery();
+                while (rs.next()) {
+                    car = new Carrera(rs.getString("codigo"), rs.getString("nombre"), rs.getString("titulo"), null);
+                    Nc.add(car);
+                }
+            }
+            disconnect();
+        } catch (SQLException e) {
+            throw new GlobalException("Error en base de datos");
+        }
+        return Nc;
     }
 
     public Carrera BuscarCarreraCodigo(String cod) throws GlobalException, NoDataException, Exception {
