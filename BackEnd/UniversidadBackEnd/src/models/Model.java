@@ -5,57 +5,38 @@
  */
 package models;
 
+import Service.ServiceMethodsCarrera;
 import Service.ServiceMethodsUsuario;
 import exceptions.GlobalException;
+import exceptions.NoDataException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Observable;
 
 /**
  *
  * @author PC
  */
-public class Model extends Observable{
-    
+public class Model extends Observable {
+
     public Model() {
-        this.carreras = new ArrayList<>();
-        this.tabla = new Tabla(carreras);
         this.su = new ServiceMethodsUsuario();
+        this.sc = new ServiceMethodsCarrera();
     }
-    
-    public void actualizarTabla(ArrayList<Carrera> nC) {
-        this.carreras = nC;
-        this.tabla = new Tabla(nC);
-        this.commit();
-    }
-    
-    
-    public Usuario getUser(String cedula, String password) throws GlobalException{
+
+    public boolean getUser(String cedula, String password) throws GlobalException {
         return su.getUsuario(cedula, password);
     }
-    
-    
-    public Tabla getTabla() {
-        return tabla;
+
+    public boolean AddCarrera(Carrera Ncarrera) throws NoDataException, Exception {
+        return sc.insertarCarrera(Ncarrera);
     }
 
-    public void setTabla(Tabla tabla) {
-        this.tabla = tabla;
+    public List<Carrera> allCarrera() throws GlobalException {
+        return sc.buscarTodasCarreras();
     }
 
-    public ArrayList<Carrera> getCarreras() {
-        return carreras;
-    }
-
-    public void setCarreras(ArrayList<Carrera> carreras) {
-        this.carreras = carreras;
-    }
-    public void commit(){
-        setChanged();
-        notifyObservers();       
-    }
-
-    private Tabla tabla;
-    private ArrayList<Carrera> carreras;
     ServiceMethodsUsuario su;
-    
+    ServiceMethodsCarrera sc;
+
 }

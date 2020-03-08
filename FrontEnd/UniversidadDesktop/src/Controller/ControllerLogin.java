@@ -6,6 +6,7 @@
 package Controller;
 
 import View.ViewLogin;
+import exceptions.GlobalException;
 import models.Model;
 import models.Usuario;
 
@@ -18,18 +19,31 @@ public class ControllerLogin {
     public ControllerLogin(ViewLogin view) {
         this.domainModel = new Model();
         this.view = view;
-        view.setController(this);
+        this.view.setController(this);
     }
 
-    public void login(Usuario logUser) throws Exception {
+    public boolean login(Usuario logUser) throws Exception {
         //model.setCurrent(logUser);
-        Usuario real = domainModel.getUser(logUser.getCedula(), logUser.getContrasenia());
-        view.setVisible(false);
-        //application.Application.APPLICATION_CONTROLLER.enter();
+        try {
+            if (domainModel.getUser(logUser.getCedula(), logUser.getContrasenia())) {
+                view.setVisible(false);
+                UniversidadDesktop.UniversidadDesktop.PRINCIPAL_CONTROLLER.enter();
+                return true;
+            }
+        } catch (GlobalException e) {
+            throw new GlobalException("Error Base");
+        }
+        return false;
+    }
+    
+    
+    public void logout(){
+        view.setVisible(true);
+        view.reset();
     }
 
-    Model domainModel;    
+    Model domainModel;
     ViewLogin view;
     //LoginModel model;
-    
+
 }
