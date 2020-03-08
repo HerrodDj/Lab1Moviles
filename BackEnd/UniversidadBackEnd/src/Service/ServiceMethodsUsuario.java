@@ -17,17 +17,17 @@ import models.Usuario;
  *
  * @author djenanehernandezrodriguez
  */
-public class ServiceMethodsUsuario extends SQLConnection{
-    
+public class ServiceMethodsUsuario extends SQLConnection {
+
     private static final String GETUSUARIO = "{call getUsuario(?, ?)}";
 
     private static final String CONEXION
             = "jdbc:mysql://localhost/universidad";
     private static final String USUARIO = "root";
     private static final String CLAVE = "root";
-    
-    public Usuario getUsuario(String cedula, String password) throws GlobalException{
-            try {
+
+    public boolean getUsuario(String cedula, String password) throws GlobalException {
+        try {
             Connection c = obtenerConexion(CONEXION, USUARIO, CLAVE);
             Usuario u = null;
             try (CallableStatement statement = c.prepareCall(GETUSUARIO)) {
@@ -39,14 +39,16 @@ public class ServiceMethodsUsuario extends SQLConnection{
                             rs.getString("apellido1"), rs.getString("apellido2"), rs.getString("contrasenia"));
                 }
             }
-            disconnect();
-            return u;
+            if (u != null) {
+                disconnect();
+                return true;
+            } else {
+                disconnect();
+                return false;
+            }
         } catch (SQLException e) {
             throw new GlobalException("Error en base de datos");
         }
     }
-    
-    
-    
-    
+
 }

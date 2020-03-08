@@ -39,76 +39,59 @@ public class ViewLogin extends javax.swing.JFrame {
         jTextField1 = new javax.swing.JTextField();
         jPasswordField1 = new javax.swing.JPasswordField();
         jButton1 = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Login");
         setBounds(new java.awt.Rectangle(0, 0, 0, 0));
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        setMinimumSize(new java.awt.Dimension(315, 130));
+        setPreferredSize(new java.awt.Dimension(276, 180));
         setResizable(false);
+        getContentPane().setLayout(null);
 
+        jLabel1.setFont(new java.awt.Font("Georgia", 1, 18)); // NOI18N
         jLabel1.setText("Contraseña");
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(33, 62, 107, 21);
 
+        jLabel2.setFont(new java.awt.Font("Georgia", 1, 18)); // NOI18N
         jLabel2.setText("Cedula");
+        getContentPane().add(jLabel2);
+        jLabel2.setBounds(33, 16, 65, 21);
 
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField1ActionPerformed(evt);
             }
         });
+        getContentPane().add(jTextField1);
+        jTextField1.setBounds(120, 10, 150, 30);
 
         jPasswordField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jPasswordField1ActionPerformed(evt);
             }
         });
+        getContentPane().add(jPasswordField1);
+        jPasswordField1.setBounds(170, 60, 130, 30);
 
         jButton1.setFont(new java.awt.Font("Georgia", 0, 18)); // NOI18N
-        jButton1.setText("Login");
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/icons8-entrar-40.png"))); // NOI18N
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
+        getContentPane().add(jButton1);
+        jButton1.setBounds(102, 99, 73, 38);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(33, 33, 33)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addGap(30, 30, 30)
-                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addGap(18, 18, 18)
-                                .addComponent(jPasswordField1))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(91, 91, 91)
-                        .addComponent(jButton1)))
-                .addContainerGap(47, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(24, 24, 24)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(jButton1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/turquoise-wood-images-texture-on-260nw-683949346.jpg"))); // NOI18N
+        getContentPane().add(jLabel3);
+        jLabel3.setBounds(0, 0, 320, 160);
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
@@ -122,8 +105,9 @@ public class ViewLogin extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         if(this.validar()){
             try {
-                this.controller.login(this.addUser());
-                JOptionPane.showMessageDialog(this, "Se accedio a la base y se loggeara");
+                if(!this.controller.login(this.addUser())){
+                    JOptionPane.showMessageDialog(this, "Usuario o Contraseña incorrecta");
+                }
             } catch (Exception ex) {
                 JOptionPane.showMessageDialog(this, ex.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE); 
             }
@@ -143,19 +127,23 @@ public class ViewLogin extends javax.swing.JFrame {
    }
     public boolean validar(){
         boolean error=false;
-        
         this.jLabel1.setForeground(COLOR_OK); 
         if (this.jTextField1.getText().isEmpty()){
             this.jLabel1.setForeground(COLOR_ERROR);
              error=true;
         }
-        
         this.jLabel2.setForeground(COLOR_OK); 
         if ( (new String(this.jPasswordField1.getPassword())).isEmpty()){
             this.jLabel2.setForeground(COLOR_ERROR);
              error=true;
         }
         return !error;
+    }
+    
+    
+    public void reset(){
+        this.jTextField1.setText("");
+        this.jPasswordField1.setText("");
     }
     
     public void setController(ControllerLogin controller){
@@ -169,6 +157,7 @@ public class ViewLogin extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
