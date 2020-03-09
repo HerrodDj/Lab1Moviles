@@ -26,8 +26,8 @@ public class ControllerLogin {
         //model.setCurrent(logUser);
         try {
             if (domainModel.getUser(logUser.getCedula(), logUser.getContrasenia())) {
-                view.setVisible(false);
                 UniversidadDesktop.UniversidadDesktop.PRINCIPAL_CONTROLLER.enter();
+                view.setVisible(false);
                 return true;
             }
         } catch (GlobalException e) {
