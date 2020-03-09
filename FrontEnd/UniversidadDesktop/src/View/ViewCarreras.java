@@ -10,14 +10,13 @@ import ModelView.TablaModelView;
 import static View.ViewLogin.COLOR_ERROR;
 import static View.ViewLogin.COLOR_OK;
 import exceptions.GlobalException;
+import java.awt.HeadlessException;
 import java.sql.SQLException;
 import java.util.Observable;
-import java.util.Observer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import models.Carrera;
-import models.TablaCarreras;
 
 /**
  *
@@ -30,6 +29,9 @@ public class ViewCarreras extends javax.swing.JFrame implements java.util.Observ
 
     public ViewCarreras() {
         initComponents();
+        this.saveEdit.setVisible(false);
+        this.EditL.setVisible(false);
+        this.cancelBtn.setVisible(false);
     }
 
     public void setController(ControllerCarreras controller) {
@@ -69,16 +71,21 @@ public class ViewCarreras extends javax.swing.JFrame implements java.util.Observ
         CodCarreraF = new javax.swing.JTextField();
         NombreCarreraL = new javax.swing.JLabel();
         NombreCarreraF = new javax.swing.JTextField();
-        jLabel21 = new javax.swing.JLabel();
+        AddL = new javax.swing.JLabel();
         BtnAdd = new javax.swing.JButton();
         Titulos = new javax.swing.JComboBox<>();
+        saveEdit = new javax.swing.JButton();
+        cancelBtn = new javax.swing.JButton();
+        EditL = new javax.swing.JLabel();
         jPanelBusqueda = new javax.swing.JPanel();
-        jLabel22 = new javax.swing.JLabel();
+        BuscarL = new javax.swing.JLabel();
         BuscarBTN = new javax.swing.JButton();
         buscarF = new javax.swing.JTextField();
         jScrollPane9 = new javax.swing.JScrollPane();
         Carreras = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        deleteBtn = new javax.swing.JButton();
+        homeBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Carreras");
@@ -89,9 +96,12 @@ public class ViewCarreras extends javax.swing.JFrame implements java.util.Observ
         jPanelAgregar.setBackground(new java.awt.Color(201, 229, 200));
         jPanelAgregar.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(14, 98, 133), 4, true));
         jPanelAgregar.setToolTipText("");
+        jPanelAgregar.setLayout(null);
 
         CodCarreraL.setFont(new java.awt.Font("Georgia", 1, 18)); // NOI18N
         CodCarreraL.setText("Codigo");
+        jPanelAgregar.add(CodCarreraL);
+        CodCarreraL.setBounds(32, 28, 63, 21);
 
         CodCarreraF.setFont(new java.awt.Font("Georgia", 1, 14)); // NOI18N
         CodCarreraF.addActionListener(new java.awt.event.ActionListener() {
@@ -99,9 +109,13 @@ public class ViewCarreras extends javax.swing.JFrame implements java.util.Observ
                 CodCarreraFActionPerformed(evt);
             }
         });
+        jPanelAgregar.add(CodCarreraF);
+        CodCarreraF.setBounds(100, 29, 78, 23);
 
         NombreCarreraL.setFont(new java.awt.Font("Georgia", 1, 18)); // NOI18N
         NombreCarreraL.setText("Nombre");
+        jPanelAgregar.add(NombreCarreraL);
+        NombreCarreraL.setBounds(320, 28, 75, 21);
 
         NombreCarreraF.setFont(new java.awt.Font("Georgia", 1, 14)); // NOI18N
         NombreCarreraF.addActionListener(new java.awt.event.ActionListener() {
@@ -109,9 +123,13 @@ public class ViewCarreras extends javax.swing.JFrame implements java.util.Observ
                 NombreCarreraFActionPerformed(evt);
             }
         });
+        jPanelAgregar.add(NombreCarreraF);
+        NombreCarreraF.setBounds(400, 29, 148, 23);
 
-        jLabel21.setFont(new java.awt.Font("Georgia", 1, 18)); // NOI18N
-        jLabel21.setText("Agregar Nueva Carrera");
+        AddL.setFont(new java.awt.Font("Georgia", 1, 18)); // NOI18N
+        AddL.setText("Agregar Nueva Carrera");
+        jPanelAgregar.add(AddL);
+        AddL.setBounds(100, 90, 214, 21);
 
         BtnAdd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/icons8-añadir-50.png"))); // NOI18N
         BtnAdd.addActionListener(new java.awt.event.ActionListener() {
@@ -119,64 +137,42 @@ public class ViewCarreras extends javax.swing.JFrame implements java.util.Observ
                 BtnAddActionPerformed(evt);
             }
         });
+        jPanelAgregar.add(BtnAdd);
+        BtnAdd.setBounds(440, 70, 104, 44);
 
         Titulos.setFont(new java.awt.Font("Georgia", 1, 18)); // NOI18N
         Titulos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Bachillerato", "Licenciatura", "Maestria" }));
+        jPanelAgregar.add(Titulos);
+        Titulos.setBounds(590, 20, 150, 34);
 
-        javax.swing.GroupLayout jPanelAgregarLayout = new javax.swing.GroupLayout(jPanelAgregar);
-        jPanelAgregar.setLayout(jPanelAgregarLayout);
-        jPanelAgregarLayout.setHorizontalGroup(
-            jPanelAgregarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelAgregarLayout.createSequentialGroup()
-                .addGap(28, 28, 28)
-                .addComponent(CodCarreraL)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanelAgregarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanelAgregarLayout.createSequentialGroup()
-                        .addComponent(CodCarreraF, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(46, 46, 46)
-                        .addComponent(NombreCarreraL)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(NombreCarreraF, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLabel21))
-                .addGroup(jPanelAgregarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanelAgregarLayout.createSequentialGroup()
-                        .addComponent(BtnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jPanelAgregarLayout.createSequentialGroup()
-                        .addGap(18, 112, Short.MAX_VALUE)
-                        .addComponent(Titulos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(28, 28, 28))))
-        );
-        jPanelAgregarLayout.setVerticalGroup(
-            jPanelAgregarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelAgregarLayout.createSequentialGroup()
-                .addGroup(jPanelAgregarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanelAgregarLayout.createSequentialGroup()
-                        .addGap(24, 24, 24)
-                        .addGroup(jPanelAgregarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(CodCarreraL)
-                            .addComponent(NombreCarreraF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(NombreCarreraL)
-                            .addComponent(CodCarreraF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(21, 21, 21))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelAgregarLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(Titulos, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)))
-                .addGroup(jPanelAgregarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(BtnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelAgregarLayout.createSequentialGroup()
-                        .addComponent(jLabel21)
-                        .addGap(16, 16, 16)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
+        saveEdit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/icons8-guardar-40.png"))); // NOI18N
+        saveEdit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                saveEditActionPerformed(evt);
+            }
+        });
+        jPanelAgregar.add(saveEdit);
+        saveEdit.setBounds(440, 70, 50, 40);
+
+        cancelBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/icons8-cancelar-2-40.png"))); // NOI18N
+        cancelBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelBtnActionPerformed(evt);
+            }
+        });
+        jPanelAgregar.add(cancelBtn);
+        cancelBtn.setBounds(500, 70, 40, 40);
+
+        EditL.setFont(new java.awt.Font("Georgia", 1, 18)); // NOI18N
+        EditL.setText("Editar una carrera");
+        jPanelAgregar.add(EditL);
+        EditL.setBounds(110, 90, 174, 21);
 
         jPanelBusqueda.setBackground(new java.awt.Color(201, 229, 200));
         jPanelBusqueda.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(14, 98, 133), 4, true));
 
-        jLabel22.setFont(new java.awt.Font("Georgia", 1, 18)); // NOI18N
-        jLabel22.setText("Buscar");
+        BuscarL.setFont(new java.awt.Font("Georgia", 1, 18)); // NOI18N
+        BuscarL.setText("Buscar por Codigo");
 
         BuscarBTN.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/icons8-búsqueda-de-amor-30.png"))); // NOI18N
         BuscarBTN.addActionListener(new java.awt.event.ActionListener() {
@@ -198,23 +194,48 @@ public class ViewCarreras extends javax.swing.JFrame implements java.util.Observ
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        Carreras.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CarrerasMouseClicked(evt);
+            }
+        });
         jScrollPane9.setViewportView(Carreras);
+
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/icons8-editar-30.png"))); // NOI18N
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+        deleteBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/icons8-eliminar-30.png"))); // NOI18N
+        deleteBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanelBusquedaLayout = new javax.swing.GroupLayout(jPanelBusqueda);
         jPanelBusqueda.setLayout(jPanelBusquedaLayout);
         jPanelBusquedaLayout.setHorizontalGroup(
             jPanelBusquedaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelBusquedaLayout.createSequentialGroup()
-                .addGap(47, 47, 47)
                 .addGroup(jPanelBusquedaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, 669, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanelBusquedaLayout.createSequentialGroup()
-                        .addComponent(jLabel22)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(buscarF, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(47, 47, 47)
+                        .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, 551, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
+                        .addGroup(jPanelBusquedaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(deleteBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
+                    .addGroup(jPanelBusquedaLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(BuscarL)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(buscarF, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(60, 60, 60)
                         .addComponent(BuscarBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(24, Short.MAX_VALUE))
+                .addContainerGap(60, Short.MAX_VALUE))
         );
         jPanelBusquedaLayout.setVerticalGroup(
             jPanelBusquedaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -222,40 +243,47 @@ public class ViewCarreras extends javax.swing.JFrame implements java.util.Observ
                 .addGap(20, 20, 20)
                 .addGroup(jPanelBusquedaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanelBusquedaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel22)
+                        .addComponent(BuscarL)
                         .addComponent(buscarF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(BuscarBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanelBusquedaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanelBusquedaLayout.createSequentialGroup()
+                        .addGap(26, 26, 26)
+                        .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanelBusquedaLayout.createSequentialGroup()
+                        .addGap(39, 39, 39)
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(deleteBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(33, Short.MAX_VALUE))
         );
 
-        jButton1.setBackground(new java.awt.Color(201, 229, 200));
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/icons8-universidad-64.png"))); // NOI18N
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        homeBtn.setBackground(new java.awt.Color(201, 229, 200));
+        homeBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/icons8-universidad-64.png"))); // NOI18N
+        homeBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                homeBtnActionPerformed(evt);
             }
         });
 
         jDesktopPane1.setLayer(jPanelAgregar, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(jPanelBusqueda, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jDesktopPane1.setLayer(jButton1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPane1.setLayer(homeBtn, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
         jDesktopPane1.setLayout(jDesktopPane1Layout);
         jDesktopPane1Layout.setHorizontalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jDesktopPane1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanelAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDesktopPane1Layout.createSequentialGroup()
                 .addGap(60, 60, 60)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 103, Short.MAX_VALUE)
+                .addComponent(homeBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 119, Short.MAX_VALUE)
                 .addComponent(jPanelBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(45, 45, 45))
+            .addGroup(jDesktopPane1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanelAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 784, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jDesktopPane1Layout.setVerticalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -266,11 +294,11 @@ public class ViewCarreras extends javax.swing.JFrame implements java.util.Observ
                     .addGroup(jDesktopPane1Layout.createSequentialGroup()
                         .addGap(41, 41, 41)
                         .addComponent(jPanelBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDesktopPane1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jDesktopPane1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(homeBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(10, 10, 10)))
-                .addGap(0, 59, Short.MAX_VALUE))
+                .addGap(0, 51, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -290,8 +318,11 @@ public class ViewCarreras extends javax.swing.JFrame implements java.util.Observ
 
     private void BuscarBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BuscarBTNActionPerformed
         try {
-            controller.buscarCarreras();
+            String a = this.buscarF.getText();
+            controller.buscar(a);
         } catch (GlobalException ex) {
+            Logger.getLogger(ViewCarreras.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
             Logger.getLogger(ViewCarreras.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_BuscarBTNActionPerformed
@@ -309,6 +340,7 @@ public class ViewCarreras extends javax.swing.JFrame implements java.util.Observ
             try {
                 this.controller.insertarCarrera(this.addCarrera());
                 JOptionPane.showMessageDialog(this, "Carrera agregada correctamente");
+                this.controller.buscarCarreras();
                 this.clear();
             } catch (Exception ex) {
                 JOptionPane.showMessageDialog(this, ex.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
@@ -318,11 +350,62 @@ public class ViewCarreras extends javax.swing.JFrame implements java.util.Observ
         }
     }//GEN-LAST:event_BtnAddActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void homeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homeBtnActionPerformed
         this.clear();
         this.setVisible(false);
         UniversidadDesktop.UniversidadDesktop.PRINCIPAL_CONTROLLER.enter();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_homeBtnActionPerformed
+
+    private void CarrerasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CarrerasMouseClicked
+
+    }//GEN-LAST:event_CarrerasMouseClicked
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        Carrera car = null;
+        try {
+            if (this.toCod() != null) {
+                car = controller.buscarCodCarrera(this.toCod());
+                this.toCarrera(car);
+            }
+        } catch (GlobalException ex) {
+            Logger.getLogger(ViewCarreras.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
+            Logger.getLogger(ViewCarreras.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void cancelBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelBtnActionPerformed
+        this.clear1();
+    }//GEN-LAST:event_cancelBtnActionPerformed
+
+    private void saveEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveEditActionPerformed
+        if (this.validar()) {
+            try {
+                this.controller.updateCarrera(this.addCarrera());
+                JOptionPane.showMessageDialog(this, "Carrera editada correctamente");
+                this.controller.buscarCarreras();
+                this.clear1();
+            } catch (GlobalException | HeadlessException | SQLException ex) {
+                JOptionPane.showMessageDialog(this, ex.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Inserte los datos", "ERROR", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_saveEditActionPerformed
+
+    private void deleteBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteBtnActionPerformed
+        int d = JOptionPane.showConfirmDialog(this, "Esta seguro de eliminar la carrera?");
+        if (d==0) {
+            try {
+                if (this.toCod() != null) {
+                    controller.deleteCarrera(this.toCod());
+                    controller.buscarCarreras();
+                }
+            } catch (SQLException | GlobalException ex) {
+                Logger.getLogger(ViewCarreras.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }//GEN-LAST:event_deleteBtnActionPerformed
 
     public Carrera addCarrera() {
         Carrera car = new Carrera();
@@ -332,10 +415,46 @@ public class ViewCarreras extends javax.swing.JFrame implements java.util.Observ
         return car;
     }
 
+    public String toCod() {
+        if (this.Carreras.getSelectedRow() != -1) {
+            String a = (String) this.Carreras.getValueAt(this.Carreras.getSelectedRow(), 0);
+            return a;
+        }
+        return null;
+    }
+
+    public void toCarrera(Carrera car) {
+        this.CodCarreraF.setText(car.getCodigo());
+        this.NombreCarreraF.setText(car.getNombre());
+        this.Titulos.setSelectedItem(car.getTitulo());
+        this.CodCarreraF.setEditable(false);
+        this.saveEdit.setVisible(true);
+        this.BtnAdd.setVisible(false);
+        this.EditL.setVisible(true);
+        this.BuscarBTN.setEnabled(false);
+        this.homeBtn.setEnabled(false);
+        this.deleteBtn.setEnabled(false);
+        this.AddL.setVisible(false);
+        this.cancelBtn.setVisible(true);
+    }
+
+    public void clear1() {
+        this.clear();
+        this.saveEdit.setVisible(false);
+        this.BtnAdd.setVisible(true);
+        this.EditL.setVisible(false);
+        this.BuscarBTN.setEnabled(true);
+        this.homeBtn.setEnabled(true);
+        this.deleteBtn.setEnabled(true);
+        this.AddL.setVisible(true);
+        this.cancelBtn.setVisible(false);
+        this.CodCarreraF.setEditable(true);
+    }
+
     public void clear() {
         this.CodCarreraF.setText("");
         this.NombreCarreraF.setText("");
-        this.Titulos.updateUI();
+        this.Titulos.setSelectedIndex(0);
     }
 
     public boolean validar() {
@@ -355,22 +474,27 @@ public class ViewCarreras extends javax.swing.JFrame implements java.util.Observ
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel AddL;
     private javax.swing.JButton BtnAdd;
     private javax.swing.JButton BuscarBTN;
+    private javax.swing.JLabel BuscarL;
     private javax.swing.JTable Carreras;
     private javax.swing.JTextField CodCarreraF;
     private javax.swing.JLabel CodCarreraL;
+    private javax.swing.JLabel EditL;
     private javax.swing.JTextField NombreCarreraF;
     private javax.swing.JLabel NombreCarreraL;
     private javax.swing.JComboBox<String> Titulos;
     private javax.swing.JTextField buscarF;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton cancelBtn;
+    private javax.swing.JButton deleteBtn;
+    private javax.swing.JButton homeBtn;
+    private javax.swing.JButton jButton2;
     private javax.swing.JDesktopPane jDesktopPane1;
-    private javax.swing.JLabel jLabel21;
-    private javax.swing.JLabel jLabel22;
     private javax.swing.JPanel jPanelAgregar;
     private javax.swing.JPanel jPanelBusqueda;
     private javax.swing.JScrollPane jScrollPane9;
+    private javax.swing.JButton saveEdit;
     // End of variables declaration//GEN-END:variables
 
 }

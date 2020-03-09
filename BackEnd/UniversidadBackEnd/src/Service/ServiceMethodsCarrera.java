@@ -86,7 +86,7 @@ private static final String INSERTARCARRERA = "{call crearCarrera(?,?,?)}";
         }
     }
 
-    public void actualizarCarrera(Carrera car1) throws SQLException, GlobalException {
+    public boolean actualizarCarrera(Carrera car1) throws SQLException, GlobalException {
         try {
             try (Connection c = obtenerConexion(CONEXION, USUARIO, CLAVE);
                     CallableStatement statement = c.prepareCall(EDITARCARRERA)) {
@@ -96,6 +96,7 @@ private static final String INSERTARCARRERA = "{call crearCarrera(?,?,?)}";
                 statement.executeUpdate();
             }
             disconnect();
+            return true;
         } catch (SQLException e) {
             throw new GlobalException("Error en base de datos");
         }

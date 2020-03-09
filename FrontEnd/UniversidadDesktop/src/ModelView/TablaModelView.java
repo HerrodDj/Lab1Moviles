@@ -42,10 +42,10 @@ public class TablaModelView extends java.util.Observable{
     }
     
     public void agregaCarrera(Carrera c){
-         carreras.add(c);
+        carreras.add(c);
      }
     
-     public void setTablaCarreras(List<Carrera> c) {
+    public void setTablaCarreras(List<Carrera> c) {
         int cols[] = {TablaCarreras.CODIGO, TablaCarreras.NOMBRE, TablaCarreras.TITULO};
         this.tabla = new TablaCarreras(cols,c);
         commit();
