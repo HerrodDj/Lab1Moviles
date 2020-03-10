@@ -19,14 +19,14 @@
         <div class="card card-signin my-5">
           <div class="card-body">
             <h5 class="card-title text-center">Bienvenido Nuevamente</h5>
-            <form class="form-signin">
+            <form class="form-signin"  method="POST" action="ServicioLogin">
               <div class="form-label-group">
-                <input type="text" id="inputUser" class="form-control" placeholder="Usuario" required autofocus>
+                <input type="text" id="inputUser" name ="inputUser"class="form-control" placeholder="Usuario" required autofocus>
                 <label for="User">Usuario</label>
               </div>
 
               <div class="form-label-group">
-                <input type="password" id="inputPassword" class="form-control" placeholder="Contraseña" required>
+                <input type="password" id="inputPassword" name ="inputPassword"class="form-control" placeholder="Contraseña" required>
                 <label for="inputPassword">Password</label>
               </div>
                 

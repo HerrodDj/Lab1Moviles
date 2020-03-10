@@ -34,9 +34,9 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `universidad`.`cursos`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `universidad`.`cursos` ;
+DROP TABLE IF EXISTS `universidad`.`curso` ;
 
-CREATE TABLE IF NOT EXISTS `universidad`.`cursos` (
+CREATE TABLE IF NOT EXISTS `universidad`.`curso` (
   `codigo` VARCHAR(20) NOT NULL,
   `nombre` VARCHAR(45) NULL,
   `creditos` INT NULL,
