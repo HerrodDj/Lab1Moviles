@@ -15,6 +15,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import models.Curso;
 
@@ -36,7 +37,7 @@ public class ServiceMethodsCurso extends SQLConnection {
     private static final String USUARIO = "root";
     private static final String CLAVE = "root";
 
-    public void insertarCurso(Curso Ncurso) throws GlobalException, NoDataException, Exception {
+    public boolean insertarCurso(Curso Ncurso) throws GlobalException, NoDataException, Exception {
         try {
             Connection c = obtenerConexion(CONEXION, USUARIO, CLAVE);
             CallableStatement stm = c.prepareCall(INSERTARCURSO);
@@ -51,6 +52,7 @@ public class ServiceMethodsCurso extends SQLConnection {
             stm.executeUpdate();
             stm.close();
             c.close();
+            return true;
         } catch (SQLException e) {
             throw new GlobalException("La base de datos no se encuentra disponible");
         }
@@ -111,6 +113,27 @@ public class ServiceMethodsCurso extends SQLConnection {
 
     }
 
+    
+    public List<Curso> buscarTodosCursos() throws GlobalException{
+    List<Curso> Nc = new ArrayList();
+        try {
+            Connection c = obtenerConexion(CONEXION, USUARIO, CLAVE);
+            Curso cur = null;
+            try (CallableStatement statement = c.prepareCall(LISTARTODOCURSO)) {
+                ResultSet rs = statement.executeQuery();
+                while (rs.next()) {
+                    cur = new Curso(rs.getString("codigo"), rs.getString("nombre"), rs.getInt("creditos"), rs.getInt("horas"), rs.getString("carrera_codigo"),rs.getInt("ciclo"),rs.getInt("anio"));
+                    Nc.add(cur);
+                }
+            }
+            disconnect();
+        } catch (SQLException e) {
+            throw new GlobalException("Error en base de datos");
+        }
+        return Nc;
+    
+    }
+    
     public ArrayList<Curso> listarTodos() throws SQLException {
         Connection c = obtenerConexion(CONEXION, USUARIO, CLAVE);
         CallableStatement statement = c.prepareCall(LISTARTODOCURSO);

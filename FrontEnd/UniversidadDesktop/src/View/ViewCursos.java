@@ -7,8 +7,16 @@ package View;
 
 import Controller.ControllerCursos;
 import ModelView.TablaModelView2;
+import static View.ViewLogin.COLOR_ERROR;
+import static View.ViewLogin.COLOR_OK;
+import exceptions.GlobalException;
+import java.util.ArrayList;
 import java.util.Observable;
-import java.util.Observer;
+import javax.swing.ComboBoxModel;
+import javax.swing.JComboBox;
+import javax.swing.JOptionPane;
+import models.Curso;
+
 
 /**
  *
@@ -20,6 +28,9 @@ public class ViewCursos extends javax.swing.JFrame implements java.util.Observer
     TablaModelView2 model;
     public ViewCursos() {
         initComponents();
+        this.EditL.setVisible(false);
+        this.saveEdit.setVisible(false);
+        this.cancelBtn.setVisible(false);
     }
 
     public void setController(ControllerCursos controller){
@@ -41,7 +52,11 @@ public class ViewCursos extends javax.swing.JFrame implements java.util.Observer
     
      @Override
     public void update(Observable o, Object arg) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        //this.Cursos.setModel(model.getTabla());
+    }
+    
+    public JComboBox retornaBox(){
+        return this.carrerasBox;
     }
     
     
@@ -54,29 +69,383 @@ public class ViewCursos extends javax.swing.JFrame implements java.util.Observer
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jDesktopPane1 = new javax.swing.JDesktopPane();
+        jPanelAgregar = new javax.swing.JPanel();
+        CodCursoL = new javax.swing.JLabel();
+        CodCursoF = new javax.swing.JTextField();
+        NombreCursoL = new javax.swing.JLabel();
+        NombreCursoF = new javax.swing.JTextField();
+        BtnAdd = new javax.swing.JButton();
+        creditosBox = new javax.swing.JComboBox<>();
+        saveEdit = new javax.swing.JButton();
+        cancelBtn = new javax.swing.JButton();
+        EditL = new javax.swing.JLabel();
+        cicloBox = new javax.swing.JComboBox<>();
+        creditosL = new javax.swing.JLabel();
+        horasL = new javax.swing.JLabel();
+        horasF = new javax.swing.JTextField();
+        cicloL = new javax.swing.JLabel();
+        annioBox = new javax.swing.JComboBox<>();
+        annioL = new javax.swing.JLabel();
+        carrerasBox = new javax.swing.JComboBox<>();
+        carreraL = new javax.swing.JLabel();
+        AddL = new javax.swing.JLabel();
+        homeBtn = new javax.swing.JButton();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jDesktopPane1.setBackground(new java.awt.Color(115, 183, 175));
+
+        jPanelAgregar.setBackground(new java.awt.Color(201, 229, 200));
+        jPanelAgregar.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(14, 98, 133), 4, true));
+        jPanelAgregar.setToolTipText("");
+        jPanelAgregar.setLayout(null);
+
+        CodCursoL.setFont(new java.awt.Font("Georgia", 1, 18)); // NOI18N
+        CodCursoL.setText("Codigo");
+        jPanelAgregar.add(CodCursoL);
+        CodCursoL.setBounds(32, 28, 63, 21);
+
+        CodCursoF.setFont(new java.awt.Font("Georgia", 1, 14)); // NOI18N
+        CodCursoF.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CodCursoFActionPerformed(evt);
+            }
+        });
+        jPanelAgregar.add(CodCursoF);
+        CodCursoF.setBounds(100, 29, 78, 23);
+
+        NombreCursoL.setFont(new java.awt.Font("Georgia", 1, 18)); // NOI18N
+        NombreCursoL.setText("Nombre");
+        jPanelAgregar.add(NombreCursoL);
+        NombreCursoL.setBounds(20, 80, 75, 21);
+
+        NombreCursoF.setFont(new java.awt.Font("Georgia", 1, 14)); // NOI18N
+        NombreCursoF.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                NombreCursoFActionPerformed(evt);
+            }
+        });
+        jPanelAgregar.add(NombreCursoF);
+        NombreCursoF.setBounds(100, 80, 148, 23);
+
+        BtnAdd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/icons8-añadir-50.png"))); // NOI18N
+        BtnAdd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnAddActionPerformed(evt);
+            }
+        });
+        jPanelAgregar.add(BtnAdd);
+        BtnAdd.setBounds(580, 100, 104, 44);
+
+        creditosBox.setFont(new java.awt.Font("Georgia", 1, 18)); // NOI18N
+        creditosBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "3", "4" }));
+        jPanelAgregar.add(creditosBox);
+        creditosBox.setBounds(330, 20, 40, 30);
+
+        saveEdit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/icons8-guardar-40.png"))); // NOI18N
+        saveEdit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                saveEditActionPerformed(evt);
+            }
+        });
+        jPanelAgregar.add(saveEdit);
+        saveEdit.setBounds(580, 100, 50, 40);
+
+        cancelBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/icons8-cancelar-2-40.png"))); // NOI18N
+        cancelBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelBtnActionPerformed(evt);
+            }
+        });
+        jPanelAgregar.add(cancelBtn);
+        cancelBtn.setBounds(640, 100, 40, 40);
+
+        EditL.setFont(new java.awt.Font("Georgia", 1, 18)); // NOI18N
+        EditL.setText("Editar una curso");
+        jPanelAgregar.add(EditL);
+        EditL.setBounds(200, 130, 174, 20);
+
+        cicloBox.setFont(new java.awt.Font("Georgia", 1, 18)); // NOI18N
+        cicloBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2" }));
+        jPanelAgregar.add(cicloBox);
+        cicloBox.setBounds(460, 30, 40, 34);
+
+        creditosL.setFont(new java.awt.Font("Georgia", 1, 18)); // NOI18N
+        creditosL.setText("Creditos");
+        jPanelAgregar.add(creditosL);
+        creditosL.setBounds(240, 30, 80, 21);
+
+        horasL.setFont(new java.awt.Font("Georgia", 1, 18)); // NOI18N
+        horasL.setText("Horas");
+        jPanelAgregar.add(horasL);
+        horasL.setBounds(270, 80, 60, 21);
+
+        horasF.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                horasFActionPerformed(evt);
+            }
+        });
+        jPanelAgregar.add(horasF);
+        horasF.setBounds(330, 80, 30, 22);
+
+        cicloL.setFont(new java.awt.Font("Georgia", 1, 18)); // NOI18N
+        cicloL.setText("Ciclo");
+        jPanelAgregar.add(cicloL);
+        cicloL.setBounds(390, 30, 50, 21);
+
+        annioBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "2018", "2019", "2020", "2021", "2022", "2023", "2024" }));
+        jPanelAgregar.add(annioBox);
+        annioBox.setBounds(450, 80, 55, 22);
+
+        annioL.setFont(new java.awt.Font("Georgia", 1, 18)); // NOI18N
+        annioL.setText("Año");
+        jPanelAgregar.add(annioL);
+        annioL.setBounds(390, 80, 50, 21);
+
+        carrerasBox.setMinimumSize(new java.awt.Dimension(100, 100));
+        carrerasBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                carrerasBoxActionPerformed(evt);
+            }
+        });
+        jPanelAgregar.add(carrerasBox);
+        carrerasBox.setBounds(660, 30, 100, 30);
+
+        carreraL.setFont(new java.awt.Font("Georgia", 1, 18)); // NOI18N
+        carreraL.setText("Carrera");
+        jPanelAgregar.add(carreraL);
+        carreraL.setBounds(570, 30, 80, 21);
+
+        AddL.setFont(new java.awt.Font("Georgia", 1, 18)); // NOI18N
+        AddL.setText("Agregar Nuevo Curso");
+        jPanelAgregar.add(AddL);
+        AddL.setBounds(170, 130, 197, 21);
+
+        homeBtn.setBackground(new java.awt.Color(201, 229, 200));
+        homeBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/icons8-universidad-64.png"))); // NOI18N
+        homeBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                homeBtnActionPerformed(evt);
+            }
+        });
+
+        jDesktopPane1.setLayer(jPanelAgregar, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPane1.setLayer(homeBtn, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
+        jDesktopPane1.setLayout(jDesktopPane1Layout);
+        jDesktopPane1Layout.setHorizontalGroup(
+            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jDesktopPane1Layout.createSequentialGroup()
+                .addComponent(jPanelAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 887, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 75, Short.MAX_VALUE))
+            .addGroup(jDesktopPane1Layout.createSequentialGroup()
+                .addGap(47, 47, 47)
+                .addComponent(homeBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jDesktopPane1Layout.setVerticalGroup(
+            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jDesktopPane1Layout.createSequentialGroup()
+                .addGap(23, 23, 23)
+                .addComponent(jPanelAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 198, Short.MAX_VALUE)
+                .addComponent(homeBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(53, 53, 53))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addComponent(jDesktopPane1)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addComponent(jDesktopPane1)
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-   
+    private void CodCursoFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CodCursoFActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_CodCursoFActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
+    private void NombreCursoFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NombreCursoFActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_NombreCursoFActionPerformed
+
+    private void BtnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAddActionPerformed
+        if (this.validar()) {
+            try {
+                this.controller.insertarCurso(this.addCurso());
+                JOptionPane.showMessageDialog(this, "Curso agregado correctamente");
+                //this.controller.buscarCursos();
+                this.clear();
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(this, ex.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Inserte los datos o inserte numeros", "ERROR", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_BtnAddActionPerformed
+
+    private void saveEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveEditActionPerformed
+//        if (this.validar()) {
+//            try {
+//                this.controller.updateCarrera(this.addCarrera());
+//                JOptionPane.showMessageDialog(this, "Carrera editada correctamente");
+//                this.controller.buscarCarreras();
+//                this.clear1();
+//            } catch (GlobalException | HeadlessException | SQLException ex) {
+//                JOptionPane.showMessageDialog(this, ex.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
+//            }
+//        } else {
+//            JOptionPane.showMessageDialog(this, "Inserte los datos", "ERROR", JOptionPane.ERROR_MESSAGE);
+//        }
+    }//GEN-LAST:event_saveEditActionPerformed
+
+    private void cancelBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelBtnActionPerformed
+        this.clear1();
+    }//GEN-LAST:event_cancelBtnActionPerformed
+
+    private void horasFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_horasFActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_horasFActionPerformed
+
+    private void carrerasBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_carrerasBoxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_carrerasBoxActionPerformed
+
+    private void homeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homeBtnActionPerformed
+        this.clear();
+        this.setVisible(false);
+        UniversidadDesktop.UniversidadDesktop.PRINCIPAL_CONTROLLER.enter();
+    }//GEN-LAST:event_homeBtnActionPerformed
+
+
+
+    public Curso addCurso() {
+        Curso cur = new Curso();
+        cur.setCodigo(this.CodCursoF.getText());
+        cur.setNombre(this.NombreCursoF.getText());
+        cur.setHorasSemanales(Integer.parseInt(this.horasF.getText()));
+        cur.setCreditos(Integer.parseInt(this.creditosBox.getSelectedItem().toString()));
+        cur.setCiclo(Integer.parseInt(this.cicloBox.getSelectedItem().toString()));
+        cur.setAnio(Integer.parseInt(this.annioBox.getSelectedItem().toString()));
+        cur.setCodigoCarrera(this.carrerasBox.getSelectedItem().toString());
+        return cur;
+    }
+
+    public String toCod() {
+//        if (this.Carreras.getSelectedRow() != -1) {
+//            String a = (String) this.Carreras.getValueAt(this.Carreras.getSelectedRow(), 0);
+//            return a;
+//        }
+        return null;
+    }
+
+    public void toCurso(Curso cur) {
+//        this.CodCarreraF.setText(cur.getCodigo());
+//        this.NombreCarreraF.setText(cur.getNombre());
+//        this.Titulos.setSelectedItem(cur.getTitulo());
+//        this.CodCarreraF.setEditable(false);
+//        this.saveEdit.setVisible(true);
+//        this.BtnAdd.setVisible(false);
+//        this.EditL.setVisible(true);
+//        this.BuscarBTN.setEnabled(false);
+//        this.homeBtn.setEnabled(false);
+//        this.deleteBtn.setEnabled(false);
+//        this.AddL.setVisible(false);
+//        this.cancelBtn.setVisible(true);
+    }
+
+    public void clear1() {
+        this.clear();
+//        this.saveEdit.setVisible(false);
+//        this.BtnAdd.setVisible(true);
+//        this.EditL.setVisible(false);
+//        this.BuscarBTN.setEnabled(true);
+//        this.homeBtn.setEnabled(true);
+//        this.deleteBtn.setEnabled(true);
+//        this.AddL.setVisible(true);
+//        this.cancelBtn.setVisible(false);
+//        this.CodCarreraF.setEditable(true);
+    }
+
+    public void clear() {
+        this.CodCursoF.setText("");
+        this.NombreCursoF.setText("");
+        this.horasF.setText("");
+        this.carrerasBox.setSelectedIndex(0);
+        this.cicloBox.setSelectedIndex(0);
+        this.annioBox.setSelectedIndex(0);
+        this.carrerasBox.setSelectedIndex(0);
+    }
+
+    public boolean validar() {
+        boolean error = false;
+        this.CodCursoL.setForeground(COLOR_OK);
+        if (this.CodCursoF.getText().isEmpty()) {
+            this.CodCursoL.setForeground(COLOR_ERROR);
+            error = true;
+        }
+        this.NombreCursoL.setForeground(COLOR_OK);
+        if (this.NombreCursoF.getText().isEmpty()) {
+            this.NombreCursoL.setForeground(COLOR_ERROR);
+            error = true;
+        }
+        this.horasL.setForeground(COLOR_OK);
+        if(this.horasF.getText().isEmpty()){
+            this.horasL.setForeground(COLOR_ERROR);
+            error = true;
+        }
+        if(!esNumero(this.horasF.getText())){
+            this.horasL.setForeground(COLOR_ERROR);
+            error = true;
+        }
+        return !error;
+    } 
+    
+    
+    public boolean esNumero(String num) {
+    if (num == null) {
+        return false;
+    }
+    try {
+        int d = Integer.parseInt(num);
+    } catch (NumberFormatException noNum) {
+        return false;
+    }
+    return true;
+}
    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel AddL;
+    private javax.swing.JButton BtnAdd;
+    private javax.swing.JTextField CodCursoF;
+    private javax.swing.JLabel CodCursoL;
+    private javax.swing.JLabel EditL;
+    private javax.swing.JTextField NombreCursoF;
+    private javax.swing.JLabel NombreCursoL;
+    private javax.swing.JComboBox<String> annioBox;
+    private javax.swing.JLabel annioL;
+    private javax.swing.JButton cancelBtn;
+    private javax.swing.JLabel carreraL;
+    private javax.swing.JComboBox<String> carrerasBox;
+    private javax.swing.JComboBox<String> cicloBox;
+    private javax.swing.JLabel cicloL;
+    private javax.swing.JComboBox<String> creditosBox;
+    private javax.swing.JLabel creditosL;
+    private javax.swing.JButton homeBtn;
+    private javax.swing.JTextField horasF;
+    private javax.swing.JLabel horasL;
+    private javax.swing.JDesktopPane jDesktopPane1;
+    private javax.swing.JPanel jPanelAgregar;
+    private javax.swing.JButton saveEdit;
     // End of variables declaration//GEN-END:variables
 }

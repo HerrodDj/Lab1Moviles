@@ -15,6 +15,7 @@ import java.sql.SQLException;
 import java.util.Observable;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import models.Carrera;
 
@@ -32,6 +33,7 @@ public class ViewCarreras extends javax.swing.JFrame implements java.util.Observ
         this.saveEdit.setVisible(false);
         this.EditL.setVisible(false);
         this.cancelBtn.setVisible(false);
+        this.cursosBox.setVisible(false);
     }
 
     public void setController(ControllerCarreras controller) {
@@ -55,6 +57,10 @@ public class ViewCarreras extends javax.swing.JFrame implements java.util.Observ
     public void update(Observable o, Object arg) {
         this.Carreras.setModel(model.getTabla());
     }
+    
+    public JComboBox retornaBox(){
+        return this.cursosBox;
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -77,6 +83,7 @@ public class ViewCarreras extends javax.swing.JFrame implements java.util.Observ
         saveEdit = new javax.swing.JButton();
         cancelBtn = new javax.swing.JButton();
         EditL = new javax.swing.JLabel();
+        cursosBox = new javax.swing.JComboBox<>();
         jPanelBusqueda = new javax.swing.JPanel();
         BuscarL = new javax.swing.JLabel();
         BuscarBTN = new javax.swing.JButton();
@@ -167,6 +174,10 @@ public class ViewCarreras extends javax.swing.JFrame implements java.util.Observ
         EditL.setText("Editar una carrera");
         jPanelAgregar.add(EditL);
         EditL.setBounds(110, 90, 174, 21);
+
+        cursosBox.setMinimumSize(new java.awt.Dimension(100, 100));
+        jPanelAgregar.add(cursosBox);
+        cursosBox.setBounds(590, 70, 150, 30);
 
         jPanelBusqueda.setBackground(new java.awt.Color(201, 229, 200));
         jPanelBusqueda.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(14, 98, 133), 4, true));
@@ -398,8 +409,12 @@ public class ViewCarreras extends javax.swing.JFrame implements java.util.Observ
         if (d==0) {
             try {
                 if (this.toCod() != null) {
-                    controller.deleteCarrera(this.toCod());
-                    controller.buscarCarreras();
+                    if(controller.deleteCarrera(this.toCod())){
+                        JOptionPane.showMessageDialog(this, "Carrera Eliminada correctamente");
+                        this.controller.buscarCarreras();
+                    }else{
+                        JOptionPane.showMessageDialog(this, "Carrera contiene cursos, primero elimine los cursos", "ERROR", JOptionPane.ERROR_MESSAGE);
+                    } 
                 }
             } catch (SQLException | GlobalException ex) {
                 Logger.getLogger(ViewCarreras.class.getName()).log(Level.SEVERE, null, ex);
@@ -487,6 +502,7 @@ public class ViewCarreras extends javax.swing.JFrame implements java.util.Observ
     private javax.swing.JComboBox<String> Titulos;
     private javax.swing.JTextField buscarF;
     private javax.swing.JButton cancelBtn;
+    private javax.swing.JComboBox<String> cursosBox;
     private javax.swing.JButton deleteBtn;
     private javax.swing.JButton homeBtn;
     private javax.swing.JButton jButton2;
