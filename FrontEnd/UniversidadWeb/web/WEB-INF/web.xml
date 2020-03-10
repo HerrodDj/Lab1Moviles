@@ -4,9 +4,17 @@
         <servlet-name>ServicioLogin</servlet-name>
         <servlet-class>Service.ServicioLogin</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ServicioAgregarCarrera</servlet-name>
+        <servlet-class>Service.ServicioAgregarCarrera</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ServicioLogin</servlet-name>
         <url-pattern>/ServicioLogin</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ServicioAgregarCarrera</servlet-name>
+        <url-pattern>/ServicioAgregarCarrera</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

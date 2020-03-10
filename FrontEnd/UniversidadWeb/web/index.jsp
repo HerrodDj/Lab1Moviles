@@ -7,7 +7,6 @@
         <link href="css/default.css" rel="stylesheet" type="text/css"/>
         <link rel="shortcut icon" href="politics.ico" type="image/x-icon" />
                 <link href="css/bootstrap/bootstrap.css" rel="stylesheet" type="text/css"/>
-        <script src="js/bootstrap/bootstrap.min.js" type="text/javascript"></script>
         
         <title>Login</title>
     </head>

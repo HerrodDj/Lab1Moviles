@@ -12,6 +12,11 @@
         <title>Universidad</title>
     </head>
     <body>
-        <h1>Bienvenido</h1>
+        <div>
+            <%@include file="menu.jsp" %>
+        </div>
+        <div aling="center">
+            <h1>Bienvenido al Gestor de Carrera y Cursos de la Univerdiad</h1>
+        </div>
     </body>
 </html>
