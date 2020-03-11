@@ -27,7 +27,8 @@ public class ServiceMethodsCarrera implements Serializable {
     private static final String INSERTARCARRERA = "{call crearCarrera(?,?,?)}";
     private static final String EDITARCARRERA = "{call actualizarCarrera(?,?,?)}";
     private static final String ELIMINARCARRERA = "{call eliminarCarrera(?)}";
-    private static final String BUSCARCARRERA = "{call buscarCarreraCodigo(?)}";
+    private static final String BUSCARCARRERACODIGO = "{call buscarCarreraCodigo(?)}";
+    private static final String BUSCARCARRERANOMBRE = "{call buscarCarreraNombre(?)}";
     private static final String BUSCARCARRERAALL = "{call listarTodaCarrera()}";
 
     private static ServiceMethodsCarrera instancia = null;
@@ -90,12 +91,30 @@ public class ServiceMethodsCarrera implements Serializable {
         return Nc;
     }
 
-    public Carrera BuscarCarreraCodigo(String cod) throws GlobalException, NoDataException, Exception {
+    public Carrera BuscarCarreraCodigo(String codigo) throws GlobalException, NoDataException, Exception {
         try {
             Carrera car = null;
             try (Connection cnx = bd.obtenerConexion(Credenciales.BASE_DATOS, Credenciales.USUARIO, Credenciales.CLAVE);
-                    PreparedStatement stm = cnx.prepareStatement(BUSCARCARRERA)) {
-                stm.setString(1, cod);
+                    PreparedStatement stm = cnx.prepareStatement(BUSCARCARRERACODIGO)) {
+                stm.setString(1, codigo);
+                ResultSet rs = stm.executeQuery();
+                while (rs.next()) {
+                    car = new Carrera(rs.getString("codigo"), rs.getString("nombre"), rs.getString("titulo"), null);
+                }
+            }
+            bd.cerrarConexion();
+            return car;
+        } catch (SQLException e) {
+            throw new GlobalException("Error en base de datos");
+        }
+    }
+    
+        public Carrera BuscarCarreraNombre(String nombre) throws GlobalException, NoDataException, Exception {
+        try {
+            Carrera car = null;
+            try (Connection cnx = bd.obtenerConexion(Credenciales.BASE_DATOS, Credenciales.USUARIO, Credenciales.CLAVE);
+                    PreparedStatement stm = cnx.prepareStatement(BUSCARCARRERANOMBRE)) {
+                stm.setString(1, nombre);
                 ResultSet rs = stm.executeQuery();
                 while (rs.next()) {
                     car = new Carrera(rs.getString("codigo"), rs.getString("nombre"), rs.getString("titulo"), null);

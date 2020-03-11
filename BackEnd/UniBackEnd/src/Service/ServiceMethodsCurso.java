@@ -92,6 +92,8 @@ public class ServiceMethodsCurso implements Serializable {
         }
 
     }
+    
+    
 
     public boolean actualizarCurso(Curso cur) throws SQLException, GlobalException {
         try {

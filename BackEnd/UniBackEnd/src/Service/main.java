@@ -16,15 +16,9 @@ import models.Curso;
  */
 public class main {
     public static void main(String[]args) throws InstantiationException, ClassNotFoundException, IllegalAccessException, NoDataException, Exception{
-         ServiceMethodsCurso  su= ServiceMethodsCurso.obtenerInstancia();
-         Curso c = new Curso("BIO123", "Botanica",4, 4,"CIEN", 1, 2022);
-         if(su.eliminarCurso("BIO123")){
-             System.out.println("No valio");         
-         }else {
-                  System.out.println("Valio");
-         }
+ServiceMethodsCarrera su= ServiceMethodsCarrera.obtenerInstancia();
 
-     System.out.println(su.listarTodos().toString());
+     System.out.println(su.BuscarCarreraNombre("Biologia").toString());
     }
     
 }

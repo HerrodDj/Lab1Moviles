@@ -42,6 +42,10 @@ public class ServicioLogin extends HttpServlet {
                   sesion.setMaxInactiveInterval(60 * 5);
                   response.sendRedirect("home.jsp");
             }
+            else{
+                
+                  response.sendRedirect("index.jsp");
+            }
             
             
         }

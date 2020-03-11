@@ -5,3 +5,15 @@
  */
 
 
+function searchAllCarrera(){
+    
+    
+    
+    
+}
+
+function searchCarrera(){
+    
+    
+    
+}
