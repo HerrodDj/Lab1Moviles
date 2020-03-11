@@ -22,13 +22,14 @@ import models.Model;
  */
 public class ControllerCarreras {
 
-    public ControllerCarreras(ViewCarreras vc, TablaModelView model) throws SQLException {
+    public ControllerCarreras(ViewCarreras vc, TablaModelView model) throws SQLException, GlobalException {
         model.setTablaCarreras(new ArrayList());
         this.domainModel = new Model();
         this.vc = vc;
         this.model = model;
         vc.setController(this);
         vc.setModel(model);
+        this.buscarCarreras();
     }
 
     public boolean insertarCarrera(Carrera carrera) throws Exception {

@@ -34,6 +34,7 @@ public class ViewCarreras extends javax.swing.JFrame implements java.util.Observ
         this.EditL.setVisible(false);
         this.cancelBtn.setVisible(false);
         this.cursosBox.setVisible(false);
+        this.Carreras.getTableHeader().setReorderingAllowed(false);
     }
 
     public void setController(ControllerCarreras controller) {

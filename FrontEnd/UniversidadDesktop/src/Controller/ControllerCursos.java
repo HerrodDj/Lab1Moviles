@@ -12,6 +12,8 @@ import exceptions.GlobalException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JComboBox;
 import models.Carrera;
 import models.Curso;
@@ -30,7 +32,7 @@ public class ControllerCursos {
         this.model = model;
         vc.setController(this);
         vc.setModel(model);
-        this.buscarCarreras();
+        //this.buscarCarreras();
     }
 
     public boolean insertarCurso(Curso curso) throws Exception {
@@ -88,6 +90,12 @@ public class ControllerCursos {
     }
 
     public void enter() {
+        try {
+            this.vc.retornaBox().removeAllItems();
+            this.buscarCarreras();
+        } catch (GlobalException ex) {
+            Logger.getLogger(ControllerCursos.class.getName()).log(Level.SEVERE, null, ex);
+        }
         this.show();
     }
 
