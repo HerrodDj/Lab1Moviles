@@ -32,7 +32,6 @@ public class ControllerCursos {
         this.model = model;
         vc.setController(this);
         vc.setModel(model);
-        //this.buscarCarreras();
     }
 
     public boolean insertarCurso(Curso curso) throws Exception {

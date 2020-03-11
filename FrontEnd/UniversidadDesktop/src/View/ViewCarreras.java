@@ -16,7 +16,9 @@ import java.util.Observable;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JComboBox;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableCellRenderer;
 import models.Carrera;
 
 /**
@@ -35,6 +37,7 @@ public class ViewCarreras extends javax.swing.JFrame implements java.util.Observ
         this.cancelBtn.setVisible(false);
         this.cursosBox.setVisible(false);
         this.Carreras.getTableHeader().setReorderingAllowed(false);
+        this.Carreras.getTableHeader().setResizingAllowed(false);
     }
 
     public void setController(ControllerCarreras controller) {
@@ -57,6 +60,11 @@ public class ViewCarreras extends javax.swing.JFrame implements java.util.Observ
     @Override
     public void update(Observable o, Object arg) {
         this.Carreras.setModel(model.getTabla());
+        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+        centerRenderer.setHorizontalAlignment( JLabel.CENTER );
+        for(int x=0;x<this.Carreras.getColumnCount();x++){
+         this.Carreras.getColumnModel().getColumn(x).setCellRenderer( centerRenderer );
+        }
     }
     
     public JComboBox retornaBox(){

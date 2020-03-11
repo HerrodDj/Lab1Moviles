@@ -48,13 +48,13 @@ public class TablaCursos extends AbstractTableModel {
             case NOMBRE:
                 return cur.getNombre();
             case CREDITOS:
-                return cur.getAnio();
+                return cur.getCreditos();
             case HORAS:
-                return cur.getAnio();
+                return cur.getHorasSemanales();
             case CARRERA_COD:
-                return cur.getAnio();
+                return cur.getCodigoCarrera();
             case CICLO:
-                return cur.getAnio();
+                return cur.getCiclo();
             case ANNIO:
                 return cur.getAnio();
             default:

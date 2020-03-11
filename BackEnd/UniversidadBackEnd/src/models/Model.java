@@ -61,16 +61,16 @@ public class Model extends Observable {
         return scu.listarTodos();
     }
 
-    public Curso buscarCodCurso(String cod) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Curso buscarCodCurso(String cod) throws NoDataException, Exception {
+        return scu.buscarCursoPorCodigo(cod);
     }
 
-    public boolean updateCurso(Curso cur) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public boolean updateCurso(Curso cur) throws SQLException, GlobalException {
+        return scu.actualizarCurso(cur);
     }
 
     public boolean deleteCurso(String cod) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return scu.eliminarCurso(cod);
     }
     
     ServiceMethodsUsuario su;

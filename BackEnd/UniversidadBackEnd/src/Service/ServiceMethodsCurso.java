@@ -79,7 +79,7 @@ public class ServiceMethodsCurso extends SQLConnection {
 
     }
 
-    public void actualizarCurso(Curso cur) throws SQLException, GlobalException {
+    public boolean actualizarCurso(Curso cur) throws SQLException, GlobalException {
         try {
             try (Connection c = obtenerConexion(CONEXION, USUARIO, CLAVE);
                     CallableStatement statement = c.prepareCall(ACTUALIZARCURSO)) {
@@ -89,10 +89,11 @@ public class ServiceMethodsCurso extends SQLConnection {
                 statement.setInt(4, cur.getHorasSemanales());
                 statement.setString(5, cur.getCodigoCarrera());
                 statement.setInt(6, cur.getCiclo());
-                statement.setInt(6, cur.getAnio());
+                statement.setInt(7, cur.getAnio());
                 statement.executeUpdate();
             }
             disconnect();
+            return true;
         } catch (SQLException e) {
             throw new GlobalException("Error en base de datos");
         }
