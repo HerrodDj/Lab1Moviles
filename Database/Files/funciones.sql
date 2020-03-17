@@ -26,6 +26,16 @@ end$$
 DELIMITER ;
 
 USE `universidad`;
+DROP procedure IF EXISTS buscarCarreraNombre;
+DELIMITER $$
+USE `universidad`$$
+create procedure buscarCarreraNombre(in _nombre VARCHAR(20))
+begin 
+select codigo, nombre, titulo from carrera where carrera.nombre=_nombre; 
+end$$
+DELIMITER ;
+
+USE `universidad`;
 DROP procedure IF EXISTS listarTodaCarrera;
 DELIMITER $$
 USE `universidad`$$

@@ -34,9 +34,9 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `universidad`.`cursos`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `universidad`.`cursos` ;
+DROP TABLE IF EXISTS `universidad`.`curso` ;
 
-CREATE TABLE IF NOT EXISTS `universidad`.`cursos` (
+CREATE TABLE IF NOT EXISTS `universidad`.`curso` (
   `codigo` VARCHAR(20) NOT NULL,
   `nombre` VARCHAR(45) NULL,
   `creditos` INT NULL,
@@ -72,3 +72,4 @@ ENGINE = InnoDB;
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
+SET GLOBAL time_zone = '-6:00';
