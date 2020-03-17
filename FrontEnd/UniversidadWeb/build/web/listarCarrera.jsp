@@ -26,7 +26,7 @@
                     <h4>Lista de Carrera</h4>
                 </div>
             </div>
-            <div class="container">
+            <div class="container" onload="initCarreras()">
                 <div class="row">
                     <div class="col">
                         <select clas="form-control form-control-sm" name="searchType">
@@ -39,7 +39,7 @@
                         <input type="text" class="form-control" id="searchText" >
                     </div>
                     <div class="col-sm-4" id="searchDiv">
-                        <button type="button" class="btn btn-success" id="seacrhButton" onclick="searchCarrera()">Buscar</button>
+                        <button type="button" class="btn btn-success" id="seacrhButton" onclick="initCarreras()">Buscar</button>
                     </div> 
                 </div>
             </div>
@@ -51,7 +51,7 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="table-responsive">        
-                            <table id="tableAcc" class="table table-striped table-bordered border-info" style="width:100%">
+                            <table id="tableCarrera" class="table table-striped table-bordered border-info" style="width:100%">
                                 <thead>
                                     <tr>
                                         <th style="background-color: #CDEBDB; text-align: center">Código </th>
