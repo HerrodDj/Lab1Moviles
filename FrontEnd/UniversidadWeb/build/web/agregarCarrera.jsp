@@ -12,6 +12,7 @@
         <link href="css/bootstrap/bootstrap.css" rel="stylesheet" type="text/css"/>
         <link href="css/bootstrap/bootstrap.min.css" rel="stylesheet" type="text/css"/>
         <link href="css/bootstrap/bootstrap-reboot.min.css" rel="stylesheet" type="text/css"/>
+        <script src="js/bootstrap/bootstrap.js" type="text/javascript"></script>
         <title>Agregar Carrera</title>
     </head>
     <body>

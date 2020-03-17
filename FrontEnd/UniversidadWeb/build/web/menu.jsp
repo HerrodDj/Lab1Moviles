@@ -28,8 +28,8 @@
                 <li>
                     <a href="">Cursos</a>
                     <ul class="sub">
-                        <li><a href="">Agregar</a></li>
-                        <li><a href="">Listar</a></li>
+                        <li><a href="agregarCurso.jsp">Agregar</a></li>
+                        <li><a href="listarCurso.jsp">Listar</a></li>
                     </ul>
                 </li>
 
