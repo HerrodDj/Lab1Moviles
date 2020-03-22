@@ -11,12 +11,16 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Universidad</title>
     </head>
-    <body>
-        <div>
-            <%@include file="menu.jsp" %>
-        </div>
+    <body>    
+        
         <div aling="center">
             <h1>Bienvenido al Gestor de Carrera y Cursos de la Univerdiad</h1>
         </div>
+        <div>
+            <%@include file="menu.jsp" %>
+        </div>
+  
+
+
     </body>
 </html>
