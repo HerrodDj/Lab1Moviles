@@ -45,7 +45,7 @@ private static final String INSERTARCARRERA = "{call crearCarrera(?,?,?)}";
             c.close();
             return true;
         } catch (SQLException e) {
-            throw new GlobalException("La base de datos no se encuentra disponible");
+            throw new GlobalException("La base de datos no se encuentra disponible o codigo de carrera ya existe");
         }
     }
     
@@ -107,7 +107,8 @@ private static final String INSERTARCARRERA = "{call crearCarrera(?,?,?)}";
             Connection c = obtenerConexion(CONEXION, USUARIO, CLAVE);
             try (CallableStatement statement = c.prepareCall(ELIMINARCARRERA)) {
                 statement.setString(1, cod);
-                statement.executeUpdate();
+                int p = statement.executeUpdate();
+                p = p+0;
             }
             disconnect();
         } catch (SQLException e) {

@@ -6,12 +6,18 @@
 package UniversidadDesktop;
 
 import Controller.ControllerCarreras;
+import Controller.ControllerCursos;
 import Controller.ControllerLogin;
 import Controller.ControllerPrincipal;
 import ModelView.TablaModelView;
+import ModelView.TablaModelView2;
+import Service.ServiceMethodsCarrera;
 import View.ViewCarreras;
+import View.ViewCursos;
 import View.ViewLogin;
 import View.ViewPrincipal;
+import exceptions.GlobalException;
+import java.sql.SQLException;
 
 /**
  *
@@ -22,7 +28,10 @@ public class UniversidadDesktop {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws GlobalException, SQLException {
+        
+        Service.ServiceMethodsCarrera sc = new ServiceMethodsCarrera();
+        
         ViewLogin vl = new ViewLogin();
         ControllerLogin login_controller = new ControllerLogin(vl);
         LOGIN_CONTROLLER = login_controller;
@@ -39,8 +48,16 @@ public class UniversidadDesktop {
         CARRERAS_CONTROLLER = carreras_controller;
         vc.setVisible(false);
         
+        
+        ViewCursos vcu = new ViewCursos();
+        TablaModelView2 tm2 = new TablaModelView2();
+        ControllerCursos cursos_controller = new ControllerCursos(vcu,tm2);
+        CURSOS_CONTROLLER = cursos_controller;
+        vcu.setVisible(false);
+        
     }
     public static ControllerLogin LOGIN_CONTROLLER;
     public static ControllerPrincipal PRINCIPAL_CONTROLLER;
     public static ControllerCarreras CARRERAS_CONTROLLER;
+    public static ControllerCursos CURSOS_CONTROLLER;
 }

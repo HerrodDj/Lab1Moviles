@@ -11,7 +11,9 @@ import exceptions.GlobalException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JComboBox;
 import models.Carrera;
+import models.Curso;
 import models.Model;
 
 /**
@@ -20,13 +22,14 @@ import models.Model;
  */
 public class ControllerCarreras {
 
-    public ControllerCarreras(ViewCarreras vc, TablaModelView model) {
+    public ControllerCarreras(ViewCarreras vc, TablaModelView model) throws SQLException, GlobalException {
         model.setTablaCarreras(new ArrayList());
         this.domainModel = new Model();
         this.vc = vc;
         this.model = model;
         vc.setController(this);
         vc.setModel(model);
+        this.buscarCarreras();
     }
 
     public boolean insertarCarrera(Carrera carrera) throws Exception {
@@ -40,6 +43,15 @@ public class ControllerCarreras {
                 break;
             default:
                 this.buscarCodCarrera1(a);
+        }
+    }
+    
+    public void buscarCursoPorCarCod(String cod) throws SQLException{
+        List<Curso> l = domainModel.allCurso();
+        JComboBox<String> f = this.vc.retornaBox();
+        for(int i=0; i<l.size(); i++){
+            String p = l.get(i).getCodigo();
+            f.addItem(p);
         }
     }
 

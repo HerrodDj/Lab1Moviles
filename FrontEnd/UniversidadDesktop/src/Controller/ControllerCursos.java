@@ -12,6 +12,10 @@ import exceptions.GlobalException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JComboBox;
+import models.Carrera;
 import models.Curso;
 import models.Model;
 
@@ -21,7 +25,7 @@ import models.Model;
  */
 public class ControllerCursos {
 
-    public ControllerCursos(ViewCursos vc, TablaModelView2 model) {
+    public ControllerCursos(ViewCursos vc, TablaModelView2 model) throws GlobalException {
         model.setTablaCursos(new ArrayList());
         this.domainModel = new Model();
         this.vc = vc;
@@ -43,8 +47,17 @@ public class ControllerCursos {
                 this.buscarCodCurso1(a);
         }
     }
+    
+    public void buscarCarreras() throws GlobalException {
+        List<Carrera> l = domainModel.allCarrera();
+        JComboBox<String> f = this.vc.retornaBox();
+        for(int i=0; i<l.size(); i++){
+            String p = l.get(i).getCodigo();
+            f.addItem(p);
+        }
+    }
 
-    public List<Curso> buscarCursos() throws GlobalException {
+    public List<Curso> buscarCursos() throws GlobalException, SQLException {
         List<Curso> l = domainModel.allCurso();
         model.setTablaCursos(l);
         return l;
@@ -76,6 +89,12 @@ public class ControllerCursos {
     }
 
     public void enter() {
+        try {
+            this.vc.retornaBox().removeAllItems();
+            this.buscarCarreras();
+        } catch (GlobalException ex) {
+            Logger.getLogger(ControllerCursos.class.getName()).log(Level.SEVERE, null, ex);
+        }
         this.show();
     }
 
