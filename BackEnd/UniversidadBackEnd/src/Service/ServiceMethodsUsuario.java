@@ -25,7 +25,7 @@ public class ServiceMethodsUsuario extends SQLConnection {
             = "jdbc:mysql://localhost/universidad";
     private static final String USUARIO = "root";
     
-    private static final String CLAVE = "root1234";
+    private static final String CLAVE = "root";
 
     public boolean getUsuario(String cedula, String password) throws GlobalException {
         try {

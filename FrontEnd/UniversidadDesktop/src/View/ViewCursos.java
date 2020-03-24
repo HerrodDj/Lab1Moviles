@@ -427,7 +427,7 @@ public class ViewCursos extends javax.swing.JFrame implements java.util.Observer
 
     private void deleteBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteBtnActionPerformed
         if (this.toCod() != null) {
-            int d = JOptionPane.showConfirmDialog(this, "Esta seguro de eliminar la carrera?");
+            int d = JOptionPane.showConfirmDialog(this, "Esta seguro de eliminar este curso?");
             if (d == 0) {
                 try {
                     if (controller.deleteCurso(this.toCod())) {
@@ -469,6 +469,7 @@ public class ViewCursos extends javax.swing.JFrame implements java.util.Observer
             this.BtnAdd.setToolTipText("No hay carreras en Base de datos");
         } else {
             this.BtnAdd.setEnabled(true);
+            this.BtnAdd.setToolTipText("Es posible agregar un curso");
         }
     }
 
