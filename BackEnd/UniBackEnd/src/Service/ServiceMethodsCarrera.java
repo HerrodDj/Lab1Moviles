@@ -6,7 +6,7 @@
 package Service;
 
 import GestorSQL.GestorBaseDeDatos;
-import Modelo.Credenciales;
+import models.Credenciales;
 import exceptions.GlobalException;
 import exceptions.NoDataException;
 import java.io.Serializable;
