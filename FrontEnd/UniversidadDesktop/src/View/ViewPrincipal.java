@@ -79,7 +79,6 @@ public class ViewPrincipal extends javax.swing.JFrame {
         jButton2.setBounds(230, 50, 90, 60);
 
         jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/icons8-salida-40.png"))); // NOI18N
-        jButton4.setActionCommand("");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton4ActionPerformed(evt);
@@ -90,7 +89,7 @@ public class ViewPrincipal extends javax.swing.JFrame {
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/turquoise-wood-images-texture-on-260nw-683949346.jpg"))); // NOI18N
         getContentPane().add(jLabel4);
-        jLabel4.setBounds(0, 0, 380, 210);
+        jLabel4.setBounds(0, 0, 380, 220);
 
         pack();
         setLocationRelativeTo(null);
