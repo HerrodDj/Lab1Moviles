@@ -4,27 +4,9 @@
  * and open the template in the editor.
  */
 
-
-
-/*
- * Cargar las carreras en tablas
- */
-
-
 function initCarreras() {
-    
-    solicitarDatosCarreras("ServicioListCarrera", "carreraList");
+    solicitarDatosCarreras("carreras.json", "carreraList");
     console.log("Aplicación inicializada..");
-}
-
-function buscarCarrera(){
-    var op= document.getElementById("searchOp").value;
-    switch(op){
-        case op=== "searchCodigo":
-            ;
-        
-    }
-    
 }
 
 
@@ -51,24 +33,11 @@ function cargarTabla(tabla, datos) {
             var nuevaFila = refTabla.insertRow(-1);
             var nuevaCelda;
             nuevaCelda = nuevaFila.insertCell(-1);
-            nuevaCelda.innerText = datos.carreras[i].codigo;
+            nuevaCelda.innerText = datos.carreras[i].Codigo;
             nuevaCelda = nuevaFila.insertCell(-1);
-            nuevaCelda.innerText = datos.carreras[i].nombre;
+            nuevaCelda.innerText = datos.carreras[i].Nombre;
             nuevaCelda = nuevaFila.insertCell(-1);
-            nuevaCelda.innerText = datos.carreras[i].titulo;
-            nuevaCelda = nuevaFila.insertCell(-1);
-           
-            
+            nuevaCelda.innerText = datos.carreras[i].Titulo;
         }
-
     }
 }
-
-function myDeleteTable(tabla) {
-  document.getElementById(tabla).deleteRow(0);
-}
-
-
-/*
- * Para Editar las carreras
- */

@@ -25,13 +25,14 @@ import models.Model;
  */
 public class ControllerCursos {
 
-    public ControllerCursos(ViewCursos vc, TablaModelView2 model) throws GlobalException {
+    public ControllerCursos(ViewCursos vc, TablaModelView2 model) throws GlobalException, SQLException {
         model.setTablaCursos(new ArrayList());
         this.domainModel = new Model();
         this.vc = vc;
         this.model = model;
         vc.setController(this);
         vc.setModel(model);
+        this.buscarCursos();
     }
 
     public boolean insertarCurso(Curso curso) throws Exception {
@@ -62,6 +63,7 @@ public class ControllerCursos {
         model.setTablaCursos(l);
         return l;
     }
+   
 
     public Curso buscarCodCurso(String cod) throws Exception {
         Curso cur = domainModel.buscarCodCurso(cod);
@@ -100,6 +102,7 @@ public class ControllerCursos {
 
     public void show() {
         vc.setVisible(true);
+        vc.seeCarreras();
     }
 
     ViewCursos vc;

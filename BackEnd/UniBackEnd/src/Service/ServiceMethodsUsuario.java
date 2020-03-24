@@ -6,7 +6,7 @@
 package Service;
 
 import GestorSQL.GestorBaseDeDatos;
-import models.Credenciales;
+import Modelo.Credenciales;
 import java.io.Serializable;
 import java.sql.Connection;
 import java.sql.PreparedStatement;

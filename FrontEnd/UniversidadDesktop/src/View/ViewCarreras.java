@@ -61,13 +61,13 @@ public class ViewCarreras extends javax.swing.JFrame implements java.util.Observ
     public void update(Observable o, Object arg) {
         this.Carreras.setModel(model.getTabla());
         DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
-        centerRenderer.setHorizontalAlignment( JLabel.CENTER );
-        for(int x=0;x<this.Carreras.getColumnCount();x++){
-         this.Carreras.getColumnModel().getColumn(x).setCellRenderer( centerRenderer );
+        centerRenderer.setHorizontalAlignment(JLabel.CENTER);
+        for (int x = 0; x < this.Carreras.getColumnCount(); x++) {
+            this.Carreras.getColumnModel().getColumn(x).setCellRenderer(centerRenderer);
         }
     }
-    
-    public JComboBox retornaBox(){
+
+    public JComboBox retornaBox() {
         return this.cursosBox;
     }
 
@@ -414,19 +414,19 @@ public class ViewCarreras extends javax.swing.JFrame implements java.util.Observ
     }//GEN-LAST:event_saveEditActionPerformed
 
     private void deleteBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteBtnActionPerformed
-        int d = JOptionPane.showConfirmDialog(this, "Esta seguro de eliminar la carrera?");
-        if (d==0) {
-            try {
-                if (this.toCod() != null) {
-                    if(controller.deleteCarrera(this.toCod())){
+        if (this.toCod() != null) {
+            int d = JOptionPane.showConfirmDialog(this, "Esta seguro de eliminar la carrera?");
+            if (d == 0) {
+                try {
+                    if (controller.deleteCarrera(this.toCod())) {
                         JOptionPane.showMessageDialog(this, "Carrera Eliminada correctamente");
                         this.controller.buscarCarreras();
-                    }else{
+                    } else {
                         JOptionPane.showMessageDialog(this, "Carrera contiene cursos, primero elimine los cursos", "ERROR", JOptionPane.ERROR_MESSAGE);
-                    } 
+                    }
+                } catch (SQLException | GlobalException ex) {
+                    Logger.getLogger(ViewCarreras.class.getName()).log(Level.SEVERE, null, ex);
                 }
-            } catch (SQLException | GlobalException ex) {
-                Logger.getLogger(ViewCarreras.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }//GEN-LAST:event_deleteBtnActionPerformed
