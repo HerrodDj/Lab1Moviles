@@ -1,11 +1,3 @@
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-
-
 /*
  * Cargar las carreras en tablas
  */
@@ -26,7 +18,6 @@ function buscarCarrera(){
     }
     
 }
-
 
 function solicitarDatosCarreras(origen, tabla) {
     fetch(origen).then(
@@ -69,6 +60,30 @@ function myDeleteTable(tabla) {
 }
 
 
-/*
- * Para Editar las carreras
- */
+
+function initAgregaCurso(){
+    cargarCarrerasOpt("");
+    console.log("Aplicación inicializada..");
+}
+
+function cargarCarrerasOpt(tabla){
+        fetch("ServicioListCarrera").then(
+            (resultados) => {
+        return resultados.json();
+    }
+    ).then(
+            (datosJSON) => {
+        carrerasOpt(tabla, datosJSON);
+    }
+    );
+    
+}
+
+function addOpt(element, array){
+    var select = document.getElementsByName(element);
+    for (value in array){
+        var option = document.createElement("option");
+        option.text = array[value];
+        select.add(option);
+    }
+}
