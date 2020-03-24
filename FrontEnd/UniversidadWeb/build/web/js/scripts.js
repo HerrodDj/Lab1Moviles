@@ -26,7 +26,7 @@ function solicitarDatosCarreras(origen, tabla) {
     }
     ).then(
             (datosJSON) => {
-        cargarTabla(tabla, datosJSON);
+        cargarTablaCarreras(tabla, datosJSON);
     }
     );
 }
@@ -49,11 +49,12 @@ function cargarTabla(tabla, datos) {
             nuevaCelda.innerText = datos.carreras[i].titulo;
             nuevaCelda = nuevaFila.insertCell(-1);
 
+       }
 
-        }
-
-    }
+   }
 }
+
+
 
 function myDeleteTable(tabla) {
     document.getElementById(tabla).deleteRow(0);
