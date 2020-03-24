@@ -13,10 +13,10 @@ body {
 /* a little "umph" */
 .decor {
   background: #6EAF8D;
-  background: -webkit-linear-gradient(left, #035155 50%, #63ACAF 50%);
-  background: -moz-linear-gradient(left, #035155 50%, #63ACAF 50%);
-  background: -o-linear-gradient(left, #035155 50%, #63ACAF 50%);
-  background: linear-gradient(left, #035155 50%, #63ACAF 50%);
+  background: -webkit-linear-gradient(left, #CDEBDB 50%, #6EAF8D 50%);
+  background: -moz-linear-gradient(left, #CDEBDB 50%, #6EAF8D 50%);
+  background: -o-linear-gradient(left, #CDEBDB 50%, #6EAF8D 50%);
+  background: linear-gradient(left, #CDEBDB 50%, #6EAF8D 50%);
   background-size: 50px 25%;;
   padding: 2px;
   display: block;

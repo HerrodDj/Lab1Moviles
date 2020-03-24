@@ -21,15 +21,15 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableCellRenderer;
 import models.Curso;
 
-
 /**
  *
  * @author demil
  */
-public class ViewCursos extends javax.swing.JFrame implements java.util.Observer{
+public class ViewCursos extends javax.swing.JFrame implements java.util.Observer {
 
     ControllerCursos controller;
     TablaModelView2 model;
+
     public ViewCursos() {
         initComponents();
         this.EditL.setVisible(false);
@@ -39,14 +39,14 @@ public class ViewCursos extends javax.swing.JFrame implements java.util.Observer
         this.CursosT.getTableHeader().setResizingAllowed(false);
     }
 
-    public void setController(ControllerCursos controller){
-        this.controller=controller;
+    public void setController(ControllerCursos controller) {
+        this.controller = controller;
     }
-    
-    public ControllerCursos getController(){
+
+    public ControllerCursos getController() {
         return controller;
     }
-    
+
     public void setModel(TablaModelView2 model) {
         this.model = model;
         model.addObserver(this);
@@ -55,22 +55,21 @@ public class ViewCursos extends javax.swing.JFrame implements java.util.Observer
     public TablaModelView2 getModel() {
         return model;
     }
-    
-     @Override
+
+    @Override
     public void update(Observable o, Object arg) {
         this.CursosT.setModel(model.getTabla());
         DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
-        centerRenderer.setHorizontalAlignment( JLabel.CENTER );
-        for(int x=0;x<this.CursosT.getColumnCount();x++){
-         this.CursosT.getColumnModel().getColumn(x).setCellRenderer( centerRenderer );
+        centerRenderer.setHorizontalAlignment(JLabel.CENTER);
+        for (int x = 0; x < this.CursosT.getColumnCount(); x++) {
+            this.CursosT.getColumnModel().getColumn(x).setCellRenderer(centerRenderer);
         }
     }
-    
-    public JComboBox retornaBox(){
+
+    public JComboBox retornaBox() {
         return this.carrerasBox;
     }
-    
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -139,6 +138,8 @@ public class ViewCursos extends javax.swing.JFrame implements java.util.Observer
         NombreCursoF.setBounds(100, 80, 148, 23);
 
         BtnAdd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/icons8-añadir-50.png"))); // NOI18N
+        BtnAdd.setToolTipText("");
+        BtnAdd.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         BtnAdd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtnAddActionPerformed(evt);
@@ -416,7 +417,7 @@ public class ViewCursos extends javax.swing.JFrame implements java.util.Observer
         Curso cur = null;
         try {
             if (this.toCod() != null) {
-               cur = controller.buscarCodCurso(this.toCod());
+                cur = controller.buscarCodCurso(this.toCod());
                 this.toCurso(cur);
             }
         } catch (Exception ex) {
@@ -425,19 +426,19 @@ public class ViewCursos extends javax.swing.JFrame implements java.util.Observer
     }//GEN-LAST:event_editBTNActionPerformed
 
     private void deleteBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteBtnActionPerformed
-        int d = JOptionPane.showConfirmDialog(this, "Esta seguro de eliminar la carrera?");
-        if (d==0) {
-            try {
-                if (this.toCod() != null) {
-                    if(controller.deleteCurso(this.toCod())){
+        if (this.toCod() != null) {
+            int d = JOptionPane.showConfirmDialog(this, "Esta seguro de eliminar este curso?");
+            if (d == 0) {
+                try {
+                    if (controller.deleteCurso(this.toCod())) {
                         JOptionPane.showMessageDialog(this, "Curso Eliminado correctamente");
                         this.controller.buscarCursos();
-                    }else{
+                    } else {
                         JOptionPane.showMessageDialog(this, "Ha ocurrido un Error", "ERROR", JOptionPane.ERROR_MESSAGE);
                     }
+                } catch (SQLException | GlobalException ex) {
+                    Logger.getLogger(ViewCarreras.class.getName()).log(Level.SEVERE, null, ex);
                 }
-            } catch (SQLException | GlobalException ex) {
-                Logger.getLogger(ViewCarreras.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }//GEN-LAST:event_deleteBtnActionPerformed
@@ -460,6 +461,16 @@ public class ViewCursos extends javax.swing.JFrame implements java.util.Observer
             return a;
         }
         return null;
+    }
+
+    public void seeCarreras() {
+        if (this.carrerasBox.getItemCount() == 0) {
+            this.BtnAdd.setEnabled(false);
+            this.BtnAdd.setToolTipText("No hay carreras en Base de datos");
+        } else {
+            this.BtnAdd.setEnabled(true);
+            this.BtnAdd.setToolTipText("Es posible agregar un curso");
+        }
     }
 
     public void toCurso(Curso cur) {
@@ -498,16 +509,16 @@ public class ViewCursos extends javax.swing.JFrame implements java.util.Observer
         this.CodCursoF.setText("");
         this.NombreCursoF.setText("");
         this.horasF.setText("");
-        if(this.CodCursoL.getForeground()==COLOR_ERROR){
+        if (this.CodCursoL.getForeground() == COLOR_ERROR) {
             this.CodCursoL.setForeground(COLOR_OK);
         }
-        if(this.NombreCursoL.getForeground()==COLOR_ERROR){
+        if (this.NombreCursoL.getForeground() == COLOR_ERROR) {
             this.NombreCursoL.setForeground(COLOR_OK);
         }
-        if(this.horasL.getForeground()==COLOR_ERROR){
+        if (this.horasL.getForeground() == COLOR_ERROR) {
             this.horasL.setForeground(COLOR_OK);
         }
-        if(this.carrerasBox.getModel().getSize()!=0){
+        if (this.carrerasBox.getModel().getSize() != 0) {
             this.carrerasBox.setSelectedIndex(0);
         }
         this.cicloBox.setSelectedIndex(0);
@@ -528,30 +539,29 @@ public class ViewCursos extends javax.swing.JFrame implements java.util.Observer
             error = true;
         }
         this.horasL.setForeground(COLOR_OK);
-        if(this.horasF.getText().isEmpty()){
+        if (this.horasF.getText().isEmpty()) {
             this.horasL.setForeground(COLOR_ERROR);
             error = true;
         }
-        if(!esNumero(this.horasF.getText())){
+        if (!esNumero(this.horasF.getText())) {
             this.horasL.setForeground(COLOR_ERROR);
             error = true;
         }
         return !error;
-    } 
-    
-    
+    }
+
     public boolean esNumero(String num) {
-    if (num == null) {
-        return false;
+        if (num == null) {
+            return false;
+        }
+        try {
+            int d = Integer.parseInt(num);
+        } catch (NumberFormatException noNum) {
+            return false;
+        }
+        return true;
     }
-    try {
-        int d = Integer.parseInt(num);
-    } catch (NumberFormatException noNum) {
-        return false;
-    }
-    return true;
-}
-   
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel AddL;
