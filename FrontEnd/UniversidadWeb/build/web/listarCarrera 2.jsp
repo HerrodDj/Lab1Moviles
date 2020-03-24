@@ -59,7 +59,7 @@
                                         <th style="background-color: #CDEBDB; text-align: center">Título</th>
                                         <th style="background-color: #CDEBDB; text-align: center">Editar</th>
                                 </thead>
-                                <tbody style="background-color: #CDEBDB;" id="carreraList">
+                                <tbody id="carreraList">
                                 </tbody>
                             </table
                         </div>

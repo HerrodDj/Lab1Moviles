@@ -26,7 +26,7 @@
                     <h4>Lista de Carrera</h4>
                 </div>
             </div>
-            <div class="container" onload="initCarreras()">
+            <div class="container">
                 <div class="row">
                     <div class="col">
                         <select clas="form-control form-control-sm" name="searchType">
@@ -57,9 +57,9 @@
                                         <th style="background-color: #CDEBDB; text-align: center">Código </th>
                                         <th style="background-color: #CDEBDB; text-align: center">Nombre</th>
                                         <th style="background-color: #CDEBDB; text-align: center">Título</th>
-                                    </tr>
+                                        <th style="background-color: #CDEBDB; text-align: center">Editar</th>
                                 </thead>
-                                <tbody id="carreraList">
+                                <tbody style="background-color: #CDEBDB;" id="carreraList">
                                 </tbody>
                             </table
                         </div>
