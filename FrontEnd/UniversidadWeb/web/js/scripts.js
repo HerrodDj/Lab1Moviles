@@ -31,7 +31,7 @@ function solicitarDatosCarreras(origen, tabla) {
     );
 }
 
-function cargarTabla(tabla, datos) {
+function cargarTablaCarreras(tabla, datos) {
     var refTabla = document.getElementById(tabla);
     if (refTabla) {
 
@@ -48,6 +48,7 @@ function cargarTabla(tabla, datos) {
             nuevaCelda = nuevaFila.insertCell(-1);
             nuevaCelda.innerText = datos.carreras[i].titulo;
             nuevaCelda = nuevaFila.insertCell(-1);
+           
 
        }
 

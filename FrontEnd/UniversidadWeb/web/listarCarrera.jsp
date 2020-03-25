@@ -30,9 +30,9 @@
                 <div class="row">
                     <div class="col">
                         <select clas="form-control form-control-sm" name="searchType">
-                            <option value="searchAll">Mostrar todas</option>
-                            <option value="searchCodigo">Codigo de Carrera</option>
-                            <option value="searchNombre">Nombre de Carrera</option>
+                            <option value="searchAll" style="align-content: center">Mostrar todas</option>
+                            <option value="searchCodigo" style="align-content: center">Codigo de Carrera</option>
+                            <option value="searchNombre" style="align-content: center">Nombre de Carrera</option>
                         </select>
                     </div>
                     <div class="col-sm-4" id="serchDiv">
@@ -54,10 +54,10 @@
                             <table id="tableCarrera" class="table table-striped table-bordered border-info" style="width:100%">
                                 <thead>
                                     <tr>
-                                        <th style="background-color: #CDEBDB; text-align: center">Código </th>
-                                        <th style="background-color: #CDEBDB; text-align: center">Nombre</th>
-                                        <th style="background-color: #CDEBDB; text-align: center">Título</th>
-                                        <th style="background-color: #CDEBDB; text-align: center">Editar</th>
+                                        <th style="background-color: #5da17a; color:white; text-align: center">Código </th>
+                                        <th style="background-color: #5da17a; color:white; text-align: center">Nombre</th>
+                                        <th style="background-color: #5da17a; color:white; text-align: center">Título</th>
+                                        <th style="background-color: #5da17a; color:white; text-align: center">Editar</th>
                                 </thead>
                                 <tbody style="background-color: #CDEBDB;" id="carreraList">
                                 </tbody>
