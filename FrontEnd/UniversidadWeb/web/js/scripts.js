@@ -41,6 +41,9 @@ function cargarTablaCarreras(tabla, datos) {
         for (var i = 0; i < datos.carreras.length; i++) {
             var nuevaFila = refTabla.insertRow(-1);
             var nuevaCelda;
+            var boton = document.createElement("button");
+            boton.type = 'button';
+            boton.innerText = 'Haz Click';
             nuevaCelda = nuevaFila.insertCell(-1);
             nuevaCelda.innerText = datos.carreras[i].codigo;
             nuevaCelda = nuevaFila.insertCell(-1);
@@ -48,6 +51,8 @@ function cargarTablaCarreras(tabla, datos) {
             nuevaCelda = nuevaFila.insertCell(-1);
             nuevaCelda.innerText = datos.carreras[i].titulo;
             nuevaCelda = nuevaFila.insertCell(-1);
+            
+            
            
 
        }
