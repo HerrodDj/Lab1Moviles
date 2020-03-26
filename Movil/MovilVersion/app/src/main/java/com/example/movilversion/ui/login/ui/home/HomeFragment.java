@@ -12,7 +12,8 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
-import com.example.movilversion.ui.login.R;
+import com.example.movilversion.R;
+
 
 public class HomeFragment extends Fragment {
 
