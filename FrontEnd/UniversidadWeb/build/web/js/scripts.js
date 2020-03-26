@@ -48,7 +48,7 @@ function cargarTablaCarreras(tabla, datos) {
             nuevaCelda = nuevaFila.insertCell(-1);
             nuevaCelda.innerText = datos.carreras[i].titulo;
             nuevaCelda = nuevaFila.insertCell(-1);
-            nuevaCelda.innerHTML = "<button  type ='button' class='btn btn-primary'> Editar</button>\n\
+            nuevaCelda.innerHTML = "<button  type ='button' class='btn btn-primary' onclick='editarCarrera()'> Editar</button>\n\
  <button class ='btn btn-danger' type ='button'>Eliminar</button>";
 
 
@@ -91,4 +91,11 @@ function addOpt(element, array) {
         option.text = array[value];
         select.add(option);
     }
+}
+
+
+function editarCarrera(){
+    
+    
+    
 }
