@@ -1,4 +1,4 @@
-
+    
 /*
  * Cargar las carreras en tablas
  */
@@ -48,7 +48,7 @@ function cargarTablaCarreras(tabla, datos) {
             nuevaCelda = nuevaFila.insertCell(-1);
             nuevaCelda.innerText = datos.carreras[i].titulo;
             nuevaCelda = nuevaFila.insertCell(-1);
-            nuevaCelda.innerHTML = "<button  type ='button' class='btn btn-primary' onclick='editarCarrera()'> Editar</button>\n\
+            nuevaCelda.innerHTML = "<button  type ='button' class='btn btn-primary' onclick='location.href= 'editarCarrera.jsp' '> Editar</button>\n\
  <button class ='btn btn-danger' type ='button'>Eliminar</button>";
 
 
@@ -58,6 +58,10 @@ function cargarTablaCarreras(tabla, datos) {
    }
 }
 
+function linkeoEditCarrera(){
+    window.location="UniversidadWeb/editarCarrera.jsp";
+    
+}
 
 
 function myDeleteTable(tabla) {
@@ -95,6 +99,12 @@ function addOpt(element, array) {
 
 
 function editarCarrera(){
+    datosCarreraEditar("ServicioEditarCarrera");
+    
+    
+}
+
+function datosCarreraEditar(origen){
     
     
     

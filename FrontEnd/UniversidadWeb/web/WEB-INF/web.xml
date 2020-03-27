@@ -20,6 +20,10 @@
         <servlet-name>ServicioEliminarCarrera</servlet-name>
         <servlet-class>Service.ServicioEliminarCarrera</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ServicioListCurso</servlet-name>
+        <servlet-class>Service.ServicioListCurso</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ServicioLogin</servlet-name>
         <url-pattern>/ServicioLogin</url-pattern>
@@ -39,6 +43,10 @@
     <servlet-mapping>
         <servlet-name>ServicioEliminarCarrera</servlet-name>
         <url-pattern>/ServicioEliminarCarrera</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ServicioListCurso</servlet-name>
+        <url-pattern>/ServicioListCurso</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
