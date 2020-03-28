@@ -1,4 +1,4 @@
-    
+
 /*
  * Cargar las carreras en tablas
  */
@@ -35,9 +35,6 @@ function cargarTablaCarreras(tabla, datos) {
     var refTabla = document.getElementById(tabla);
     if (refTabla) {
 
-        // Si es necesario, se utiliza el método deleteRow()
-        // para eliminar las filas que ya existan en la tabla.
-
         for (var i = 0; i < datos.carreras.length; i++) {
             var nuevaFila = refTabla.insertRow(-1);
             var nuevaCelda;
@@ -70,46 +67,66 @@ function myDeleteTable(tabla) {
 
 
 
-function initAgregaCurso() {
-    cargarCarrerasOpt("");
-    console.log("Aplicación inicializada..");
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//---------------CURSO---------------
+//Agregar curso
+function myOnLoad() {
+    carga("ServicioListCarrera");
 }
 
-function cargarCarrerasOpt(item) {
-    fetch("ServicioListCarrera").then(
+function carga(origen) {
+    fetch(origen).then(
             (resultados) => {
         return resultados.json();
     }
     ).then(
             (datosJSON) => {
-        carrerasOpt(item, datosJSON);
+        cargarSelectCarreras(datosJSON);
     }
     );
 
 }
 
-//Codigo a Ejecutar al Cargar la Pagina
-function myOnLoad() {
- cargar_provincias();
+
+function cargarSelectCarreras(datos) {
+    
+    addOptions("carrera", datos);
 }
 
-// funcion para Cargar Provincias al campo <select>
-function cargar_provincias() {
- var array = ["Cantabria", "Asturias", "Galicia", "Andalucia", "Extremadura"];
-
- // Ordena el Array Alfabeticamente, es muy facil ;)):
- array.sort();
-
- addOptions("carrera", array);
-}
 
 // Rutina para agregar opciones a un <select>
-function addOptions(domElement, array) {
- var select = document.getElementsByName(domElement)[0];
+function addOptions(domElement, datos) {
+    var select = document.getElementsByName(domElement)[0];
 
- for (value in array) {
-  var option = document.createElement("option");
-  option.text = array[value];
-  select.add(option);
- }
- }
+    for (var i = 0; i < datos.carreras.length; i++) {
+        var option = document.createElement("option");
+        option.value=datos.carreras[i].codigo;
+        option.text =datos.carreras[i].nombre
+        select.add(option);
+    }
+}
+
+
