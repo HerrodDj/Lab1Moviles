@@ -25,8 +25,8 @@ import java.util.List;
 
 
 public class CarreraAdapter extends RecyclerView.Adapter<CarreraAdapter.MyViewHolder> implements Filterable {
-    private List<Carrera> carreraList;
-    private List<Carrera> carreraListFiltered;
+    private ArrayList<Carrera> carreraList;
+    private ArrayList<Carrera> carreraListFiltered;
     private CarreraAdapterListener listener;
     private Carrera deletedItem;
 
@@ -53,7 +53,7 @@ public class CarreraAdapter extends RecyclerView.Adapter<CarreraAdapter.MyViewHo
         }
     }
 
-    public CarreraAdapter(List<Carrera> carreraList, CarreraAdapterListener listener) {
+    public CarreraAdapter(ArrayList<Carrera> carreraList, CarreraAdapterListener listener) {
         this.carreraList = carreraList;
         this.listener = listener;
         //init filter
@@ -149,7 +149,7 @@ public class CarreraAdapter extends RecyclerView.Adapter<CarreraAdapter.MyViewHo
                 if (charString.isEmpty()) {
                     carreraListFiltered = carreraList;
                 } else {
-                    List<Carrera> filteredList = new ArrayList<>();
+                    ArrayList<Carrera> filteredList = new ArrayList<>();
                     for (Carrera row : carreraList) {
                         // filter use two parameters
                         if (row.getCodigo().toLowerCase().contains(charString.toLowerCase()) || row.getNombre().toLowerCase().contains(charString.toLowerCase())) {
