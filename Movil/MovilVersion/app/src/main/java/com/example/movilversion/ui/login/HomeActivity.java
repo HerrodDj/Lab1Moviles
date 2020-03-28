@@ -5,11 +5,10 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Menu;
-import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.movilversion.CarrerasActivity;
+import com.example.movilversion.Carreras.CarrerasActivity;
+import com.example.movilversion.Cursos.CursosActivity;
 import com.example.movilversion.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
@@ -47,7 +46,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_home, R.id.nav_carreras, R.id.nav_slideshow, R.id.nav_logout)
+                R.id.nav_home, R.id.nav_carreras, R.id.nav_grupos, R.id.nav_logout)
                 .setDrawerLayout(drawer)
                 .build();
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -94,6 +93,18 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         startActivity(a);
     }
 
+    public void carreras(){
+        finish();
+        Intent a = new Intent(this, CarrerasActivity.class);
+        startActivity(a);
+    }
+
+    public void cursos(){
+        finish();
+        Intent a = new Intent(this, CursosActivity.class);
+        startActivity(a);
+    }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
@@ -117,9 +128,9 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         if (id == R.id.nav_logout) {
             logOut();
         }else if (id == R.id.nav_carreras) {
-            finish();
-            Intent a = new Intent(this, CarrerasActivity.class);
-            startActivity(a);
+            carreras();
+        }else if(id==R.id.nav_grupos){
+            cursos();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

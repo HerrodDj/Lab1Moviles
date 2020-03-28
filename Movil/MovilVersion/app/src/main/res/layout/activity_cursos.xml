@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
     android:background="@color/colorPrimary"
-    tools:context=".Carreras.CarrerasActivity">
+    tools:context=".Cursos.CursosActivity">
 
 
     <com.google.android.material.appbar.AppBarLayout
@@ -23,7 +23,7 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
-    <include layout="@layout/recycle_view_carreras" />
+    <include layout="@layout/recycle_view_cursos" />
 
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -33,6 +33,6 @@
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/fab_margin"
         android:background="@color/colorPrimary"
-        app:srcCompat="@android:drawable/ic_menu_add" />
+        app:srcCompat="@android:drawable/ic_input_add" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

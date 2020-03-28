@@ -33,6 +33,31 @@ public class Data {
         listaCarreras.add(carrera);
         carrera = new Carrera("EIF305", "Ingenieria en sistemas II","Maestria");
         listaCarreras.add(carrera);
+        carrera = new Carrera("LIX200", "Ingles","Bachillerato");
+        listaCarreras.add(carrera);
+        carrera = new Carrera("MAT500", "Matematica","Licenciatura");
+        listaCarreras.add(carrera);
+        carrera = new Carrera("FRP200", "Frances","Bachillerato");
+        listaCarreras.add(carrera);
+        carrera = new Carrera("EIF305", "Ingenieria en sistemas II","Maestria");
+        listaCarreras.add(carrera);
+        carrera = new Carrera("LIX200", "Ingles","Bachillerato");
+        listaCarreras.add(carrera);
+        carrera = new Carrera("MAT500", "Matematica","Licenciatura");
+        listaCarreras.add(carrera);
+        carrera = new Carrera("FRP200", "Frances","Bachillerato");
+        listaCarreras.add(carrera);
+        carrera = new Carrera("EIF305", "Ingenieria en sistemas II","Maestria");
+        listaCarreras.add(carrera);
+        carrera = new Carrera("LIX200", "Ingles","Bachillerato");
+        listaCarreras.add(carrera);
+        carrera = new Carrera("MAT500", "Matematica","Licenciatura");
+        listaCarreras.add(carrera);
+        carrera = new Carrera("FRP200", "Frances","Bachillerato");
+        listaCarreras.add(carrera);
+        carrera = new Carrera("EIF305", "Ingenieria en sistemas II","Maestria");
+        listaCarreras.add(carrera);
+
     }
 
     public void prepareCursoData() {
