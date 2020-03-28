@@ -1,11 +1,15 @@
-package com.example.movilversion;
+package com.example.movilversion.Cursos;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 
 import com.example.movilversion.data.Adapter.CarreraAdapter;
+import com.example.movilversion.data.Adapter.CursoAdapter;
 import com.example.movilversion.data.Datos.Data;
 import com.example.movilversion.data.LogicaNeg.Carrera;
+import com.example.movilversion.data.LogicaNeg.Curso;
 import com.example.movilversion.ui.login.HomeActivity;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
@@ -17,21 +21,21 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.View;
-import android.widget.SearchView;
 import android.widget.Toast;
+
+import com.example.movilversion.R;
 
 import java.util.ArrayList;
 
-public class CarrerasActivity extends AppCompatActivity implements CarreraAdapter.CarreraAdapterListener{
+public class CursosActivity extends AppCompatActivity implements CursoAdapter.CursoAdapterListener{
 
     private RecyclerView rVLC;
     private Data datos;
-    private SearchView sv;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_carreras);
+        setContentView(R.layout.activity_cursos);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         FloatingActionButton fab = findViewById(R.id.fab);
@@ -43,27 +47,25 @@ public class CarrerasActivity extends AppCompatActivity implements CarreraAdapte
             }
         });
 
-
-        rVLC = findViewById(R.id.listCarreras);
+        rVLC = findViewById(R.id.listCursos);
         rVLC.addItemDecoration(new DividerItemDecoration(this,DividerItemDecoration.VERTICAL));
         LinearLayoutManager LL = new LinearLayoutManager(this);
         rVLC.setLayoutManager(LL);
 
         //Datos
         Data datos = new Data();
-        ArrayList<Carrera> listaC = datos.getListaCarreras();
+        ArrayList<Curso> listaC = datos.getListaCursos();
 
-        CarreraAdapter carrAdap = new CarreraAdapter(listaC, this);
+        CursoAdapter carrAdap = new CursoAdapter(listaC, this);
         rVLC.setAdapter(carrAdap);
 
+        whiteNotificationBar(rVLC);
         carrAdap.notifyDataSetChanged();
-
-
     }
 
     @Override
-    public void onContactSelected(Carrera carrera) {
-        Toast.makeText(getApplicationContext(), "Selected: " + carrera.getCodigo() + ", " + carrera.getNombre(), Toast.LENGTH_LONG).show();
+    public void onContactSelected(Curso curso) {
+        Toast.makeText(getApplicationContext(), "Selected: " + curso.getCodigo() + ", " + curso.getNombre(), Toast.LENGTH_LONG).show();
     }
 
     @Override
@@ -72,12 +74,14 @@ public class CarrerasActivity extends AppCompatActivity implements CarreraAdapte
     }
 
 
-
-
-
-
-
-
+    private void whiteNotificationBar(View view) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            int flags = view.getSystemUiVisibility();
+            flags |= View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR;
+            view.setSystemUiVisibility(flags);
+            getWindow().setStatusBarColor(Color.WHITE);
+        }
+    }
     @Override
     public void onBackPressed() { //TODO it's not working yet
         Intent a = new Intent(this, HomeActivity.class);
