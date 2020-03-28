@@ -12,10 +12,11 @@
         <link href="css/bootstrap/bootstrap.css" rel="stylesheet" type="text/css"/>
         <link href="css/bootstrap/bootstrap.min.css" rel="stylesheet" type="text/css"/>
         <link href="css/bootstrap/bootstrap-reboot.min.css" rel="stylesheet" type="text/css"/>
+        <script src="js/scripts.js" type="text/javascript"></script>
         <title>Agregar Curso </title>
     </head>
 
-    <body>
+    <body onLoad="myOnLoad()">
         <div>
             <%@include file="menu.jsp" %>
         </div>
@@ -72,9 +73,8 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-4">
-                            <select class="form-control form-control-sm" name ="carrera" id ="carrera">
-                                <option></option>
+                        <div class="col-4"> <select name="carrera" id="carrera">
+                                <option>Seleccione una Carrera...</option>
                             </select>
                         </div>
                     </div>

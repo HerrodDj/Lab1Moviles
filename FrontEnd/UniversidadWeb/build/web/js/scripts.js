@@ -55,12 +55,12 @@ function cargarTablaCarreras(tabla, datos) {
 
         }
 
-   }
+    }
 }
 
-function linkeoEditCarrera(){
-    window.location="UniversidadWeb/editarCarrera.jsp";
-    
+function linkeoEditCarrera() {
+    window.location = "UniversidadWeb/editarCarrera.jsp";
+
 }
 
 
@@ -75,37 +75,41 @@ function initAgregaCurso() {
     console.log("Aplicación inicializada..");
 }
 
-function cargarCarrerasOpt(tabla) {
+function cargarCarrerasOpt(item) {
     fetch("ServicioListCarrera").then(
             (resultados) => {
         return resultados.json();
     }
     ).then(
             (datosJSON) => {
-        carrerasOpt(tabla, datosJSON);
+        carrerasOpt(item, datosJSON);
     }
     );
 
 }
 
-function addOpt(element, array) {
-    var select = document.getElementsByName(element);
-    for (value in array) {
-        var option = document.createElement("option");
-        option.text = array[value];
-        select.add(option);
-    }
+//Codigo a Ejecutar al Cargar la Pagina
+function myOnLoad() {
+ cargar_provincias();
 }
 
+// funcion para Cargar Provincias al campo <select>
+function cargar_provincias() {
+ var array = ["Cantabria", "Asturias", "Galicia", "Andalucia", "Extremadura"];
 
-function editarCarrera(){
-    datosCarreraEditar("ServicioEditarCarrera");
-    
-    
+ // Ordena el Array Alfabeticamente, es muy facil ;)):
+ array.sort();
+
+ addOptions("carrera", array);
 }
 
-function datosCarreraEditar(origen){
-    
-    
-    
-}
+// Rutina para agregar opciones a un <select>
+function addOptions(domElement, array) {
+ var select = document.getElementsByName(domElement)[0];
+
+ for (value in array) {
+  var option = document.createElement("option");
+  option.text = array[value];
+  select.add(option);
+ }
+ }
