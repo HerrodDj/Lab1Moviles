@@ -1,15 +1,15 @@
 <resources>
     <string name="app_name">MovilVersion</string>
     <!-- Strings related to login -->
-    <string name="prompt_email">User</string>
-    <string name="prompt_password">Password</string>
+    <string name="prompt_email">Cedula</string>
+    <string name="prompt_password">Contraseña</string>
     <string name="action_sign_in">Iniciar Sesión</string>
     <string name="action_sign_in_short">Sign in</string>
     <string name="welcome">"Bienvenido !"</string>
     <string name="invalid_username">Cedula Invalida</string>
-    <string name="invalid_password">Contraseña tiene que ser >=3 caracteres</string>
+    <string name="invalid_password">Contraseña tiene que ser >2 caracteres</string>
     <string name="login_failed">"Cedula o Contraseña Incorrecta"</string>
-    <string name="title_activity_home">homeActivity</string>
+    <string name="title_activity_home">Principal</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="nav_header_title">Universidad</string>
@@ -23,8 +23,21 @@
 
     <string name="menu_home">Inicio</string>
     <string name="menu_carreras">Carreras</string>
-    <string name="menu_grupos">Grupos</string>
+    <string name="menu_cursos">Cursos</string>
     <string name="logout">Salir</string>
+
+    <string name="addCarNombre">Nombre</string>
+    <string name="addCarCodigo">Codigo</string>
+    <string name="addCarTitulo">Titulo</string>
+
+    <string name="addCurCodigo">Codigo</string>
+    <string name="addCurNombre">Nombre</string>
+    <string name="addCurCreditos">Creditos</string>
+    <string name="addCurHoras">Horas</string>
+    <string name="addCurAnnio">Año</string>
+
+
+
 
     <string name="home_second">Home Second</string>
     <string name="title_activity_carreras">Carreras</string>
@@ -37,4 +50,27 @@
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
     <string name="title_activity_cursos">Cursos</string>
+
+    <string-array name="titulosCarreras">
+        <item>
+            "Bachillerato"
+        </item>
+        <item>
+            "Licenciatura"
+        </item>
+        <item>
+            "Maestria"
+        </item>
+    </string-array>
+
+    <string-array name="ciclos">
+        <item>
+            1
+        </item>
+        <item>
+            2
+        </item>
+    </string-array>
+
+
 </resources>

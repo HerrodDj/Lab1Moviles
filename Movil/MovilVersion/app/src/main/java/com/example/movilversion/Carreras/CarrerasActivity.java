@@ -34,6 +34,7 @@ public class CarrerasActivity extends AppCompatActivity implements CarreraAdapte
     private Data datos;
     private SearchView searchView;
     private CarreraAdapter carrAdap;
+    private ArrayList<Carrera> listaC;
 
 
     @Override
@@ -43,12 +44,13 @@ public class CarrerasActivity extends AppCompatActivity implements CarreraAdapte
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+
+
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                addCarreras();
             }
         });
 
@@ -60,19 +62,25 @@ public class CarrerasActivity extends AppCompatActivity implements CarreraAdapte
 
         //Datos
         Data datos = new Data();
-        ArrayList<Carrera> listaC = datos.getListaCarreras();
+         listaC = datos.getListaCarreras();
 
         carrAdap = new CarreraAdapter(listaC, this);
         rVLC.setAdapter(carrAdap);
 
         whiteNotificationBar(rVLC);
+        checkIntentInformation();
         carrAdap.notifyDataSetChanged();
-
     }
 
     @Override
     public void onContactSelected(Carrera carrera) {
         Toast.makeText(getApplicationContext(), "Selected: " + carrera.getCodigo() + ", " + carrera.getNombre(), Toast.LENGTH_LONG).show();
+    }
+
+    public void addCarreras(){
+        Intent intent = new Intent(this, AddCarreraActivity.class);
+        intent.putExtra("editable", false);
+        startActivity(intent);
     }
 
 
@@ -107,6 +115,39 @@ public class CarrerasActivity extends AppCompatActivity implements CarreraAdapte
         });
         return true;
     }*/
+
+    private void checkIntentInformation() {
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            Carrera aux;
+            aux = (Carrera) getIntent().getSerializableExtra("addCarrera");
+            if (aux == null) {
+                aux = (Carrera) getIntent().getSerializableExtra("editCarrera");
+                if (aux != null) {
+                    //found an item that can be updated
+                    boolean founded = false;
+                    for (Carrera carrera : listaC) {
+                        if (carrera.getCodigo().equals(aux.getCodigo())) {
+                            carrera.setNombre(aux.getNombre());
+                            carrera.setTitulo(aux.getTitulo());
+                            founded = true;
+                            break;
+                        }
+                    }
+                    //check if exist
+                    if (founded) {
+                        Toast.makeText(getApplicationContext(), aux.getNombre() + " editado correctamente", Toast.LENGTH_LONG).show();
+                    } else {
+                        Toast.makeText(getApplicationContext(), aux.getNombre() + " no encontrado", Toast.LENGTH_LONG).show();
+                    }
+                }
+            } else {
+                //found a new Carrera Object
+                listaC.add(aux);
+                Toast.makeText(getApplicationContext(), aux.getNombre() + " agregado correctamente", Toast.LENGTH_LONG).show();
+            }
+        }
+    }
 
     @Override
     public void onPointerCaptureChanged(boolean hasCapture) {

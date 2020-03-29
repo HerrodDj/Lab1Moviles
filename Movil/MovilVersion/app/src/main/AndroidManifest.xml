@@ -9,10 +9,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".Cursos.AddCursosActivity"
+            android:label="@string/title_activity_cursos" />
+        <activity
+            android:name=".Carreras.AddCarreraActivity"
+            android:label="@string/title_activity_carreras" />
         <activity
             android:name=".Cursos.CursosActivity"
             android:label="@string/title_activity_cursos"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Carreras.CarrerasActivity"
             android:label="@string/title_activity_carreras"

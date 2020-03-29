@@ -46,7 +46,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_home, R.id.nav_carreras, R.id.nav_grupos, R.id.nav_logout)
+                R.id.nav_home, R.id.nav_carreras, R.id.nav_cursos, R.id.nav_logout)
                 .setDrawerLayout(drawer)
                 .build();
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -129,7 +129,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
             logOut();
         }else if (id == R.id.nav_carreras) {
             carreras();
-        }else if(id==R.id.nav_grupos){
+        }else if(id==R.id.nav_cursos){
             cursos();
         }
 

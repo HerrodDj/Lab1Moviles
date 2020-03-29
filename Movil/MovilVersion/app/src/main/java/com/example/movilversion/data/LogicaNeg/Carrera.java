@@ -67,6 +67,10 @@ public class Carrera implements Serializable {
         return "Carrera{" + "codigo=" + codigo + ", nombre=" + nombre + ", titulo=" + titulo + '}';
     }
 
+    public String toString1(){
+        return codigo;
+    }
+
 
     private String codigo;
     private String nombre;

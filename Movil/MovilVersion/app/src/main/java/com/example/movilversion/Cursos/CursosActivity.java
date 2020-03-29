@@ -5,6 +5,7 @@ import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 
+import com.example.movilversion.Carreras.AddCarreraActivity;
 import com.example.movilversion.data.Adapter.CarreraAdapter;
 import com.example.movilversion.data.Adapter.CursoAdapter;
 import com.example.movilversion.data.Datos.Data;
@@ -31,6 +32,7 @@ public class CursosActivity extends AppCompatActivity implements CursoAdapter.Cu
 
     private RecyclerView rVLC;
     private Data datos;
+    private ArrayList<Curso> listaC;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,12 +40,12 @@ public class CursosActivity extends AppCompatActivity implements CursoAdapter.Cu
         setContentView(R.layout.activity_cursos);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                addCursos();
             }
         });
 
@@ -54,12 +56,13 @@ public class CursosActivity extends AppCompatActivity implements CursoAdapter.Cu
 
         //Datos
         Data datos = new Data();
-        ArrayList<Curso> listaC = datos.getListaCursos();
+        listaC = datos.getListaCursos();
 
         CursoAdapter carrAdap = new CursoAdapter(listaC, this);
         rVLC.setAdapter(carrAdap);
 
         whiteNotificationBar(rVLC);
+        checkIntentInformation();
         carrAdap.notifyDataSetChanged();
     }
 
@@ -88,5 +91,50 @@ public class CursosActivity extends AppCompatActivity implements CursoAdapter.Cu
         startActivity(a);
         super.onBackPressed();
     }
+
+    private void addCursos(){
+        Intent intent = new Intent(this, AddCursosActivity.class);
+        intent.putExtra("editable", false);
+        startActivity(intent);
+    }
+
+    private void checkIntentInformation() {
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            Curso aux;
+            aux = (Curso) getIntent().getSerializableExtra("addCurso");
+            if (aux == null) {
+                aux = (Curso) getIntent().getSerializableExtra("editCurso");
+                if (aux != null) {
+                    //found an item that can be updated
+                    boolean founded = false;
+                    for (Curso curso : listaC) {
+                        if (curso.getCodigo().equals(aux.getCodigo())) {
+                            curso.setNombre(aux.getNombre());
+                            curso.setCreditos(aux.getCreditos());
+                            curso.setHorasSemanales(aux.getHorasSemanales());
+                            curso.setCodigoCarrera(aux.getCodigoCarrera());
+                            curso.setCiclo(aux.getCiclo());
+                            curso.setAnio(aux.getAnio());
+                            founded = true;
+                            break;
+                        }
+                    }
+                    //check if exist
+                    if (founded) {
+                        Toast.makeText(getApplicationContext(), aux.getNombre() + " editado correctamente", Toast.LENGTH_LONG).show();
+                    } else {
+                        Toast.makeText(getApplicationContext(), aux.getNombre() + " no encontrado", Toast.LENGTH_LONG).show();
+                    }
+                }
+            } else {
+                //found a new Carrera Object
+                listaC.add(aux);
+                Toast.makeText(getApplicationContext(), aux.getNombre() + " agregado correctamente", Toast.LENGTH_LONG).show();
+            }
+        }
+    }
+
+
 
 }
