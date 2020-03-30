@@ -35,6 +35,7 @@
         android:backgroundTint="@color/colorPrimary"
         android:src="@drawable/ic_add_black_24dp"
         android:tint="@android:color/background_light"
+        app:backgroundTint="@color/colorPrimary"
         />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

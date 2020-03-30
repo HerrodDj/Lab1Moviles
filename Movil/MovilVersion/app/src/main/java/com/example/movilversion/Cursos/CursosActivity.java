@@ -16,11 +16,15 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
@@ -33,12 +37,14 @@ public class CursosActivity extends AppCompatActivity implements CursoAdapter.Cu
     private RecyclerView rVLC;
     private Data datos;
     private ArrayList<Curso> listaC;
+    private SearchView searchView;
+    private CursoAdapter curAdap;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cursos);
-        Toolbar toolbar = findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar1);
         setSupportActionBar(toolbar);
 
         FloatingActionButton fab = findViewById(R.id.fab);
@@ -58,12 +64,12 @@ public class CursosActivity extends AppCompatActivity implements CursoAdapter.Cu
         Data datos = new Data();
         listaC = datos.getListaCursos();
 
-        CursoAdapter carrAdap = new CursoAdapter(listaC, this);
-        rVLC.setAdapter(carrAdap);
+        curAdap = new CursoAdapter(listaC, this);
+        rVLC.setAdapter(curAdap);
 
         whiteNotificationBar(rVLC);
         checkIntentInformation();
-        carrAdap.notifyDataSetChanged();
+        curAdap.notifyDataSetChanged();
     }
 
     @Override
@@ -72,8 +78,46 @@ public class CursosActivity extends AppCompatActivity implements CursoAdapter.Cu
     }
 
     @Override
-    public void onPointerCaptureChanged(boolean hasCapture) {
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds carreraList to the action bar if it is present.
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_search,menu);
 
+        MenuItem searchItem = menu.findItem(R.id.action_search);
+        searchView = (SearchView) searchItem.getActionView();
+        // listening to search query text change, every type on input
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                // filter recycler view when query submitted
+                curAdap.getFilter().filter(query);
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String query) {
+                // filter recycler view when text is changed
+                curAdap.getFilter().filter(query);
+                return false;
+            }
+        });
+        return true;
+    }
+
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.action_search) {
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 
 
@@ -87,6 +131,10 @@ public class CursosActivity extends AppCompatActivity implements CursoAdapter.Cu
     }
     @Override
     public void onBackPressed() { //TODO it's not working yet
+        if (!searchView.isIconified()) {
+            searchView.setIconified(true);
+            return;
+        }
         Intent a = new Intent(this, HomeActivity.class);
         startActivity(a);
         super.onBackPressed();
@@ -128,7 +176,7 @@ public class CursosActivity extends AppCompatActivity implements CursoAdapter.Cu
                     }
                 }
             } else {
-                //found a new Carrera Object
+                //found a new Curso Object
                 listaC.add(aux);
                 Toast.makeText(getApplicationContext(), aux.getNombre() + " agregado correctamente", Toast.LENGTH_LONG).show();
             }
