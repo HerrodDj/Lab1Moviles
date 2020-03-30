@@ -146,7 +146,7 @@ public class AddCursosActivity extends AppCompatActivity {
             error++;
         }
         if (error > 0) {
-            Toast.makeText(getApplicationContext(), "Algunos errores", Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), "Campos sin completar", Toast.LENGTH_LONG).show();
             return false;
         }
         return true;
