@@ -16,14 +16,16 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
-import android.widget.SearchView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -34,6 +36,7 @@ public class CarrerasActivity extends AppCompatActivity implements CarreraAdapte
     private Data datos;
     private SearchView searchView;
     private CarreraAdapter carrAdap;
+    private ArrayList<Carrera> listaC;
 
 
     @Override
@@ -43,12 +46,13 @@ public class CarrerasActivity extends AppCompatActivity implements CarreraAdapte
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+
+
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                addCarreras();
             }
         });
 
@@ -60,14 +64,14 @@ public class CarrerasActivity extends AppCompatActivity implements CarreraAdapte
 
         //Datos
         Data datos = new Data();
-        ArrayList<Carrera> listaC = datos.getListaCarreras();
+         listaC = datos.getListaCarreras();
 
         carrAdap = new CarreraAdapter(listaC, this);
         rVLC.setAdapter(carrAdap);
 
         whiteNotificationBar(rVLC);
+        checkIntentInformation();
         carrAdap.notifyDataSetChanged();
-
     }
 
     @Override
@@ -75,20 +79,21 @@ public class CarrerasActivity extends AppCompatActivity implements CarreraAdapte
         Toast.makeText(getApplicationContext(), "Selected: " + carrera.getCodigo() + ", " + carrera.getNombre(), Toast.LENGTH_LONG).show();
     }
 
+    public void addCarreras(){
+        Intent intent = new Intent(this, AddCarreraActivity.class);
+        intent.putExtra("editable", false);
+        startActivity(intent);
+    }
 
-   /* @Override
+
+    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds carreraList to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_search, menu);
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_search,menu);
 
-        // Associate searchable configuration with the SearchView   !IMPORTANT
-        SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
-        searchView = (SearchView) menu.findItem(R.id.action_search)
-                .getActionView();
-        searchView.setSearchableInfo(searchManager
-                .getSearchableInfo(getComponentName()));
-        searchView.setMaxWidth(Integer.MAX_VALUE);
-
+        MenuItem searchItem = menu.findItem(R.id.action_search);
+        searchView = (SearchView) searchItem.getActionView();
         // listening to search query text change, every type on input
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
@@ -106,11 +111,54 @@ public class CarrerasActivity extends AppCompatActivity implements CarreraAdapte
             }
         });
         return true;
-    }*/
+    }
+
+    private void checkIntentInformation() {
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            Carrera aux;
+            aux = (Carrera) getIntent().getSerializableExtra("addCarrera");
+            if (aux == null) {
+                aux = (Carrera) getIntent().getSerializableExtra("editCarrera");
+                if (aux != null) {
+                    //found an item that can be updated
+                    boolean founded = false;
+                    for (Carrera carrera : listaC) {
+                        if (carrera.getCodigo().equals(aux.getCodigo())) {
+                            carrera.setNombre(aux.getNombre());
+                            carrera.setTitulo(aux.getTitulo());
+                            founded = true;
+                            break;
+                        }
+                    }
+                    //check if exist
+                    if (founded) {
+                        Toast.makeText(getApplicationContext(), aux.getNombre() + " editado correctamente", Toast.LENGTH_LONG).show();
+                    } else {
+                        Toast.makeText(getApplicationContext(), aux.getNombre() + " no encontrado", Toast.LENGTH_LONG).show();
+                    }
+                }
+            } else {
+                //found a new Carrera Object
+                listaC.add(aux);
+                Toast.makeText(getApplicationContext(), aux.getNombre() + " agregado correctamente", Toast.LENGTH_LONG).show();
+            }
+        }
+    }
 
     @Override
-    public void onPointerCaptureChanged(boolean hasCapture) {
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
 
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.action_search) {
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 
     private void whiteNotificationBar(View view) {
@@ -125,10 +173,10 @@ public class CarrerasActivity extends AppCompatActivity implements CarreraAdapte
 
     @Override
     public void onBackPressed() { //TODO it's not working yet
-        /*if (!searchView.isIconified()) {
+        if (!searchView.isIconified()) {
             searchView.setIconified(true);
             return;
-        }*/
+        }
         Intent a = new Intent(this, HomeActivity.class);
         startActivity(a);
         super.onBackPressed();

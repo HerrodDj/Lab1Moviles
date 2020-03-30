@@ -11,9 +11,9 @@
             android:icon="@drawable/ic_book_24px"
             android:title="@string/menu_carreras" />
         <item
-            android:id="@+id/nav_grupos"
+            android:id="@+id/nav_cursos"
             android:icon="@drawable/ic_book_24px"
-            android:title="@string/menu_grupos" />
+            android:title="@string/menu_cursos" />
         <item
             android:id="@+id/nav_logout"
             android:icon="@drawable/ic_menu_salir"

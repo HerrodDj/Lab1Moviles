@@ -36,8 +36,8 @@
         tools:layout="@layout/fragment_gallery" />
 
     <fragment
-        android:id="@+id/nav_slideshow"
+        android:id="@+id/nav_cursos"
         android:name="com.example.movilversion.ui.login.ui.slideshow.SlideshowFragment"
-        android:label="@string/menu_grupos"
+        android:label="@string/menu_cursos"
         tools:layout="@layout/fragment_slideshow" />
 </navigation>
