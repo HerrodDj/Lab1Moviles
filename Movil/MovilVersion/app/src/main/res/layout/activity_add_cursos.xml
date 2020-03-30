@@ -78,8 +78,8 @@
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/annioAddCur"
-                android:layout_width="391dp"
-                android:layout_height="33dp"
+                android:layout_width="394dp"
+                android:layout_height="53dp"
                 android:ems="10"
                 android:hint="@string/addCurAnnio"
                 android:inputType="number" />

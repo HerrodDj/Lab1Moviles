@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Menu;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.movilversion.Carreras.CarrerasActivity;
@@ -43,6 +44,9 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                         .setAction("Action", null).show();
             }
         });
+
+        ImageView mi = findViewById(R.id.imageView2);
+        mi.setImageResource(R.drawable.aback2);
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         mAppBarConfiguration = new AppBarConfiguration.Builder(
