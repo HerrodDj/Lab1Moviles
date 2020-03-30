@@ -90,7 +90,7 @@
                         <div class="col-6">
                             <div class="form-group">
                                 <div class="col-sm-8">
-                                    <input type="text" id="creditoCurso" name="creditoCurso" class="form-control"
+                                    <input type="number" id="creditoCurso" name="creditoCurso" class="form-control"
                                            required autofocus>
                                 </div>
                             </div>
@@ -109,7 +109,7 @@
                         <div class="col-6">
                             <div class="form-group">
                                 <div class="col-sm-8">
-                                    <input type="text" id="horaCurso" name="horaCurso" class="form-control"
+                                    <input type="number" id="horaCurso" name="horaCurso" class="form-control"
                                            required autofocus>
                                 </div>
                             </div>
@@ -121,10 +121,10 @@
                             <div class="form-group">
                                 <div class="col-sm-8">
                                     <select id ="cicloCurso" class="form-control form-control-sm">
-                                        <option>Seleccione el Ciclo</option>
-                                        <option value ="1" id="ciclo" name="ciclo">I ciclo</option>
-                                        <option value ="2" id="ciclo" name="ciclo">II ciclo</option>
-                                        <option value ="3" id="ciclo" name="ciclo">III ciclo(verano)</option>
+                                        <option value ="0" >Seleccione el Ciclo</option>
+                                        <option value ="1" >I ciclo</option>
+                                        <option value ="2" >II ciclo</option>
+                                        <option value ="3" >III ciclo(verano)</option>
 
                                     </select>
                                 </div>
@@ -132,11 +132,14 @@
                         </div>
                         <div class="col-6">
                             <div class="form-group">
-                                <div class="col-sm-3">
+                                <div class="col-sm-6">
                                     <label for="form-control col-3" class="form-label">Año</label>
                                 </div>
-                                <div class="col-sm-3">
-                                    <input type="number" id="anioCurso" name ="anioCurso" class="form-control" 
+                            </div>
+                            <div class="form-group">
+
+                                <div class="col-sm-6">
+                                    <input type="number" id="anioCurso" name="anioCurso" class="form-control"
                                            required autofocus>
                                 </div>
                             </div>

@@ -39,6 +39,7 @@ public class ServicioListCarrera extends HttpServlet {
             throws ServletException, IOException, InstantiationException, ClassNotFoundException, IllegalAccessException, GlobalException {
    response.setContentType("application/json;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
+           // String optbusqueda = request.getParameter("searchType");
             List<Carrera> carreras
                     = ServiceMethodsCarrera.obtenerInstancia().buscarTodasCarreras();
             System.out.println(carreras);
@@ -55,6 +56,9 @@ public class ServicioListCarrera extends HttpServlet {
             out.print(r);
         }
     }
+    
+    
+   
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**

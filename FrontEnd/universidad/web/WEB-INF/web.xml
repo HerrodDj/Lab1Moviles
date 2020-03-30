@@ -16,6 +16,10 @@
         <servlet-name>ServicioListCarrera</servlet-name>
         <servlet-class>Servicio.ServicioListCarrera</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ServicioListarCurso</servlet-name>
+        <servlet-class>Servicio.ServicioListarCurso</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ServicioAgregarCarrera</servlet-name>
         <url-pattern>/ServicioAgregarCarrera</url-pattern>
@@ -31,6 +35,10 @@
     <servlet-mapping>
         <servlet-name>ServicioListCarrera</servlet-name>
         <url-pattern>/ServicioListCarrera</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ServicioListarCurso</servlet-name>
+        <url-pattern>/ServicioListarCurso</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

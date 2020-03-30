@@ -5,23 +5,18 @@
  */
 package Servicio;
 
-import Service.ServiceMethodsCurso;
-import exceptions.GlobalException;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import models.Curso;
 
 /**
  *
  * @author djenanehernandezrodriguez
  */
-public class ServicioAgregarCurso extends HttpServlet {
+public class ServicioListarCurso extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -33,35 +28,22 @@ public class ServicioAgregarCurso extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException, GlobalException {
+            throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            try {
-                String codigo = request.getParameter("codigoCurso");
-                String nombre = request.getParameter("nombreCurso");
-                String carrera = request.getParameter("carrera");
-                int creditos = Integer.parseInt(request.getParameter("creditoCurso"));
-                int horas = Integer.parseInt(request.getParameter("horaCurso"));
-                int anio = Integer.parseInt(request.getParameter("anioCurso"));
-                int ciclo = Integer.parseInt(request.getParameter("cicloCurso"));
-                Curso c = new Curso(codigo, nombre, creditos, horas, carrera, ciclo, anio);
-                ServiceMethodsCurso sc = ServiceMethodsCurso.obtenerInstancia();
-                if (sc.insertarCurso(c)) {
-                    response.sendRedirect("listarCurso.jsp");
-                } else {
-                    response.sendRedirect("agregarCurso.jsp");
-
-                }
-
-            } catch (InstantiationException
-                    | ClassNotFoundException
-                    | IllegalAccessException ex) {
-
-                Logger.getLogger(ServicioAgregarCarrera.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            /* TODO output your page here. You may use following sample code. */
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet ServicioListarCurso</title>");            
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1>Servlet ServicioListarCurso at " + request.getContextPath() + "</h1>");
+            out.println("</body>");
+            out.println("</html>");
         }
-    
     }
+
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
@@ -74,11 +56,7 @@ public class ServicioAgregarCurso extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try {
-            processRequest(request, response);
-        } catch (GlobalException ex) {
-            Logger.getLogger(ServicioAgregarCurso.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        processRequest(request, response);
     }
 
     /**
@@ -92,11 +70,7 @@ public class ServicioAgregarCurso extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try {
-            processRequest(request, response);
-        } catch (GlobalException ex) {
-            Logger.getLogger(ServicioAgregarCurso.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        processRequest(request, response);
     }
 
     /**
