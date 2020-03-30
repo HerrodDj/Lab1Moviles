@@ -73,12 +73,12 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-4"> <select name="carrera" id="carrera">
+                        <div class="col-4"> <select class="form-control" name="carrera" id="carrera">
                                 <option>Seleccione una Carrera...</option>
                             </select>
                         </div>
                     </div>
-                    
+
                     <div class="row">
                         <div class="col-6">
                             <div class="form-group">
@@ -96,8 +96,8 @@
                             </div>
                         </div>
                     </div>
-                    
-                    
+
+
                     <div class="row">
                         <div class="col-6">
                             <div class="form-group">
@@ -115,28 +115,29 @@
                             </div>
                         </div>
                     </div>
-                    
+
                     <div class="row">
                         <div class="col-6">
                             <div class="form-group">
                                 <div class="col-sm-8">
                                     <select id ="cicloCurso" class="form-control form-control-sm">
+                                        <option>Seleccione el Ciclo</option>
                                         <option value ="1" id="ciclo" name="ciclo">I ciclo</option>
                                         <option value ="2" id="ciclo" name="ciclo">II ciclo</option>
                                         <option value ="3" id="ciclo" name="ciclo">III ciclo(verano)</option>
-                                        
+
                                     </select>
                                 </div>
                             </div>
-                            <div class="col-6">
-                                <div class="form-group">
-                                    <div class="col-sm-3">
-                                        <label for="form-control col-3" class="form-label">Año</label>
-                                    </div>
-                                    <div class="col-sm-3">
-                                        <input type="number" id="anioCurso" name ="anioCurso" class="form-control" 
-                                               required autofocus>
-                                    </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="form-group">
+                                <div class="col-sm-3">
+                                    <label for="form-control col-3" class="form-label">Año</label>
+                                </div>
+                                <div class="col-sm-3">
+                                    <input type="number" id="anioCurso" name ="anioCurso" class="form-control" 
+                                           required autofocus>
                                 </div>
                             </div>
                         </div>

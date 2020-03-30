@@ -5,7 +5,7 @@
  */
 package Service;
 
-import exceptions.NoDataException;
+import exceptions.GlobalException;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -14,14 +14,13 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import models.Carrera;
-import java.lang.ClassNotFoundException;
+import models.Curso;
 
 /**
  *
  * @author djenanehernandezrodriguez
  */
-public class ServicioAgregarCarrera extends HttpServlet {
+public class ServicioAgregarCurso extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -33,36 +32,34 @@ public class ServicioAgregarCarrera extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException, NoDataException, Exception {
+            throws ServletException, IOException, GlobalException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-          
             try {
-                  String codigo= request.getParameter("codigoCarrera");
-            String nombre= request.getParameter("nombreCarrera");
-            String titulo= request.getParameter("tituloCarrera");
-            Carrera c= new Carrera(codigo,nombre, titulo);
-            ServiceMethodsCarrera sc;
-                sc = ServiceMethodsCarrera.obtenerInstancia(); 
-                if(sc.insertarCarrera(c)){
-                response.sendRedirect("listarCarrera.jsp");
-                }else{
-                response.sendRedirect("agregarCarrera.jsp");
-                
+                String codigo = request.getParameter("codigoCurso");
+                String nombre = request.getParameter("nombreCurso");
+                String carrera = request.getParameter("carrera");
+                int creditos = Integer.parseInt(request.getParameter("creditoCurso"));
+                int horas = Integer.parseInt(request.getParameter("horaCurso"));
+                int ciclo = Integer.parseInt(request.getParameter("ciclo"));
+                int anio = Integer.parseInt(request.getParameter("anioCurso"));
+                Curso c = new Curso(codigo, nombre, creditos, horas, carrera, ciclo, anio);
+                ServiceMethodsCurso sc = ServiceMethodsCurso.obtenerInstancia();
+                if (sc.insertarCurso(c)) {
+                    response.sendRedirect("listarCarrera.jsp");
+                } else {
+                    response.sendRedirect("agregarCarrera.jsp");
+
                 }
-            } catch (InstantiationException 
+
+            } catch (InstantiationException
                     | ClassNotFoundException
-                    |IllegalAccessException ex) {
+                    | IllegalAccessException ex) {
 
                 Logger.getLogger(ServicioAgregarCarrera.class.getName()).log(Level.SEVERE, null, ex);
             }
-         
-            
-            
-            
-            
         }
+    
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -79,8 +76,8 @@ public class ServicioAgregarCarrera extends HttpServlet {
             throws ServletException, IOException {
         try {
             processRequest(request, response);
-        } catch (Exception ex) {
-            Logger.getLogger(ServicioAgregarCarrera.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (GlobalException ex) {
+            Logger.getLogger(ServicioAgregarCurso.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -92,14 +89,13 @@ public class ServicioAgregarCarrera extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {
             processRequest(request, response);
-        } catch (Exception ex) {
-            Logger.getLogger(ServicioAgregarCarrera.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (GlobalException ex) {
+            Logger.getLogger(ServicioAgregarCurso.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -108,7 +104,6 @@ public class ServicioAgregarCarrera extends HttpServlet {
      *
      * @return a String containing servlet description
      */
-    
     @Override
     public String getServletInfo() {
         return "Short description";

@@ -48,6 +48,10 @@
         <servlet-name>ServicioListCurso</servlet-name>
         <url-pattern>/ServicioListCurso</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ServicioAgregarCurso</servlet-name>
+        <url-pattern>/ServicioAgregarCurso</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30
