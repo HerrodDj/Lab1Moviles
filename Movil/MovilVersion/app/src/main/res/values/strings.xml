@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">MovilVersion</string>
+    <string name="app_name">Universidad</string>
     <!-- Strings related to login -->
     <string name="prompt_email">Cedula</string>
     <string name="prompt_password">Contraseña</string>
