@@ -5,12 +5,22 @@
  */
 package Servicio;
 
+import Service.ServiceMethodsCarrera;
+import Service.ServiceMethodsCurso;
+import exceptions.GlobalException;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import models.Curso;
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 /**
  *
@@ -28,19 +38,29 @@ public class ServicioListarCurso extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws ServletException, IOException, InstantiationException, ClassNotFoundException, IllegalAccessException, SQLException, GlobalException, Exception {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet ServicioListarCurso</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet ServicioListarCurso at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+            List<Curso> cursos = ServiceMethodsCurso.obtenerInstancia().listarTodos();
+            ServiceMethodsCarrera  sc = ServiceMethodsCarrera.obtenerInstancia();
+            System.out.print(cursos);
+            JSONObject r = new JSONObject();
+            JSONArray a = new JSONArray();
+            for(Curso c:cursos){
+                JSONObject pj = new JSONObject();
+                pj.put("codigo", c.getCodigo());
+                pj.put("nombre", c.getNombre());
+                pj.put("carrera", sc.BuscarCarreraCodigo(c.getCodigo()).getNombre());
+                pj.put("creditos", c.getCreditos());
+                pj.put("horas", c.getHorasSemanales());
+                pj.put("ciclo", c.getCiclo());
+                pj.put("anio", c.getAnio());
+                a.put(pj);
+            }
+            r.put("cursos",a);
+            out.print(r);
+            
+            
         }
     }
 
@@ -56,7 +76,21 @@ public class ServicioListarCurso extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (InstantiationException ex) {
+            Logger.getLogger(ServicioListarCurso.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(ServicioListarCurso.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            Logger.getLogger(ServicioListarCurso.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(ServicioListarCurso.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (GlobalException ex) {
+            Logger.getLogger(ServicioListarCurso.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
+            Logger.getLogger(ServicioListarCurso.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -70,7 +104,21 @@ public class ServicioListarCurso extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (InstantiationException ex) {
+            Logger.getLogger(ServicioListarCurso.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(ServicioListarCurso.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            Logger.getLogger(ServicioListarCurso.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(ServicioListarCurso.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (GlobalException ex) {
+            Logger.getLogger(ServicioListarCurso.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
+            Logger.getLogger(ServicioListarCurso.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**

@@ -120,10 +120,10 @@
                         <div class="col-6">
                             <div class="form-group">
                                 <div class="col-sm-8">
-                                    <select id ="cicloCurso" class="form-control form-control-sm">
-                                        <option value ="0" >Seleccione el Ciclo</option>
-                                        <option value ="1" >I ciclo</option>
-                                        <option value ="2" >II ciclo</option>
+                                    <select id ="cicloCurso" name ="cicloCurso" class="form-control form-control-sm">
+                                        <option  >Seleccione el Ciclo</option>
+                                        <option  value ="1" >I ciclo</option>
+                                        <option  value ="2" >II ciclo</option>
                                         <option value ="3" >III ciclo(verano)</option>
 
                                     </select>

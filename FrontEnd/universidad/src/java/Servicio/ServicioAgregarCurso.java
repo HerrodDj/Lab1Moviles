@@ -43,7 +43,7 @@ public class ServicioAgregarCurso extends HttpServlet {
                 int creditos = Integer.parseInt(request.getParameter("creditoCurso"));
                 int horas = Integer.parseInt(request.getParameter("horaCurso"));
                 int anio = Integer.parseInt(request.getParameter("anioCurso"));
-                int ciclo = Integer.parseInt(request.getParameter("cicloCurso"));
+                int ciclo= Integer.parseInt(request.getParameter("cicloCurso"));
                 Curso c = new Curso(codigo, nombre, creditos, horas, carrera, ciclo, anio);
                 ServiceMethodsCurso sc = ServiceMethodsCurso.obtenerInstancia();
                 if (sc.insertarCurso(c)) {

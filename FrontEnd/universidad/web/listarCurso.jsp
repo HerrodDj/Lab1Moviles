@@ -39,7 +39,7 @@
                         <input type="text" class="form-control" id="searchText" >
                     </div>
                     <div class="col-sm-4" id="searchDiv">
-                        <button type="button" class="btn btn-success" id="seacrhButton" onclick="initCarreras()">Buscar</button>
+                        <button type="button" class="btn btn-success" id="seacrhButton" onclick="initCursos()">Buscar</button>
                     </div> 
                 </div>
             </div>
@@ -63,7 +63,7 @@
                                         <th style="background-color: #5da17a; color:white; text-align: center">Año</th>
                                         <th style="background-color: #5da17a; color:white; text-align: center">Editar</th>
                                 </thead>
-                                <tbody style="background-color: #CDEBDB;" id="carreraList">
+                                <tbody style="background-color: #CDEBDB;" id="cursoList">
                                 </tbody>
                             </table
                         </div>

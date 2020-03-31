@@ -133,8 +133,56 @@ function addOptions(domElement, datos) {
 
 //Listar Curso
 
+function initCursos(){
+    solicitarDatosCursos("ServicioListarCurso", "cursoList");
+    console.log("Aplicación inicializada..");
+}
+
+function solicitarDatosCursos(origen, tabla) {
+    fetch(origen).then(
+            (resultados) => {
+        return resultados.json();
+    }
+    ).then(
+            (datosJSON) => {
+        cargarTablaCursos(tabla, datosJSON);
+    }
+    );
+}
 
 
+function cargarTablaCursos(tabla, datos) {
+    var refTabla = document.getElementById(tabla);
+    if (refTabla) {
+
+        for (var i = 0; i < datos.carreras.length; i++) {
+            var nuevaFila = refTabla.insertRow(-1);
+            var nuevaCelda;
+            nuevaCelda = nuevaFila.insertCell(-1);
+            nuevaCelda.innerText = datos.cursos[i].codigo;
+            nuevaCelda = nuevaFila.insertCell(-1);
+            nuevaCelda.innerText = datos.cursos[i].nombre;
+            nuevaCelda = nuevaFila.insertCell(-1);
+            nuevaCelda.innerText = datos.cursos[i].carrera;
+            nuevaCelda = nuevaFila.insertCell(-1);
+            nuevaCelda.innerText = datos.cursos[i].creditos;
+            nuevaCelda = nuevaFila.insertCell(-1);
+            nuevaCelda.innerText = datos.cursos[i].horas;
+            nuevaCelda = nuevaFila.insertCell(-1);
+            nuevaCelda.innerText = datos.cursos[i].ciclo;
+            nuevaCelda = nuevaFila.insertCell(-1);
+            nuevaCelda.innerText = datos.cursos[i].anio;
+            
+            nuevaCelda = nuevaFila.insertCell(-1);
+            nuevaCelda.innerHTML = "<button  type ='button' class='btn btn-primary' onclick='location.href= 'editarCurso.jsp' '> Editar</button>\n\
+ <button class ='btn btn-danger' type ='button'>Eliminar</button>";
+
+
+
+        }
+
+    }
+}
 
 
 
