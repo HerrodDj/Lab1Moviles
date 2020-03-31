@@ -6,27 +6,23 @@
 package Servicio;
 
 import Service.ServiceMethodsCarrera;
-import Service.ServiceMethodsCurso;
 import exceptions.GlobalException;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import models.Curso;
-import org.json.JSONArray;
-import org.json.JSONObject;
+import models.Carrera;
 
 /**
  *
  * @author djenanehernandezrodriguez
  */
-public class ServicioListarCurso extends HttpServlet {
+public class ServicioEditarCarrera extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -38,29 +34,30 @@ public class ServicioListarCurso extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException, InstantiationException, ClassNotFoundException, IllegalAccessException, SQLException, GlobalException, Exception {
+            throws ServletException, IOException, SQLException, GlobalException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            List<Curso> cursos = ServiceMethodsCurso.obtenerInstancia().listarTodos();
-            ServiceMethodsCarrera  sc = ServiceMethodsCarrera.obtenerInstancia();
-            System.out.print(cursos);
-            JSONObject r = new JSONObject();
-            JSONArray a = new JSONArray();
-            for(Curso c:cursos){
-                JSONObject pj = new JSONObject();
-                pj.put("codigo", c.getCodigo());
-                pj.put("nombre", c.getNombre());
-                pj.put("carrera", c.getCodigoCarrera());
-                pj.put("creditos", c.getCreditos());
-                pj.put("horas", c.getHorasSemanales());
-                pj.put("ciclo", c.getCiclo());
-                pj.put("anio", c.getAnio());
-                a.put(pj);
+            /* TODO output your page here. You may use following sample code. */
+            try {
+                  String codigo= request.getParameter("codigoCarrera");
+            String nombre= request.getParameter("nombreCarrera");
+            String titulo= request.getParameter("tituloCarrera");
+            Carrera c= new Carrera(codigo,nombre, titulo);
+            ServiceMethodsCarrera sc;
+                sc = ServiceMethodsCarrera.obtenerInstancia(); 
+                if(sc.actualizarCarrera(c)){
+                response.sendRedirect("listarCarrera.jsp");
+                }else{
+                response.sendRedirect("agregarCarrera.jsp");
+                
+                }
+            } catch (InstantiationException 
+                    | ClassNotFoundException
+                    |IllegalAccessException ex) {
+
+                Logger.getLogger(ServicioAgregarCarrera.class.getName()).log(Level.SEVERE, null, ex);
             }
-            r.put("cursos",a);
-            out.print(r);
-            
-            
+         
         }
     }
 
@@ -78,18 +75,10 @@ public class ServicioListarCurso extends HttpServlet {
             throws ServletException, IOException {
         try {
             processRequest(request, response);
-        } catch (InstantiationException ex) {
-            Logger.getLogger(ServicioListarCurso.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(ServicioListarCurso.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            Logger.getLogger(ServicioListarCurso.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
-            Logger.getLogger(ServicioListarCurso.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ServicioEditarCarrera.class.getName()).log(Level.SEVERE, null, ex);
         } catch (GlobalException ex) {
-            Logger.getLogger(ServicioListarCurso.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (Exception ex) {
-            Logger.getLogger(ServicioListarCurso.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ServicioEditarCarrera.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -106,18 +95,10 @@ public class ServicioListarCurso extends HttpServlet {
             throws ServletException, IOException {
         try {
             processRequest(request, response);
-        } catch (InstantiationException ex) {
-            Logger.getLogger(ServicioListarCurso.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(ServicioListarCurso.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            Logger.getLogger(ServicioListarCurso.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
-            Logger.getLogger(ServicioListarCurso.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ServicioEditarCarrera.class.getName()).log(Level.SEVERE, null, ex);
         } catch (GlobalException ex) {
-            Logger.getLogger(ServicioListarCurso.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (Exception ex) {
-            Logger.getLogger(ServicioListarCurso.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ServicioEditarCarrera.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

@@ -45,7 +45,7 @@ function cargarTablaCarreras(tabla, datos) {
             nuevaCelda = nuevaFila.insertCell(-1);
             nuevaCelda.innerText = datos.carreras[i].titulo;
             nuevaCelda = nuevaFila.insertCell(-1);
-            nuevaCelda.innerHTML = "<button  type ='button' class='btn btn-primary' onclick='location.href= 'editarCarrera.jsp' '> Editar</button>\n\
+            nuevaCelda.innerHTML = "<button  type ='button' class='btn btn-primary' onclick='location.href= '/universidad/editarCarrera.jsp' '> Editar</button>\n\
  <button class ='btn btn-danger' type ='button'>Eliminar</button>";
 
 
@@ -64,21 +64,6 @@ function linkeoEditCarrera() {
 function myDeleteTable(tabla) {
     document.getElementById(tabla).deleteRow(0);
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -155,7 +140,7 @@ function cargarTablaCursos(tabla, datos) {
     var refTabla = document.getElementById(tabla);
     if (refTabla) {
 
-        for (var i = 0; i < datos.carreras.length; i++) {
+        for (var i = 0; i < datos.cursos.length; i++) {
             var nuevaFila = refTabla.insertRow(-1);
             var nuevaCelda;
             nuevaCelda = nuevaFila.insertCell(-1);
@@ -183,12 +168,3 @@ function cargarTablaCursos(tabla, datos) {
 
     }
 }
-
-
-
-
-
-
-
-
-
