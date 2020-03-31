@@ -1,12 +1,11 @@
 package com.example.movilversion.Carreras;
 
-import android.app.SearchManager;
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 
+import com.example.movilversion.Helper.RecyclerItemTouchHelper;
 import com.example.movilversion.R;
 import com.example.movilversion.data.Adapter.CarreraAdapter;
 import com.example.movilversion.data.Datos.Data;
@@ -18,7 +17,9 @@ import com.google.android.material.snackbar.Snackbar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
 import androidx.appcompat.widget.Toolbar;
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -30,14 +31,13 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
-public class CarrerasActivity extends AppCompatActivity implements CarreraAdapter.CarreraAdapterListener{
+public class CarrerasActivity extends AppCompatActivity implements RecyclerItemTouchHelper.RecyclerItemTouchHelperListener,CarreraAdapter.CarreraAdapterListener{
 
     private RecyclerView rVLC;
-    private Data datos;
     private SearchView searchView;
     private CarreraAdapter carrAdap;
     private ArrayList<Carrera> listaC;
-
+    private CoordinatorLayout coordinatorLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +56,7 @@ public class CarrerasActivity extends AppCompatActivity implements CarreraAdapte
             }
         });
 
+        coordinatorLayout = findViewById(R.id.coordinator_layout);
 
         rVLC = findViewById(R.id.listCarreras);
         rVLC.addItemDecoration(new DividerItemDecoration(this,DividerItemDecoration.VERTICAL));
@@ -68,6 +69,9 @@ public class CarrerasActivity extends AppCompatActivity implements CarreraAdapte
 
         carrAdap = new CarreraAdapter(listaC, this);
         rVLC.setAdapter(carrAdap);
+
+        ItemTouchHelper.SimpleCallback itemTouchHelperCallback = new RecyclerItemTouchHelper(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT, this);
+        new ItemTouchHelper(itemTouchHelperCallback).attachToRecyclerView(rVLC);
 
         whiteNotificationBar(rVLC);
         checkIntentInformation();
@@ -182,4 +186,44 @@ public class CarrerasActivity extends AppCompatActivity implements CarreraAdapte
         super.onBackPressed();
     }
 
+    @Override
+    public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction, int position) {
+        if (direction == ItemTouchHelper.START) {
+            if (viewHolder instanceof CarreraAdapter.MyViewHolder) {
+                // get the removed item name to display it in snack bar
+                String name = listaC.get(viewHolder.getAdapterPosition()).getNombre();
+
+                // save the index deleted
+                final int deletedIndex = viewHolder.getAdapterPosition();
+                // remove the item from recyclerView
+                carrAdap.removeItem(viewHolder.getAdapterPosition());
+
+                // showing snack bar with Undo option
+                Snackbar snackbar = Snackbar.make(coordinatorLayout, name + " removido!", Snackbar.LENGTH_LONG);
+                snackbar.setAction("UNDO", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        // undo is selected, restore the deleted item from adapter
+                        carrAdap.restoreItem(deletedIndex);
+                    }
+                });
+                snackbar.setActionTextColor(Color.YELLOW);
+                snackbar.show();
+            }
+        } else {
+            //If is editing a row object
+            Carrera aux = carrAdap.getSwipedItem(viewHolder.getAdapterPosition());
+            //send data to Edit Activity
+            Intent intent = new Intent(this, AddCarreraActivity.class);
+            intent.putExtra("editable", true);
+            intent.putExtra("carrera", aux);
+            carrAdap.notifyDataSetChanged(); //restart left swipe view
+            startActivity(intent);
+        }
+    }
+
+    @Override
+    public void onItemMove(int source, int target) {
+        carrAdap.onItemMove(source, target);
+    }
 }

@@ -77,13 +77,13 @@ public class AddCursosActivity extends AppCompatActivity {
                 codFld.setText(aux.getCodigo());
                 codFld.setEnabled(false);
                 nomFld.setText(aux.getNombre());
-                credFld.setText(aux.getCreditos());
-                horFld.setText(aux.getHorasSemanales());
-                annioFld.setText(aux.getAnio());
+                credFld.setText(String.valueOf(aux.getCreditos()));
+                horFld.setText(String.valueOf(aux.getHorasSemanales()));
+                annioFld.setText(String.valueOf(aux.getAnio()));
                 if(aux.getCiclo()==1){
-                    boxCar.setSelection(0);
-                }if(aux.getCiclo()==2){
-                    boxCar.setSelection(1);
+                    boxCic.setSelection(0);
+                }else {
+                    boxCic.setSelection(1);
                 }
                 boxCar.setSelection(nC.indexOf(aux.getCodigoCarrera()));
                 //edit action
@@ -103,12 +103,19 @@ public class AddCursosActivity extends AppCompatActivity {
                 });
             }
         }
-
-
-
     }
 
-    public void editCurso(){}
+    public void editCurso(){
+        if (validateForm()) {
+            Curso cur = new Curso(codFld.getText().toString(), nomFld.getText().toString(), Integer.parseInt(credFld.getText().toString()), Integer.parseInt(horFld.getText().toString()),boxCar.getSelectedItem().toString(), Integer.parseInt(boxCic.getSelectedItem().toString()),Integer.parseInt(annioFld.getText().toString()));
+            Intent intent = new Intent(getBaseContext(), CursosActivity.class);
+            //sending carrera data
+            intent.putExtra("editCurso", cur);
+            startActivity(intent);
+            finish(); //prevent go back
+        }
+
+    }
     public void addCurso(){
         if (validateForm()) {
             //do something

@@ -85,7 +85,17 @@ public class AddCarreraActivity extends AppCompatActivity {
 
     }
 
-    public void editCarrera(){}
+    public void editCarrera(){
+        if (validateForm()) {
+            Carrera car = new Carrera(codFld.getText().toString(), nomFld.getText().toString(), box.getSelectedItem().toString());
+            Intent intent = new Intent(getBaseContext(), CarrerasActivity.class);
+            //sending carrera data
+            intent.putExtra("editCarrera", car);
+            startActivity(intent);
+            finish(); //prevent go back
+        }
+
+    }
     public void addCarrera(){
         if (validateForm()) {
             //do something
