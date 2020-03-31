@@ -6,6 +6,7 @@ import android.os.Build;
 import android.os.Bundle;
 
 import com.example.movilversion.Carreras.AddCarreraActivity;
+import com.example.movilversion.Helper.RecyclerItemTouchHelper;
 import com.example.movilversion.data.Adapter.CarreraAdapter;
 import com.example.movilversion.data.Adapter.CursoAdapter;
 import com.example.movilversion.data.Datos.Data;
@@ -18,7 +19,9 @@ import com.google.android.material.snackbar.Snackbar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
 import androidx.appcompat.widget.Toolbar;
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -32,13 +35,14 @@ import com.example.movilversion.R;
 
 import java.util.ArrayList;
 
-public class CursosActivity extends AppCompatActivity implements CursoAdapter.CursoAdapterListener{
+public class CursosActivity extends AppCompatActivity implements RecyclerItemTouchHelper.RecyclerItemTouchHelperListener,CursoAdapter.CursoAdapterListener{
 
     private RecyclerView rVLC;
     private Data datos;
     private ArrayList<Curso> listaC;
     private SearchView searchView;
     private CursoAdapter curAdap;
+    private CoordinatorLayout coordinatorLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +59,8 @@ public class CursosActivity extends AppCompatActivity implements CursoAdapter.Cu
             }
         });
 
+        coordinatorLayout = findViewById(R.id.coordinator_layout1);
+
         rVLC = findViewById(R.id.listCursos);
         rVLC.addItemDecoration(new DividerItemDecoration(this,DividerItemDecoration.VERTICAL));
         LinearLayoutManager LL = new LinearLayoutManager(this);
@@ -66,6 +72,9 @@ public class CursosActivity extends AppCompatActivity implements CursoAdapter.Cu
 
         curAdap = new CursoAdapter(listaC, this);
         rVLC.setAdapter(curAdap);
+
+        ItemTouchHelper.SimpleCallback itemTouchHelperCallback = new RecyclerItemTouchHelper(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT, this);
+        new ItemTouchHelper(itemTouchHelperCallback).attachToRecyclerView(rVLC);
 
         whiteNotificationBar(rVLC);
         checkIntentInformation();
@@ -184,5 +193,44 @@ public class CursosActivity extends AppCompatActivity implements CursoAdapter.Cu
     }
 
 
+    @Override
+    public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction, int position) {
+        if (direction == ItemTouchHelper.START) {
+            if (viewHolder instanceof CursoAdapter.MyViewHolder) {
+                // get the removed item name to display it in snack bar
+                String name = listaC.get(viewHolder.getAdapterPosition()).getNombre();
 
+                // save the index deleted
+                final int deletedIndex = viewHolder.getAdapterPosition();
+                // remove the item from recyclerView
+                curAdap.removeItem(viewHolder.getAdapterPosition());
+
+                // showing snack bar with Undo option
+                Snackbar snackbar = Snackbar.make(coordinatorLayout, name + " removido!", Snackbar.LENGTH_LONG);
+                snackbar.setAction("UNDO", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        // undo is selected, restore the deleted item from adapter
+                        curAdap.restoreItem(deletedIndex);
+                    }
+                });
+                snackbar.setActionTextColor(Color.YELLOW);
+                snackbar.show();
+            }
+        } else {
+            //If is editing a row object
+            Curso aux = curAdap.getSwipedItem(viewHolder.getAdapterPosition());
+            //send data to Edit Activity
+            Intent intent = new Intent(this, AddCursosActivity.class);
+            intent.putExtra("editable", true);
+            intent.putExtra("curso", aux);
+            curAdap.notifyDataSetChanged(); //restart left swipe view
+            startActivity(intent);
+        }
+    }
+
+    @Override
+    public void onItemMove(int source, int target) {
+        curAdap.onItemMove(source, target);
+    }
 }
