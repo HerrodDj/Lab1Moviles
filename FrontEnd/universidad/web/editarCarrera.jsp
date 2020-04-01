@@ -15,7 +15,7 @@
         <script src="js/bootstrap/bootstrap.js" type="text/javascript"></script>
         <title>Editar Carrera</title>
     </head>
-    <body>
+    <body onload="onLoadCarrera()">
         <div>
             <%@include file="menu.jsp" %>
         </div>
@@ -26,7 +26,7 @@
                         <h4>Editar Carrera</h4>
                     </div>
                 </div>
-                <form id="uploadForm" encty="multipart/form-data" method="POST" action="" >
+                <form id="uploadForm" encty="multipart/form-data" method="POST" action="ServicioEditarCarrera" >
                     <div class="row">
                         <div class="col-6">
                             <div class="form-group">
@@ -41,7 +41,7 @@
                             <div class="form-group">
                                 <div class="col-sm-8">
                                     <input type="text" id="codigoCarrera" name="codigoCarrera" class="form-control"
-                                           required autofocus>
+                                            readonly>
                                 </div>
                             </div>
                         </div>
@@ -82,6 +82,9 @@
                     <div class="row">
                         <div class="col-8">
                             <button type="submid"> Guardar</button>
+                        </div>
+                        <div>
+                        <button type="button" class="btn btn-outline-danger" id="cancelButton" onclick='eliminaCarrera()'>Eliminar</button>
                         </div>
                         <div class="col-md-4">
                             <button type="button" class="btn btn-outline-danger" id="cancelButton" onclick='javascript:cancelAction()'>Cancelar</button>

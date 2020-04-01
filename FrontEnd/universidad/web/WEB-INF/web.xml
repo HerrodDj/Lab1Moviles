@@ -20,6 +20,18 @@
         <servlet-name>ServicioListarCurso</servlet-name>
         <servlet-class>Servicio.ServicioListarCurso</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ServicioEditarCarrera</servlet-name>
+        <servlet-class>Servicio.ServicioEditarCarrera</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ServicioEliminarCarrera</servlet-name>
+        <servlet-class>Servicio.ServicioEliminarCarrera</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>GetCarrera</servlet-name>
+        <servlet-class>Servicio.GetCarrera</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ServicioAgregarCarrera</servlet-name>
         <url-pattern>/ServicioAgregarCarrera</url-pattern>
@@ -39,6 +51,18 @@
     <servlet-mapping>
         <servlet-name>ServicioListarCurso</servlet-name>
         <url-pattern>/ServicioListarCurso</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ServicioEditarCarrera</servlet-name>
+        <url-pattern>/ServicioEditarCarrera</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ServicioEliminarCarrera</servlet-name>
+        <url-pattern>/ServicioEliminarCarrera</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>GetCarrera</servlet-name>
+        <url-pattern>/GetCarrera</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -39,6 +39,7 @@ function cargarTablaCarreras(tabla, datos) {
             var nuevaFila = refTabla.insertRow(-1);
             var nuevaCelda;
             nuevaCelda = nuevaFila.insertCell(-1);
+            nuevaCelda.value=datos.carreras[i].codigo;
             nuevaCelda.innerText = datos.carreras[i].codigo;
             nuevaCelda = nuevaFila.insertCell(-1);
             nuevaCelda.innerText = datos.carreras[i].nombre;
@@ -46,7 +47,7 @@ function cargarTablaCarreras(tabla, datos) {
             nuevaCelda.innerText = datos.carreras[i].titulo;
             nuevaCelda = nuevaFila.insertCell(-1);
             nuevaCelda.innerHTML = "<button  type ='button' class='btn btn-primary' onclick='location.href= '/universidad/editarCarrera.jsp' '> Editar</button>\n\
- <button class ='btn btn-danger' type ='button'>Eliminar</button>";
+<button class='btn btn-danger' onclick='linkeoEditCarrera()' >Eliminar</Eliminar>";
 
 
 
@@ -56,7 +57,7 @@ function cargarTablaCarreras(tabla, datos) {
 }
 
 function linkeoEditCarrera() {
-    window.location = "UniversidadWeb/editarCarrera.jsp";
+    window.location.href = "localhost:8080/universidad/editarCarrera.jsp?carrera"+document.get;
 
 }
 
@@ -65,14 +66,19 @@ function myDeleteTable(tabla) {
     document.getElementById(tabla).deleteRow(0);
 }
 
+//Editar carrera
+function onLoadCarrera(){
+    
+    
+}
 
+// Eliminar carrera
 
-
-
-
-
-
-
+function eliminaCarrera(){
+    
+    
+    
+}
 
 
 

@@ -39,21 +39,21 @@ public class ServicioEditarCarrera extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             try {
-                  String codigo= request.getParameter("codigoCarrera");
-            String nombre= request.getParameter("nombreCarrera");
-            String titulo= request.getParameter("tituloCarrera");
-            Carrera c= new Carrera(codigo,nombre, titulo);
-            ServiceMethodsCarrera sc;
-                sc = ServiceMethodsCarrera.obtenerInstancia(); 
-                if(sc.actualizarCarrera(c)){
-                response.sendRedirect("listarCarrera.jsp");
-                }else{
-                response.sendRedirect("agregarCarrera.jsp");
-                
+                String codigo = request.getParameter("codigoCarrera");
+                String nombre = request.getParameter("nombreCarrera");
+                String titulo = request.getParameter("tituloCarrera");
+                Carrera c = new Carrera(codigo, nombre, titulo);
+                ServiceMethodsCarrera sc;
+                sc = ServiceMethodsCarrera.obtenerInstancia();
+                if (sc.actualizarCarrera(c)) {
+                    response.sendRedirect("listarCarrera.jsp");
+                } else {
+                    response.sendRedirect("agregarCarrera.jsp");
+
                 }
-            } catch (InstantiationException 
+            } catch (InstantiationException
                     | ClassNotFoundException
-                    |IllegalAccessException ex) {
+                    | IllegalAccessException ex) {
 
                 Logger.getLogger(ServicioAgregarCarrera.class.getName()).log(Level.SEVERE, null, ex);
             }
