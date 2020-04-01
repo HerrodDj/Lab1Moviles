@@ -43,8 +43,7 @@ public class ServicioEditarCarrera extends HttpServlet {
                 String nombre = request.getParameter("nombreCarrera");
                 String titulo = request.getParameter("tituloCarrera");
                 Carrera c = new Carrera(codigo, nombre, titulo);
-                ServiceMethodsCarrera sc;
-                sc = ServiceMethodsCarrera.obtenerInstancia();
+                ServiceMethodsCarrera sc= ServiceMethodsCarrera.obtenerInstancia();
                 if (sc.actualizarCarrera(c)) {
                     response.sendRedirect("listarCarrera.jsp");
                 } else {
@@ -75,9 +74,18 @@ public class ServicioEditarCarrera extends HttpServlet {
             throws ServletException, IOException {
         try {
             processRequest(request, response);
-        } catch (SQLException ex) {
-            Logger.getLogger(ServicioEditarCarrera.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (GlobalException ex) {
+            PrintWriter printer = response.getWriter();
+            String c = request.getParameter("codigoCarrera");
+            ServiceMethodsCarrera sc = ServiceMethodsCarrera.obtenerInstancia();
+            Carrera carrera = sc.BuscarCarreraCodigo(c);
+            
+
+        } catch (InstantiationException
+                | ClassNotFoundException
+                | IllegalAccessException ex) {
+
+            Logger.getLogger(ServicioAgregarCarrera.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
             Logger.getLogger(ServicioEditarCarrera.class.getName()).log(Level.SEVERE, null, ex);
         }
     }

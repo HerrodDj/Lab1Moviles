@@ -46,9 +46,8 @@ function cargarTablaCarreras(tabla, datos) {
             nuevaCelda = nuevaFila.insertCell(-1);
             nuevaCelda.innerText = datos.carreras[i].titulo;
             nuevaCelda = nuevaFila.insertCell(-1);
-            nuevaCelda.innerHTML = "<button  type ='button' class='btn btn-primary' onclick='location.href= '/universidad/editarCarrera.jsp' '> Editar</button>\n\
-<button class='btn btn-danger' onclick='linkeoEditCarrera()' >Eliminar</Eliminar>";
-
+            nuevaCelda.innerHTML = "<button  type ='button' class='btn btn-primary' onclick=\'window.location.href = 'http://localhost:8080/universidad/editarCarrera.jsp' > Editar</button>\n\
+<button class='btn btn-danger' onclick='eliminaCarrera' >Eliminar</Eliminar>";
 
 
         }
@@ -57,7 +56,7 @@ function cargarTablaCarreras(tabla, datos) {
 }
 
 function linkeoEditCarrera() {
-    window.location.href = "localhost:8080/universidad/editarCarrera.jsp?carrera"+document.get;
+  window.location.href = "http://localhost:8080/universidad/editarCarrera.jsp";
 
 }
 

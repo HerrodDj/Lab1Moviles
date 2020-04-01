@@ -68,6 +68,11 @@ public class ServicioEliminarCarrera extends HttpServlet {
             throws ServletException, IOException {
         try {
             processRequest(request, response);
+            
+            
+            
+            
+            
         } catch (Exception ex) {
             Logger.getLogger(ServicioAgregarCarrera.class.getName()).log(Level.SEVERE, null, ex);
         }
