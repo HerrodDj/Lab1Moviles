@@ -76,7 +76,7 @@ public class ServicioEliminarCarrera extends HttpServlet {
             if (sc.eliminarCarrera(codigo)) {
                 response.sendRedirect("listarCarrera.jsp");
             } else {
-                response.sendRedirect("listarCarrera.jsp");
+                response.sendRedirect("home.jsp");
             }
 
         } catch (InstantiationException

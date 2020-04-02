@@ -62,6 +62,7 @@
                                         <th style="background-color: #5da17a; color:white; text-align: center">Ciclo</th>
                                         <th style="background-color: #5da17a; color:white; text-align: center">Año</th>
                                         <th style="background-color: #5da17a; color:white; text-align: center">Editar</th>
+                                        <th style="background-color: #5da17a; color:white; text-align: center">Eliminar</th>
                                 </thead>
                                 <tbody style="background-color: #CDEBDB;" id="cursoList">
                                 </tbody>

@@ -48,7 +48,7 @@ function cargarTablaCarreras(tabla, datos) {
             nuevaCelda = nuevaFila.insertCell(-1);
             nuevaCelda.innerHTML = "<button  type ='button' class='btn btn-primary'> Editar</button>";
             nuevaCelda= nuevaFila.insertCell(-1);
-            nuevaCelda.innerHTML='<a href="ServicioEliminarCarrera?codigoC=UNA">Eliminar</a>'
+            nuevaCelda.innerHTML='<a href="ServicioEliminarCarrera?codigoC='+datos.carreras[i].codigo+'">Eliminar</a>'
 
         }
 
@@ -164,8 +164,9 @@ function cargarTablaCursos(tabla, datos) {
             nuevaCelda.innerText = datos.cursos[i].anio;
             
             nuevaCelda = nuevaFila.insertCell(-1);
-            nuevaCelda.innerHTML = "<button  type ='button' class='btn btn-primary' onclick='location.href= 'editarCurso.jsp' '> Editar</button>\n\
- <button class ='btn btn-danger' type ='button'>Eliminar</button>";
+            nuevaCelda.innerHTML = "<button  type ='button' class='btn btn-primary' onclick='location.href= 'editarCurso.jsp' '> Editar</button>";
+            nuevaCelda=nuevaFila.insertCell(-1);
+            nuevaCelda.innerHTML='<a href="ServicioEliminarCurso?codigo='+datos.cursos[i].codigo+'">Eliminar</a>'
 
 
 
