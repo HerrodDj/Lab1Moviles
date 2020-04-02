@@ -46,9 +46,9 @@ function cargarTablaCarreras(tabla, datos) {
             nuevaCelda = nuevaFila.insertCell(-1);
             nuevaCelda.innerText = datos.carreras[i].titulo;
             nuevaCelda = nuevaFila.insertCell(-1);
-            nuevaCelda.innerHTML = "<button  type ='button' class='btn btn-primary' onclick=\'window.location.href = 'http://localhost:8080/universidad/editarCarrera.jsp' > Editar</button>\n\
-<button class='btn btn-danger' onclick='eliminaCarrera' >Eliminar</Eliminar>";
-
+            nuevaCelda.innerHTML = "<button  type ='button' class='btn btn-primary'> Editar</button>";
+            nuevaCelda= nuevaFila.insertCell(-1);
+            nuevaCelda.innerHTML='<a href="ServicioEliminarCarrera?codigoC=UNA">Eliminar</a>'
 
         }
 

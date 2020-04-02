@@ -58,6 +58,7 @@
                                         <th style="background-color: #5da17a; color:white; text-align: center">Nombre</th>
                                         <th style="background-color: #5da17a; color:white; text-align: center">Título</th>
                                         <th style="background-color: #5da17a; color:white; text-align: center">Editar</th>
+                                        <th style="background-color: #5da17a; color:white; text-align: center">Eliminar</th>
                                 </thead>
                                 <tbody style="background-color: #CDEBDB;" id="carreraList">
                                 </tbody>

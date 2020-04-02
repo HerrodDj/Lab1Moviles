@@ -3,12 +3,15 @@
     Created on : 14-mar-2020, 22:51:02
     Author     : djenanehernandezrodriguez
 --%>
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="models.Carrera"%>
+<%@page import="Servicio.ServicioEditarCarrera"%>
+
 <!DOCTYPE html>
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta http- equiv="Content-Type" content="text/html; charset=UTF-8">
         <link href="css/bootstrap/bootstrap.css" rel="stylesheet" type="text/css"/>
         <link href="css/bootstrap/bootstrap.min.css" rel="stylesheet" type="text/css"/>
         <link href="css/bootstrap/bootstrap-reboot.min.css" rel="stylesheet" type="text/css"/>
@@ -16,6 +19,10 @@
         <title>Editar Carrera</title>
     </head>
     <body onload="onLoadCarrera()">
+        
+<%
+    Carrera carrera =(Carrera)request.getAttribute("Carrera");
+%>
         <div>
             <%@include file="menu.jsp" %>
         </div>
@@ -40,7 +47,7 @@
                         <div class="col-6">
                             <div class="form-group">
                                 <div class="col-sm-8">
-                                    <input type="text" id="codigoCarrera" name="codigoCarrera" class="form-control"
+                                    <input type="text" id="codigoCarrera" name="codigoCarrera" class="form-control"  value="<%= carrera.getCodigo() %>"
                                             readonly>
                                 </div>
                             </div>
@@ -57,7 +64,7 @@
                         <div class="col-6">
                             <div class="form-group">
                                 <div class="col-sm-8">
-                                    <input type="text" id="nombreCarrera" name="nombreCarrera" class="form-control"
+                                    <input type="text" id="nombreCarrera" name="nombreCarrera" class="form-control" value="<%= carrera.getNombre() %>"
                                            required autofocus>
                                 </div>
                             </div>
@@ -82,9 +89,6 @@
                     <div class="row">
                         <div class="col-8">
                             <button type="submid"> Guardar</button>
-                        </div>
-                        <div>
-                        <button type="button" class="btn btn-outline-danger" id="cancelButton" onclick='eliminaCarrera()'>Eliminar</button>
                         </div>
                         <div class="col-md-4">
                             <button type="button" class="btn btn-outline-danger" id="cancelButton" onclick='javascript:cancelAction()'>Cancelar</button>

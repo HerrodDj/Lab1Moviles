@@ -9,9 +9,11 @@ import Service.ServiceMethodsCarrera;
 import exceptions.GlobalException;
 import java.io.IOException;
 import java.io.PrintWriter;
+import static java.lang.System.out;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -73,12 +75,25 @@ public class ServicioEditarCarrera extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {
-            processRequest(request, response);
-            PrintWriter printer = response.getWriter();
-            String c = request.getParameter("codigoCarrera");
+         //   processRequest(request, response);
+            PrintWriter out = response.getWriter();
+             response.setContentType("text/html");
+            String c = request.getParameter("codigo");
             ServiceMethodsCarrera sc = ServiceMethodsCarrera.obtenerInstancia();
             Carrera carrera = sc.BuscarCarreraCodigo(c);
+            request.setAttribute("Carrera", carrera);
+            RequestDispatcher  dispatcher=getServletContext().getRequestDispatcher("editarCarrera.jsp");
+            dispatcher.forward(request, response);
             
+//            out.println("<html>");
+//            out.println("<head><title>Enviar parametros a un Servlet</title></head>");
+//            out.println("<body>");
+//            out.println("<h1>Enviar parametros a un Servlet</h1>");
+//            out.println("Codigo: <strong>" + carrera.getCodigo() + "</strong><br>");
+//            out.println("Nombre  <strong>" + carrera.getNombre() + "</strong><br>");
+//            out.println("Titulo <strong>" + carrera.getTitulo() + "</strong><br>");
+//            out.println("</body></html>");
+
 
         } catch (InstantiationException
                 | ClassNotFoundException

@@ -15,10 +15,10 @@ import models.Curso;
  * @author djenanehernandezrodriguez
  */
 public class main {
-    public static void main(String[]args) throws InstantiationException, ClassNotFoundException, IllegalAccessException, NoDataException, Exception{
-ServiceMethodsCarrera su= ServiceMethodsCarrera.obtenerInstancia();
 
-     System.out.println(su.BuscarCarreraNombre("Biologia").toString());
+    public static void main(String[] args) throws InstantiationException, ClassNotFoundException, IllegalAccessException, NoDataException, Exception {
+
     }
-    
 }
+
+

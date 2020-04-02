@@ -46,6 +46,7 @@ protected void processRequest(HttpServletRequest request, HttpServletResponse re
             ServiceMethodsCarrera sc;
                 sc = ServiceMethodsCarrera.obtenerInstancia(); 
                 if(sc.insertarCarrera(c)){
+                out.print("<p>Se guardo Correctamente!</p>");
                 response.sendRedirect("listarCarrera.jsp");
                 }else{
                 response.sendRedirect("agregarCarrera.jsp");

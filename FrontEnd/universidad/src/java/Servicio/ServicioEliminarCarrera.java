@@ -34,24 +34,24 @@ public class ServicioEliminarCarrera extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, InstantiationException, IllegalAccessException, SQLException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            try {
-                String codigo = request.getParameter("codigoCarrera");
-
-                ServiceMethodsCarrera sc = ServiceMethodsCarrera.obtenerInstancia();
-                if (sc.eliminarCarrera(codigo)) {
-                    response.sendRedirect("listarCarrera.jsp");
-                } else {
-                    response.sendRedirect("listarCarrera.jsp");
-                }
-
-            } catch (InstantiationException
-                    | ClassNotFoundException
-                    | IllegalAccessException ex) {
-
-                Logger.getLogger(ServicioAgregarCarrera.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
+//        try (PrintWriter out = response.getWriter()) {
+//            try {
+//                String codigo = request.getParameter("codigoCarrera");
+//
+//                ServiceMethodsCarrera sc = ServiceMethodsCarrera.obtenerInstancia();
+//                if (sc.eliminarCarrera(codigo)) {
+//                    response.sendRedirect("listarCarrera.jsp");
+//                } else {
+//                    response.sendRedirect("listarCarrera.jsp");
+//                }
+//
+//            } catch (InstantiationException
+//                    | ClassNotFoundException
+//                    | IllegalAccessException ex) {
+//
+//                Logger.getLogger(ServicioAgregarCarrera.class.getName()).log(Level.SEVERE, null, ex);
+//            }
+//        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -67,14 +67,25 @@ public class ServicioEliminarCarrera extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {
-            processRequest(request, response);
-            
-            
-            
-            
-            
-        } catch (Exception ex) {
+            PrintWriter out = response.getWriter();
+            response.setContentType("text/html");
+
+            String codigo = request.getParameter("codigoC");
+
+            ServiceMethodsCarrera sc = ServiceMethodsCarrera.obtenerInstancia();
+            if (sc.eliminarCarrera(codigo)) {
+                response.sendRedirect("listarCarrera.jsp");
+            } else {
+                response.sendRedirect("listarCarrera.jsp");
+            }
+
+        } catch (InstantiationException
+                | ClassNotFoundException
+                | IllegalAccessException ex) {
+
             Logger.getLogger(ServicioAgregarCarrera.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(ServicioEliminarCarrera.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
