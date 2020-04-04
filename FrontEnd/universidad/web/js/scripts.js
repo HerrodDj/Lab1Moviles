@@ -46,20 +46,14 @@ function cargarTablaCarreras(tabla, datos) {
             nuevaCelda = nuevaFila.insertCell(-1);
             nuevaCelda.innerText = datos.carreras[i].titulo;
             nuevaCelda = nuevaFila.insertCell(-1);
-            nuevaCelda.innerHTML = "<button  type ='button' class='btn btn-primary'> Editar</button>";
+            nuevaCelda.innerHTML = '<a class="btn btn-outline-primary" role="button" href="ServicioEditarCarrera?codigoC='+datos.carreras[i].codigo+'">Editar</a>';
             nuevaCelda= nuevaFila.insertCell(-1);
-            nuevaCelda.innerHTML='<a href="ServicioEliminarCarrera?codigoC='+datos.carreras[i].codigo+'">Eliminar</a>'
+            nuevaCelda.innerHTML='<a class="btn btn-outline-danger" role="button" href="ServicioEliminarCarrera?codigoC='+datos.carreras[i].codigo+'">Eliminar</a>'
 
         }
 
     }
 }
-
-function linkeoEditCarrera() {
-  window.location.href = "http://localhost:8080/universidad/editarCarrera.jsp";
-
-}
-
 
 function myDeleteTable(tabla) {
     document.getElementById(tabla).deleteRow(0);
@@ -166,7 +160,7 @@ function cargarTablaCursos(tabla, datos) {
             nuevaCelda = nuevaFila.insertCell(-1);
             nuevaCelda.innerHTML = "<button  type ='button' class='btn btn-primary' onclick='location.href= 'editarCurso.jsp' '> Editar</button>";
             nuevaCelda=nuevaFila.insertCell(-1);
-            nuevaCelda.innerHTML='<a href="ServicioEliminarCurso?codigo='+datos.cursos[i].codigo+'">Eliminar</a>'
+            nuevaCelda.innerHTML='<a class="btn btn-outline-danger" role="button" href="ServicioEliminarCurso?codigo='+datos.cursos[i].codigo+'">Eliminar</a>'
 
 
 

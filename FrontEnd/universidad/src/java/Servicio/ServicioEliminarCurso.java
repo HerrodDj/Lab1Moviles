@@ -53,7 +53,7 @@ public class ServicioEliminarCurso extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-              try {
+        try {
             PrintWriter out = response.getWriter();
             response.setContentType("text/html");
 
@@ -61,9 +61,15 @@ public class ServicioEliminarCurso extends HttpServlet {
             ServiceMethodsCurso sc = ServiceMethodsCurso.obtenerInstancia();
 
             if (sc.eliminarCurso(codigo)) {
-                response.sendRedirect("listarCurso.jsp");
+                out.println("<script type=\"text/javascript\">");
+                out.println("alert('Se ha eliminado Correctamente');");
+                out.println("location='listarCurso.jsp';");
+                out.println("</script>");
             } else {
-                response.sendRedirect("home.jsp");
+                out.println("<script type=\"text/javascript\">");
+                out.println("alert('Algo ha salido mal. Intentelo nuevamente');");
+                out.println("location='listarCurso.jsp';");
+                out.println("</script>");
             }
 
         } catch (InstantiationException

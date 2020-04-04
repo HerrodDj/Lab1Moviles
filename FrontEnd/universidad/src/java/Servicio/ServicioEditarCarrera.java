@@ -78,7 +78,7 @@ public class ServicioEditarCarrera extends HttpServlet {
          //   processRequest(request, response);
             PrintWriter out = response.getWriter();
              response.setContentType("text/html");
-            String c = request.getParameter("codigo");
+            String c = request.getParameter("codigoC");
             ServiceMethodsCarrera sc = ServiceMethodsCarrera.obtenerInstancia();
             Carrera carrera = sc.BuscarCarreraCodigo(c);
             request.setAttribute("Carrera", carrera);
