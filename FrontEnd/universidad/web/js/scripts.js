@@ -59,19 +59,6 @@ function myDeleteTable(tabla) {
     document.getElementById(tabla).deleteRow(0);
 }
 
-//Editar carrera
-function onLoadCarrera(){
-    
-    
-}
-
-// Eliminar carrera
-
-function eliminaCarrera(){
-    
-    
-    
-}
 
 
 
@@ -108,7 +95,7 @@ function addOptions(domElement, datos) {
     for (var i = 0; i < datos.carreras.length; i++) {
         var option = document.createElement("option");
         option.value=datos.carreras[i].codigo;
-        option.text =datos.carreras[i].nombre
+        option.text =datos.carreras[i].nombre;
         select.add(option);
     }
 }
@@ -158,7 +145,7 @@ function cargarTablaCursos(tabla, datos) {
             nuevaCelda.innerText = datos.cursos[i].anio;
             
             nuevaCelda = nuevaFila.insertCell(-1);
-            nuevaCelda.innerHTML = "<button  type ='button' class='btn btn-primary' onclick='location.href= 'editarCurso.jsp' '> Editar</button>";
+            nuevaCelda.innerHTML = '<a class="btn btn-outline-primary" role="button" href="ServicioEditarCurso?codigoC='+datos.cursos[i].codigo+'">Editar</a>';
             nuevaCelda=nuevaFila.insertCell(-1);
             nuevaCelda.innerHTML='<a class="btn btn-outline-danger" role="button" href="ServicioEliminarCurso?codigo='+datos.cursos[i].codigo+'">Eliminar</a>'
 

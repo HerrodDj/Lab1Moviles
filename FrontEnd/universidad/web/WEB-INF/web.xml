@@ -29,12 +29,12 @@
         <servlet-class>Servicio.ServicioEliminarCarrera</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>GetCarrera</servlet-name>
-        <servlet-class>Servicio.GetCarrera</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>ServicioEliminarCurso</servlet-name>
         <servlet-class>Servicio.ServicioEliminarCurso</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ServicioEditarCurso</servlet-name>
+        <servlet-class>Servicio.ServicioEditarCurso</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>ServicioAgregarCarrera</servlet-name>
@@ -65,16 +65,19 @@
         <url-pattern>/ServicioEliminarCarrera</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>GetCarrera</servlet-name>
-        <url-pattern>/GetCarrera</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
         <servlet-name>ServicioEliminarCurso</servlet-name>
         <url-pattern>/ServicioEliminarCurso</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ServicioEditarCurso</servlet-name>
+        <url-pattern>/ServicioEditarCurso</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
             30
         </session-timeout>
     </session-config>
+    <web-app version="3.0" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
+        <!-- Config here. -->
+    </web-app>
 </web-app>

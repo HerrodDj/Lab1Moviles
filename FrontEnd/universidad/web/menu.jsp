@@ -32,6 +32,9 @@
                         <li><a href="listarCurso.jsp">Listar</a></li>
                     </ul>
                 </li>
+                <li>
+                    <a href="ServicioLogut">Logout</a>
+                </li>
 
 
             </ul>

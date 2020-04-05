@@ -15,13 +15,20 @@
     font-family: fuente_2;
     font-style: normal;
     font-weight: normal;
-    src: url(AppleGaramond.ttf);
+    src: url(SP.ttf);
+}
+
+@font-face{
+    font-family: fuente_3;
+    font-style: normal;
+    font-weight: normal;
+    src: url(Roboto.ttf);
 }
 
 body {
   background: #0679A5;
   background: linear-gradient(to right, #BBF9EE, #15B99E);
-  font-family: fuente_1;
+  font-family: fuente_3;
 }
 
 .card-signin {

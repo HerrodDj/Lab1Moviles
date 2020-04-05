@@ -5,18 +5,22 @@
  */
 package Servicio;
 
+import Service.ServiceMethodsCurso;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import models.Curso;
 
 /**
  *
  * @author djenanehernandezrodriguez
  */
-public class GetCarrera extends HttpServlet {
+public class ServicioEditarCurso extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -35,10 +39,10 @@ public class GetCarrera extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet GetCarrera</title>");            
+            out.println("<title>Servlet ServicioEditarCurso</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet GetCarrera at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet ServicioEditarCurso at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -56,7 +60,30 @@ public class GetCarrera extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            PrintWriter out = response.getWriter();
+            response.setContentType("text/html");
+            String c = request.getParameter("codigoC");
+            ServiceMethodsCurso sc = ServiceMethodsCurso.obtenerInstancia();
+            Curso curso = sc.buscarCursoPorCodigo(c);
+            request.setAttribute("codigo",curso.getCodigo() );
+            request.setAttribute("nombre", curso.getNombre());
+            request.setAttribute("creditos", curso.getCreditos());
+            request.setAttribute("horas", curso.getHorasSemanales());
+            request.setAttribute("carrera", curso.getCodigoCarrera());
+            request.setAttribute("ciclo", curso.getCiclo());
+            request.setAttribute("anio", curso.getAnio());
+            request.getRequestDispatcher("editarCurso.jsp").forward(request, response);
+           
+        } catch (InstantiationException
+                | ClassNotFoundException
+                | IllegalAccessException ex) {
+
+            Logger.getLogger(ServicioAgregarCarrera.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
+            Logger.getLogger(ServicioEditarCarrera.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
     }
 
     /**
