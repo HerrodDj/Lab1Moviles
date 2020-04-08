@@ -71,7 +71,8 @@
                             </div>
                         </div>
                         <div class="col-4">
-                            <select class="form-control form-control-sm" name ="tituloCarrera" value="${nombre}">
+                            <select class="form-control form-control-sm" name ="tituloCarrera" value="${titulo}">
+                                <option>${titulo}</option>
                                 <option>Bachillerato</option>
                                 <option>Licenciatura</option>
                                 <option>Maestria</option>

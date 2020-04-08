@@ -33,7 +33,7 @@
                     </ul>
                 </li>
                 <li>
-                    <a href="ServicioLogut">Logout</a>
+                    <a href="ServicioLogout">Logout</a>
                 </li>
 
 

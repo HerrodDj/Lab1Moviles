@@ -36,6 +36,10 @@
         <servlet-name>ServicioEditarCurso</servlet-name>
         <servlet-class>Servicio.ServicioEditarCurso</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ServicioLogout</servlet-name>
+        <servlet-class>Servicio.ServicioLogout</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ServicioAgregarCarrera</servlet-name>
         <url-pattern>/ServicioAgregarCarrera</url-pattern>
@@ -71,6 +75,10 @@
     <servlet-mapping>
         <servlet-name>ServicioEditarCurso</servlet-name>
         <url-pattern>/ServicioEditarCurso</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ServicioLogout</servlet-name>
+        <url-pattern>/ServicioLogout</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
