@@ -15,7 +15,7 @@
         <script src="js/scripts.js" type="text/javascript"></script>
         <title>Lista de Carreras</title>
     </head>
-    <body>
+    <body onload="initCarreras()">
         <div>
             <%@include file="menu.jsp" %>
         </div>
@@ -29,7 +29,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col">
-                        <select clas="form-control form-control-sm" name="searchType">
+                        <select clas="form-control form-control-sm" name="searchType" id="searchType">
                             <option value="searchAll" style="align-content: center">Mostrar todas</option>
                             <option value="searchCodigo" style="align-content: center">Codigo de Carrera</option>
                             <option value="searchNombre" style="align-content: center">Nombre de Carrera</option>

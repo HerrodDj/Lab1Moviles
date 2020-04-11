@@ -40,6 +40,10 @@
         <servlet-name>ServicioLogout</servlet-name>
         <servlet-class>Servicio.ServicioLogout</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>SearchCarreraNombre</servlet-name>
+        <servlet-class>Servicio.Search.SearchCarreraNombre</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ServicioAgregarCarrera</servlet-name>
         <url-pattern>/ServicioAgregarCarrera</url-pattern>
@@ -79,6 +83,10 @@
     <servlet-mapping>
         <servlet-name>ServicioLogout</servlet-name>
         <url-pattern>/ServicioLogout</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SearchCarreraNombre</servlet-name>
+        <url-pattern>/SearchCarreraNombre</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

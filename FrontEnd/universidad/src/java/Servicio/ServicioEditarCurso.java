@@ -6,8 +6,10 @@
 package Servicio;
 
 import Service.ServiceMethodsCurso;
+import exceptions.GlobalException;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
@@ -35,16 +37,38 @@ public class ServicioEditarCurso extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet ServicioEditarCurso</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet ServicioEditarCurso at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+            try{
+                String codigo = request.getParameter("codigoCurso");
+                String nombre = request.getParameter("nombreCurso");
+                String carrera = request.getParameter("carrera");
+                int creditos = Integer.parseInt(request.getParameter("creditoCurso"));
+                int horas = Integer.parseInt(request.getParameter("horaCurso"));
+                int anio = Integer.parseInt(request.getParameter("anioCurso"));
+                int ciclo = Integer.parseInt(request.getParameter("cicloCurso"));
+                Curso c = new Curso(codigo, nombre, creditos, horas, carrera, ciclo, anio);
+                ServiceMethodsCurso sc = ServiceMethodsCurso.obtenerInstancia();
+                if (sc.actualizarCurso(c)) {
+                    out.println("<script type=\"text/javascript\">");
+                    out.println("alert('Se ha actualizado Correctamente');");
+                    out.println("location='listarCurso.jsp';");
+                    out.println("</script>");
+
+                } else {
+                    out.println("<script type=\"text/javascript\">");
+                    out.println("alert('No se ha podido actualizar el curso');");
+                    out.println("location='listarCurso.jsp';");
+                    out.println("</script>");
+
+                }
+
+            } catch (InstantiationException
+                    | ClassNotFoundException
+                    | IllegalAccessException
+                    | SQLException | GlobalException ex) {
+
+                Logger.getLogger(ServicioAgregarCarrera.class.getName()).log(Level.SEVERE, null, ex);
+            } 
+
         }
     }
 

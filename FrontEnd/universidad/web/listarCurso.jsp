@@ -15,7 +15,7 @@
         <script src="js/scripts.js" type="text/javascript"></script>
         <title>Lista de Cursos</title>
     </head>
-    <body>
+    <body onload="initCursos()">
         <div>
             <%@include file="menu.jsp" %>
         </div>

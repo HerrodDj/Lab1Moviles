@@ -19,6 +19,23 @@ function buscarCarrera() {
 
 }
 
+function SearchTypeCarrera(type){
+    var search = document.getElementById("searchType").value;
+    if (search === "searchAll"){
+        type ="ServicioListCarrera?type=searchAll";
+    }
+    if(search === "searchCodigo"){
+        var t= document.getElementById("searchText").value;
+        type="ServicioListCarrera?type=searchCodigo";
+    }
+    if (search === "searchNombre"){
+        var t= document.getElementById("searchText").value;
+        type="ServicioListCarrera?type=searchNombre";
+    }
+    
+}
+
+
 function solicitarDatosCarreras(origen, tabla) {
     fetch(origen).then(
             (resultados) => {

@@ -3,25 +3,20 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Servicio;
+package Servicio.Search;
 
-import Service.ServiceMethodsCarrera;
-import exceptions.NoDataException;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import models.Carrera;
 
 /**
  *
  * @author djenanehernandezrodriguez
  */
-public class ServicioAgregarCarrera extends HttpServlet {
+public class SearchCarreraNombre extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -32,43 +27,14 @@ public class ServicioAgregarCarrera extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException, NoDataException, Exception {
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
- 
-            try {
-                
-                String codigo = request.getParameter("codigoCarrera");
-                String nombre = request.getParameter("nombreCarrera");
-                String titulo = request.getParameter("tituloCarrera");
-                Carrera c = new Carrera(codigo, nombre, titulo);
-                ServiceMethodsCarrera sc;
-                sc = ServiceMethodsCarrera.obtenerInstancia();
-                if (sc.insertarCarrera(c)) {
-                    out.println("<script type=\"text/javascript\">");
-                    out.println("alert('Se ha agregado Correctamente');");
-                    out.println("location='listarCurso.jsp';");
-                    out.println("</script>");
-                } else {
-                    out.println("<script type=\"text/javascript\">");
-                    out.println("alert('No se ha podido agregar');");
-                    out.println("location='agregarCurso.jsp';");
-                    out.println("</script>");
-
-                }
-            } catch (InstantiationException
-                    | ClassNotFoundException
-                    | IllegalAccessException ex) {
-
-                Logger.getLogger(ServicioAgregarCarrera.class.getName()).log(Level.SEVERE, null, ex);
-            }
-
 
         }
     }
-
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
@@ -82,11 +48,7 @@ protected void processRequest(HttpServletRequest request, HttpServletResponse re
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try {
-            processRequest(request, response);
-        } catch (Exception ex) {
-            Logger.getLogger(ServicioAgregarCarrera.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        processRequest(request, response);
     }
 
     /**
@@ -100,11 +62,7 @@ protected void processRequest(HttpServletRequest request, HttpServletResponse re
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try {
-            processRequest(request, response);
-        } catch (Exception ex) {
-            Logger.getLogger(ServicioAgregarCarrera.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        processRequest(request, response);
     }
 
     /**
