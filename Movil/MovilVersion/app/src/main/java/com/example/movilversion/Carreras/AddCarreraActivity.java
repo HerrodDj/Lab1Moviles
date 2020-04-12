@@ -1,13 +1,11 @@
 package com.example.movilversion.Carreras;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -15,7 +13,6 @@ import android.widget.Toast;
 
 import com.example.movilversion.R;
 import com.example.movilversion.data.LogicaNeg.Carrera;
-import com.example.movilversion.ui.login.HomeActivity;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class AddCarreraActivity extends AppCompatActivity {

@@ -9,21 +9,26 @@
         android:roundIcon="@mipmap/ic_movilapo_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Cursos.AddCursosActivity"
-            android:label="@string/title_activity_cursos" />
-        <activity
-            android:name=".Carreras.AddCarreraActivity"
-            android:label="@string/title_activity_carreras" />
         <activity
             android:name=".Cursos.CursosActivity"
             android:label="@string/title_activity_cursos"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+             />
         <activity
             android:name=".Carreras.CarrerasActivity"
             android:label="@string/title_activity_carreras"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            />
         <activity
-            android:name=".ui.login.HomeActivity"
+            android:name=".Cursos.AddCursosActivity"
+            android:label="@string/title_activity_cursos"
+            />
+        <activity
+            android:name=".Carreras.AddCarreraActivity"
+            android:label="@string/title_activity_carreras"
+             />
+        <activity
+            android:name=".HomeAct.HomeActivity"
             android:label="@string/title_activity_home"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity

@@ -25,6 +25,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
+import com.example.movilversion.HomeAct.HomeActivity;
 import com.example.movilversion.R;
 
 public class LoginActivity extends AppCompatActivity {
