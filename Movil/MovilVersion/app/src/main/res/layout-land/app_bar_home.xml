@@ -2,10 +2,9 @@
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/coordinator_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Carreras.CarrerasActivity">
+    tools:context=".HomeAct.HomeActivity">
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
@@ -21,7 +20,7 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
-    <include layout="@layout/content_carreras" />
+    <include layout="@layout/content_home" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab"
@@ -30,8 +29,8 @@
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/fab_margin"
         android:backgroundTint="@color/colorPrimary"
-        android:src="@drawable/ic_add_black_24dp"
-        android:tint="@android:color/background_light"
-        app:backgroundTint="@color/colorPrimary"/>
+        app:srcCompat="@android:drawable/ic_dialog_email"
+        app:backgroundTint="@color/colorPrimary"
+        />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

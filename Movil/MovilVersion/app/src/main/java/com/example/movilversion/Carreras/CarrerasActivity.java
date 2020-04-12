@@ -28,6 +28,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -61,9 +62,12 @@ public class CarrerasActivity extends AppCompatActivity implements RecyclerItemT
 
         rVLC = findViewById(R.id.recyclerViewCarreras);
 
+
+
         rVLC.setItemAnimator(new DefaultItemAnimator());
         rVLC.addItemDecoration(new DividerItemDecoration(this,DividerItemDecoration.VERTICAL));
         LinearLayoutManager LL = new LinearLayoutManager(this);
+
         rVLC.setLayoutManager(LL);
 
         //Datos

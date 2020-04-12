@@ -8,7 +8,6 @@
     tools:context=".Carreras.CarrerasActivity"
     tools:showIn="@layout/activity_carreras">
 
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewCarreras"
         android:layout_width="0dp"
@@ -21,4 +20,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
