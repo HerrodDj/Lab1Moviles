@@ -124,7 +124,7 @@
                             <div class="form-group">
                                 <div class="col-sm-8">
                                     <select id ="cicloCurso" name ="cicloCurso" class="form-control form-control-sm" value="${ciclo}"/>
-                                        <option value="${ciclo}" >Seleccione el Ciclo</option>
+                                        <option value="${ciclo}" >"${ciclo}"</option>
                                         <option value ="1" >I ciclo</option>
                                         <option value ="2" >II ciclo</option>
                                         <option value ="3" >III ciclo(verano)</option>
@@ -153,7 +153,7 @@
                             <button type="submid"> Guardar</button>
                         </div>
                         <div class="col-md-4">
-                            <button type="button" class="btn btn-outline-danger" id="cancelButton" onclick='javascript:cancelAction()'>Cancelar</button>
+                            <a class="btn btn-outline-danger" role="button" href="home.jsp">Cancelar</a>
                         </div>
                     </div>
                 </form>

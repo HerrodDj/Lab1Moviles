@@ -26,23 +26,6 @@
                     <h4>Lista de Carrera</h4>
                 </div>
             </div>
-            <div class="container">
-                <div class="row">
-                    <div class="col">
-                        <select clas="form-control form-control-sm" name="searchType" id="searchType">
-                            <option value="searchAll" style="align-content: center">Mostrar todas</option>
-                            <option value="searchCodigo" style="align-content: center">Codigo de Carrera</option>
-                            <option value="searchNombre" style="align-content: center">Nombre de Carrera</option>
-                        </select>
-                    </div>
-                    <div class="col-sm-4" id="serchDiv">
-                        <input type="text" class="form-control" id="searchText" >
-                    </div>
-                    <div class="col-sm-4" id="searchDiv">
-                        <button type="button" class="btn btn-success" id="seacrhButton" onclick="initCarreras()">Buscar</button>
-                    </div> 
-                </div>
-            </div>
             <div class="row">
                  <span style="white-space: pre-line"></span>
                 <br/>
