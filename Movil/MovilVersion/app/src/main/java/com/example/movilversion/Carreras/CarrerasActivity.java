@@ -10,7 +10,7 @@ import com.example.movilversion.R;
 import com.example.movilversion.data.Adapter.CarreraAdapter;
 import com.example.movilversion.data.Datos.Data;
 import com.example.movilversion.data.LogicaNeg.Carrera;
-import com.example.movilversion.ui.login.HomeActivity;
+import com.example.movilversion.HomeAct.HomeActivity;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
@@ -59,7 +59,7 @@ public class CarrerasActivity extends AppCompatActivity implements RecyclerItemT
 
         coordinatorLayout = findViewById(R.id.coordinator_layout);
 
-        rVLC = findViewById(R.id.listCarreras);
+        rVLC = findViewById(R.id.recyclerViewCarreras);
 
         rVLC.setItemAnimator(new DefaultItemAnimator());
         rVLC.addItemDecoration(new DividerItemDecoration(this,DividerItemDecoration.VERTICAL));
@@ -68,7 +68,7 @@ public class CarrerasActivity extends AppCompatActivity implements RecyclerItemT
 
         //Datos
         Data datos = new Data();
-         listaC = datos.getListaCarreras();
+        listaC = datos.getListaCarreras();
 
         carrAdap = new CarreraAdapter(listaC, this);
         rVLC.setAdapter(carrAdap);

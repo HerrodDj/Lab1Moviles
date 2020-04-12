@@ -1,4 +1,4 @@
-package com.example.movilversion.ui.login;
+package com.example.movilversion.HomeAct;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,6 +11,7 @@ import android.widget.Toast;
 import com.example.movilversion.Carreras.CarrerasActivity;
 import com.example.movilversion.Cursos.CursosActivity;
 import com.example.movilversion.R;
+import com.example.movilversion.ui.login.LoginActivity;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
@@ -136,7 +137,6 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         }else if(id==R.id.nav_cursos){
             cursos();
         }
-
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;

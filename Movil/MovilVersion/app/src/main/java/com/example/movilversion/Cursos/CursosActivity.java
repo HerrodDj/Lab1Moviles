@@ -5,14 +5,11 @@ import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 
-import com.example.movilversion.Carreras.AddCarreraActivity;
 import com.example.movilversion.Helper.RecyclerItemTouchHelper;
-import com.example.movilversion.data.Adapter.CarreraAdapter;
 import com.example.movilversion.data.Adapter.CursoAdapter;
 import com.example.movilversion.data.Datos.Data;
-import com.example.movilversion.data.LogicaNeg.Carrera;
 import com.example.movilversion.data.LogicaNeg.Curso;
-import com.example.movilversion.ui.login.HomeActivity;
+import com.example.movilversion.HomeAct.HomeActivity;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
@@ -62,7 +59,7 @@ public class CursosActivity extends AppCompatActivity implements RecyclerItemTou
 
         coordinatorLayout = findViewById(R.id.coordinator_layout1);
 
-        rVLC = findViewById(R.id.listCursos);
+        rVLC = findViewById(R.id.recyclerViewCursos);
         rVLC.setItemAnimator(new DefaultItemAnimator());
         rVLC.addItemDecoration(new DividerItemDecoration(this,DividerItemDecoration.VERTICAL));
         LinearLayoutManager LL = new LinearLayoutManager(this);

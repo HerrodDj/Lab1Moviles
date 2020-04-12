@@ -11,7 +11,6 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import com.example.movilversion.Carreras.CarrerasActivity;
 import com.example.movilversion.R;
 import com.example.movilversion.data.Datos.Data;
 import com.example.movilversion.data.LogicaNeg.Carrera;
