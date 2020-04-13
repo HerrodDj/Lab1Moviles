@@ -150,7 +150,7 @@
                             <button type="submid"> Guardar</button>
                         </div>
                         <div class="col-md-4">
-                            <button type="button" class="btn btn-outline-danger" id="cancelButton" onclick='javascript:cancelAction()'>Cancelar</button>
+                            <a class="btn btn-outline-danger" role="button" href="home.jsp">Cancelar</a>
                         </div>
                     </div>
                 </form>

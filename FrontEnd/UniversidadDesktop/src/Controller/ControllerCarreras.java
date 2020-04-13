@@ -22,7 +22,7 @@ import models.Model;
  */
 public class ControllerCarreras {
 
-    public ControllerCarreras(ViewCarreras vc, TablaModelView model) throws SQLException, GlobalException {
+    public ControllerCarreras(ViewCarreras vc, TablaModelView model) throws SQLException, GlobalException, InstantiationException, ClassNotFoundException, IllegalAccessException {
         model.setTablaCarreras(new ArrayList());
         this.domainModel = new Model();
         this.vc = vc;
@@ -46,7 +46,7 @@ public class ControllerCarreras {
         }
     }
     
-    public void buscarCursoPorCarCod(String cod) throws SQLException{
+    public void buscarCursoPorCarCod(String cod) throws SQLException, GlobalException{
         List<Curso> l = domainModel.allCurso();
         JComboBox<String> f = this.vc.retornaBox();
         for(int i=0; i<l.size(); i++){

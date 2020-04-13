@@ -8,15 +8,17 @@ package Servicio;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author djenanehernandezrodriguez
  */
-public class GetCarrera extends HttpServlet {
+public class ServicioLogout extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -32,15 +34,19 @@ public class GetCarrera extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet GetCarrera</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet GetCarrera at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+            response.setContentType("text/html");
+            HttpSession sesion = request.getSession(true);
+            String e = (String) sesion.getAttribute("usuario");
+            Cookie ck = new Cookie("user", "usuario");
+            ck.setMaxAge(0);
+            response.addCookie(ck);
+            sesion.removeAttribute("usuario");
+            sesion.invalidate();
+            out.println("<script type=\"text/javascript\">");
+            out.println("alert('Se ha cerrado la sesión correctamente');");
+            out.println("location='index.jsp';");
+            out.println("</script>");
+
         }
     }
 

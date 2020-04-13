@@ -38,16 +38,15 @@ public class ServicioLogin extends HttpServlet {
             String password =request.getParameter("inputPassword");
             ServiceMethodsUsuario  su= ServiceMethodsUsuario.obtenerInstancia();
             if(su.getUsuario(usuario, password)){
-            System.out.println("No eres mamona");
                   HttpSession sesion = request.getSession(true);
                   sesion.setMaxInactiveInterval(60 * 5);
+                  sesion.setAttribute("usuario", usuario);
                   response.sendRedirect("home.jsp");
             }
             else{
                 
                   response.sendRedirect("index.jsp");
             }
-            
             
         }
         catch (InstantiationException

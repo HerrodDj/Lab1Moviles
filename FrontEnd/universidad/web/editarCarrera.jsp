@@ -3,7 +3,6 @@
     Created on : 14-mar-2020, 22:51:02
     Author     : djenanehernandezrodriguez
 --%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="models.Carrera"%>
 <%@page import="Servicio.ServicioEditarCarrera"%>
@@ -18,11 +17,7 @@
         <script src="js/bootstrap/bootstrap.js" type="text/javascript"></script>
         <title>Editar Carrera</title>
     </head>
-    <body onload="onLoadCarrera()">
-        
-<%
-    Carrera carrera =(Carrera)request.getAttribute("Carrera");
-%>
+    <body onload="">
         <div>
             <%@include file="menu.jsp" %>
         </div>
@@ -38,7 +33,6 @@
                         <div class="col-6">
                             <div class="form-group">
                                 <div class="col-sm-10">
-
                                     <label for="form-control col-6" class="form-label">Código</label>
                                 </div>
 
@@ -47,8 +41,7 @@
                         <div class="col-6">
                             <div class="form-group">
                                 <div class="col-sm-8">
-                                    <input type="text" id="codigoCarrera" name="codigoCarrera" class="form-control"  value="<%= carrera.getCodigo() %>"
-                                            readonly>
+                                    <input type="text" readonly id="codigoCarrera" name="codigoCarrera" class="form-control"  value="${codigo}"/>
                                 </div>
                             </div>
                         </div>
@@ -64,8 +57,7 @@
                         <div class="col-6">
                             <div class="form-group">
                                 <div class="col-sm-8">
-                                    <input type="text" id="nombreCarrera" name="nombreCarrera" class="form-control" value="<%= carrera.getNombre() %>"
-                                           required autofocus>
+                                    <input type="text"  required autofocus id="nombreCarrera" name="nombreCarrera" class="form-control" value="${nombre}"/>"
                                 </div>
                             </div>
                         </div>
@@ -79,7 +71,8 @@
                             </div>
                         </div>
                         <div class="col-4">
-                            <select class="form-control form-control-sm" name ="tituloCarrera">
+                            <select class="form-control form-control-sm" name ="tituloCarrera" value="${titulo}">
+                                <option>${titulo}</option>
                                 <option>Bachillerato</option>
                                 <option>Licenciatura</option>
                                 <option>Maestria</option>
@@ -91,7 +84,7 @@
                             <button type="submid"> Guardar</button>
                         </div>
                         <div class="col-md-4">
-                            <button type="button" class="btn btn-outline-danger" id="cancelButton" onclick='javascript:cancelAction()'>Cancelar</button>
+                            <a class="btn btn-outline-danger" role="button" href="home.jsp">Cancelar</a>
                         </div>
                     </div>
                 </form>

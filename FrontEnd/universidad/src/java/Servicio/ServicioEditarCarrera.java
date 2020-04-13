@@ -47,9 +47,15 @@ public class ServicioEditarCarrera extends HttpServlet {
                 Carrera c = new Carrera(codigo, nombre, titulo);
                 ServiceMethodsCarrera sc= ServiceMethodsCarrera.obtenerInstancia();
                 if (sc.actualizarCarrera(c)) {
-                    response.sendRedirect("listarCarrera.jsp");
+                   out.println("<script type=\"text/javascript\">");
+                   out.println("alert('Se han guardado los cambios');");
+                   out.println("location='listarCarrera.jsp';");
+                   out.println("</script>");
                 } else {
-                    response.sendRedirect("agregarCarrera.jsp");
+                   out.println("<script type=\"text/javascript\">");
+                   out.println("alert('Algo ha salido mal. Intentelo nuevamente');");
+                   out.println("location='listarCarrera.jsp';");
+                   out.println("</script>");
 
                 }
             } catch (InstantiationException
@@ -78,22 +84,15 @@ public class ServicioEditarCarrera extends HttpServlet {
          //   processRequest(request, response);
             PrintWriter out = response.getWriter();
              response.setContentType("text/html");
-            String c = request.getParameter("codigo");
+            String c = request.getParameter("codigoC");
             ServiceMethodsCarrera sc = ServiceMethodsCarrera.obtenerInstancia();
             Carrera carrera = sc.BuscarCarreraCodigo(c);
-            request.setAttribute("Carrera", carrera);
-            RequestDispatcher  dispatcher=getServletContext().getRequestDispatcher("editarCarrera.jsp");
-            dispatcher.forward(request, response);
+            request.setAttribute("codigo", carrera.getCodigo());
+            request.setAttribute("nombre", carrera.getNombre());
+            request.setAttribute("titulo", carrera.getTitulo());
+            request.getRequestDispatcher("editarCarrera.jsp").forward(request, response);
             
-//            out.println("<html>");
-//            out.println("<head><title>Enviar parametros a un Servlet</title></head>");
-//            out.println("<body>");
-//            out.println("<h1>Enviar parametros a un Servlet</h1>");
-//            out.println("Codigo: <strong>" + carrera.getCodigo() + "</strong><br>");
-//            out.println("Nombre  <strong>" + carrera.getNombre() + "</strong><br>");
-//            out.println("Titulo <strong>" + carrera.getTitulo() + "</strong><br>");
-//            out.println("</body></html>");
-
+ 
 
         } catch (InstantiationException
                 | ClassNotFoundException

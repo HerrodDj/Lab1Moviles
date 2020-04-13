@@ -6,6 +6,8 @@
 package Servicio;
 
 import Service.ServiceMethodsCarrera;
+import Service.ServiceMethodsCurso;
+import exceptions.GlobalException;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
@@ -34,24 +36,7 @@ public class ServicioEliminarCarrera extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, InstantiationException, IllegalAccessException, SQLException {
         response.setContentType("text/html;charset=UTF-8");
-//        try (PrintWriter out = response.getWriter()) {
-//            try {
-//                String codigo = request.getParameter("codigoCarrera");
-//
-//                ServiceMethodsCarrera sc = ServiceMethodsCarrera.obtenerInstancia();
-//                if (sc.eliminarCarrera(codigo)) {
-//                    response.sendRedirect("listarCarrera.jsp");
-//                } else {
-//                    response.sendRedirect("listarCarrera.jsp");
-//                }
-//
-//            } catch (InstantiationException
-//                    | ClassNotFoundException
-//                    | IllegalAccessException ex) {
-//
-//                Logger.getLogger(ServicioAgregarCarrera.class.getName()).log(Level.SEVERE, null, ex);
-//            }
-//        }
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -66,25 +51,44 @@ public class ServicioEliminarCarrera extends HttpServlet {
    @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try {
-            PrintWriter out = response.getWriter();
-            response.setContentType("text/html");
+       try {
+           PrintWriter out = response.getWriter();
+           response.setContentType("text/html");
 
-            String codigo = request.getParameter("codigoC");
+           String codigo = request.getParameter("codigoC");
 
-            ServiceMethodsCarrera sc = ServiceMethodsCarrera.obtenerInstancia();
-            if (sc.eliminarCarrera(codigo)) {
-                response.sendRedirect("listarCarrera.jsp");
-            } else {
-                response.sendRedirect("home.jsp");
-            }
+           ServiceMethodsCarrera sc = ServiceMethodsCarrera.obtenerInstancia();
+           ServiceMethodsCurso scu = ServiceMethodsCurso.obtenerInstancia();
 
-        } catch (InstantiationException
-                | ClassNotFoundException
-                | IllegalAccessException ex) {
+           if (scu.listarCursosPorCarrera(codigo).isEmpty()) {
+               if (sc.eliminarCarrera(codigo)) {
+                   out.println("<script type=\"text/javascript\">");
+                   out.println("alert('Se ha eliminado Correctamente');");
+                   out.println("location='listarCarrera.jsp';");
+                   out.println("</script>");
+               } else {
+                   out.println("<script type=\"text/javascript\">");
+                   out.println("alert('Algo ha salido mal. Intentelo nuevamente');");
+                   out.println("location='listarCarrera.jsp';");
+                   out.println("</script>");
 
-            Logger.getLogger(ServicioAgregarCarrera.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
+               }
+           } else {
+               out.println("<script type=\"text/javascript\">");
+               out.println("alert('Exiten cursos asignados a esta carrera. Eliminelos primero');");
+               out.println("location='listarCurso.jsp';");
+               out.println("</script>");
+
+           }
+
+       } catch (InstantiationException
+               | ClassNotFoundException
+               | IllegalAccessException ex) {
+
+           Logger.getLogger(ServicioAgregarCarrera.class.getName()).log(Level.SEVERE, null, ex);
+       } catch (SQLException ex) {
+           Logger.getLogger(ServicioEliminarCarrera.class.getName()).log(Level.SEVERE, null, ex);
+       } catch (GlobalException ex) {
             Logger.getLogger(ServicioEliminarCarrera.class.getName()).log(Level.SEVERE, null, ex);
         }
     }

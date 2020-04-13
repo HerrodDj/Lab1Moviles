@@ -5,6 +5,8 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+
+<%@page import="Servicio.ServicioEditarCurso"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -28,7 +30,7 @@
                         <h4>Editar Curso</h4>
                     </div>
                 </div>
-                <form id="uploadForm" encty="multipart/form-data" method="POST" action="ServicioAgregarCurso" >
+                <form id="uploadForm" encty="multipart/form-data" method="POST" action="ServicioEditarCurso" >
                     <div class="row">
                         <div class="col-6">
                             <div class="form-group">
@@ -43,7 +45,7 @@
                             <div class="form-group">
                                 <div class="col-sm-8">
                                     <input type="text" id="codigoCurso" name="codigoCurso" class="form-control"
-                                           required autofocus>
+                                           readonly value="${codigo}"/>
                                 </div>
                             </div>
                         </div>
@@ -60,7 +62,7 @@
                             <div class="form-group">
                                 <div class="col-sm-8">
                                     <input type="text" id="nombreCurso" name="nombreCurso" class="form-control"
-                                           required autofocus>
+                                           required autofocus value="${nombre}"/>
                                 </div>
                             </div>
                         </div>
@@ -73,7 +75,8 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-4"> <select class="form-control" name="carrera" id="carrera">
+                        <div class="col-4">
+                            <select class="form-control" name="carrera" id="carrera" value="${carrera}">
                                 <option>Seleccione una Carrera...</option>
                             </select>
                         </div>
@@ -91,7 +94,7 @@
                             <div class="form-group">
                                 <div class="col-sm-8">
                                     <input type="number" id="creditoCurso" name="creditoCurso" class="form-control"
-                                           required autofocus>
+                                           required autofocus value="${creditos}"/>
                                 </div>
                             </div>
                         </div>
@@ -110,7 +113,7 @@
                             <div class="form-group">
                                 <div class="col-sm-8">
                                     <input type="number" id="horaCurso" name="horaCurso" class="form-control"
-                                           required autofocus>
+                                           required autofocus value="${horas}"/>
                                 </div>
                             </div>
                         </div>
@@ -120,10 +123,10 @@
                         <div class="col-6">
                             <div class="form-group">
                                 <div class="col-sm-8">
-                                    <select id ="cicloCurso" name ="cicloCurso" class="form-control form-control-sm">
-                                        <option  >Seleccione el Ciclo</option>
-                                        <option  value ="1" >I ciclo</option>
-                                        <option  value ="2" >II ciclo</option>
+                                    <select id ="cicloCurso" name ="cicloCurso" class="form-control form-control-sm" value="${ciclo}"/>
+                                        <option value="${ciclo}" >"${ciclo}"</option>
+                                        <option value ="1" >I ciclo</option>
+                                        <option value ="2" >II ciclo</option>
                                         <option value ="3" >III ciclo(verano)</option>
 
                                     </select>
@@ -140,7 +143,7 @@
 
                                 <div class="col-sm-6">
                                     <input type="number" id="anioCurso" name="anioCurso" class="form-control"
-                                           required autofocus>
+                                           required autofocus value="${anio}" />
                                 </div>
                             </div>
                         </div>
@@ -150,7 +153,7 @@
                             <button type="submid"> Guardar</button>
                         </div>
                         <div class="col-md-4">
-                            <button type="button" class="btn btn-outline-danger" id="cancelButton" onclick='javascript:cancelAction()'>Cancelar</button>
+                            <a class="btn btn-outline-danger" role="button" href="home.jsp">Cancelar</a>
                         </div>
                     </div>
                 </form>

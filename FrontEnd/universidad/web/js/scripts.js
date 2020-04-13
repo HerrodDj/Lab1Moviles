@@ -19,6 +19,23 @@ function buscarCarrera() {
 
 }
 
+function SearchTypeCarrera(type){
+    var search = document.getElementById("searchType").value;
+    if (search === "searchAll"){
+        type ="ServicioListCarrera?type=searchAll";
+    }
+    if(search === "searchCodigo"){
+        var t= document.getElementById("searchText").value;
+        type="ServicioListCarrera?type=searchCodigo";
+    }
+    if (search === "searchNombre"){
+        var t= document.getElementById("searchText").value;
+        type="ServicioListCarrera?type=searchNombre";
+    }
+    
+}
+
+
 function solicitarDatosCarreras(origen, tabla) {
     fetch(origen).then(
             (resultados) => {
@@ -46,38 +63,19 @@ function cargarTablaCarreras(tabla, datos) {
             nuevaCelda = nuevaFila.insertCell(-1);
             nuevaCelda.innerText = datos.carreras[i].titulo;
             nuevaCelda = nuevaFila.insertCell(-1);
-            nuevaCelda.innerHTML = "<button  type ='button' class='btn btn-primary'> Editar</button>";
+            nuevaCelda.innerHTML = '<a class="btn btn-outline-primary" role="button" href="ServicioEditarCarrera?codigoC='+datos.carreras[i].codigo+'">Editar</a>';
             nuevaCelda= nuevaFila.insertCell(-1);
-            nuevaCelda.innerHTML='<a href="ServicioEliminarCarrera?codigoC='+datos.carreras[i].codigo+'">Eliminar</a>'
+            nuevaCelda.innerHTML='<a class="btn btn-outline-danger" role="button" href="ServicioEliminarCarrera?codigoC='+datos.carreras[i].codigo+'">Eliminar</a>'
 
         }
 
     }
 }
 
-function linkeoEditCarrera() {
-  window.location.href = "http://localhost:8080/universidad/editarCarrera.jsp";
-
-}
-
-
 function myDeleteTable(tabla) {
     document.getElementById(tabla).deleteRow(0);
 }
 
-//Editar carrera
-function onLoadCarrera(){
-    
-    
-}
-
-// Eliminar carrera
-
-function eliminaCarrera(){
-    
-    
-    
-}
 
 
 
@@ -114,7 +112,7 @@ function addOptions(domElement, datos) {
     for (var i = 0; i < datos.carreras.length; i++) {
         var option = document.createElement("option");
         option.value=datos.carreras[i].codigo;
-        option.text =datos.carreras[i].nombre
+        option.text =datos.carreras[i].nombre;
         select.add(option);
     }
 }
@@ -164,9 +162,9 @@ function cargarTablaCursos(tabla, datos) {
             nuevaCelda.innerText = datos.cursos[i].anio;
             
             nuevaCelda = nuevaFila.insertCell(-1);
-            nuevaCelda.innerHTML = "<button  type ='button' class='btn btn-primary' onclick='location.href= 'editarCurso.jsp' '> Editar</button>";
+            nuevaCelda.innerHTML = '<a class="btn btn-outline-primary" role="button" href="ServicioEditarCurso?codigoC='+datos.cursos[i].codigo+'">Editar</a>';
             nuevaCelda=nuevaFila.insertCell(-1);
-            nuevaCelda.innerHTML='<a href="ServicioEliminarCurso?codigo='+datos.cursos[i].codigo+'">Eliminar</a>'
+            nuevaCelda.innerHTML='<a class="btn btn-outline-danger" role="button" href="ServicioEliminarCurso?codigo='+datos.cursos[i].codigo+'">Eliminar</a>'
 
 
 
