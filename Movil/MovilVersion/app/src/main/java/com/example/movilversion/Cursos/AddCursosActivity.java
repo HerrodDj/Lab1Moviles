@@ -35,9 +35,7 @@ public class AddCursosActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_cursos);
-
         editable=true;
-
         fBtn = findViewById(R.id.addCursosBtn);
         codFld = findViewById(R.id.codigoAddCur);
         nomFld = findViewById(R.id.nombreAddCur);
@@ -49,13 +47,11 @@ public class AddCursosActivity extends AppCompatActivity {
         credFld.setText("");
         horFld.setText("");
         annioFld.setText("");
-
         //ciclos box
         boxCic = findViewById(R.id.cicloAddCur);
         ArrayAdapter<CharSequence> adap = ArrayAdapter.createFromResource(this,R.array.ciclos,android.R.layout.simple_spinner_item);
         adap.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         boxCic.setAdapter(adap);
-
         //carreras box
         Data carreras = new Data();
         ArrayList<Carrera> arr = carreras.getListaCarreras();
@@ -67,7 +63,6 @@ public class AddCursosActivity extends AppCompatActivity {
         ArrayAdapter<String> adap1 = new ArrayAdapter<String>(getApplicationContext(),android.R.layout.simple_spinner_item, nC);
         adap1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         boxCar.setAdapter(adap1);
-
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             editable = extras.getBoolean("editable");

@@ -47,9 +47,6 @@ public class CarrerasActivity extends AppCompatActivity implements RecyclerItemT
         setContentView(R.layout.activity_carreras);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-
-
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -57,29 +54,18 @@ public class CarrerasActivity extends AppCompatActivity implements RecyclerItemT
                 addCarreras();
             }
         });
-
         coordinatorLayout = findViewById(R.id.coordinator_layout);
-
         rVLC = findViewById(R.id.recyclerViewCarreras);
-
-
-
         rVLC.setItemAnimator(new DefaultItemAnimator());
         rVLC.addItemDecoration(new DividerItemDecoration(this,DividerItemDecoration.VERTICAL));
         LinearLayoutManager LL = new LinearLayoutManager(this);
-
         rVLC.setLayoutManager(LL);
-
-        //Datos
         Data datos = new Data();
         listaC = datos.getListaCarreras();
-
         carrAdap = new CarreraAdapter(listaC, this);
         rVLC.setAdapter(carrAdap);
-
         ItemTouchHelper.SimpleCallback itemTouchHelperCallback = new RecyclerItemTouchHelper(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT, this);
         new ItemTouchHelper(itemTouchHelperCallback).attachToRecyclerView(rVLC);
-
         whiteNotificationBar(rVLC);
         checkIntentInformation();
         carrAdap.notifyDataSetChanged();
@@ -95,14 +81,11 @@ public class CarrerasActivity extends AppCompatActivity implements RecyclerItemT
         intent.putExtra("editable", false);
         startActivity(intent);
     }
-
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds carreraList to the action bar if it is present.
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.menu_search,menu);
-
         MenuItem searchItem = menu.findItem(R.id.action_search);
         searchView = (SearchView) searchItem.getActionView();
         // listening to search query text change, every type on input
@@ -113,7 +96,6 @@ public class CarrerasActivity extends AppCompatActivity implements RecyclerItemT
                 carrAdap.getFilter().filter(query);
                 return false;
             }
-
             @Override
             public boolean onQueryTextChange(String query) {
                 // filter recycler view when text is changed
