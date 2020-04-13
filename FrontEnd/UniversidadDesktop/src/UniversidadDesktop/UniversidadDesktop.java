@@ -28,7 +28,7 @@ public class UniversidadDesktop {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) throws GlobalException, SQLException {
+    public static void main(String[] args) throws GlobalException, SQLException, InstantiationException, ClassNotFoundException, IllegalAccessException {
         
         Service.ServiceMethodsCarrera sc = new ServiceMethodsCarrera();
         

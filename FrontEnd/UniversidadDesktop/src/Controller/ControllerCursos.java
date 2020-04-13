@@ -25,7 +25,7 @@ import models.Model;
  */
 public class ControllerCursos {
 
-    public ControllerCursos(ViewCursos vc, TablaModelView2 model) throws GlobalException, SQLException {
+    public ControllerCursos(ViewCursos vc, TablaModelView2 model) throws GlobalException, SQLException, InstantiationException, ClassNotFoundException, IllegalAccessException {
         model.setTablaCursos(new ArrayList());
         this.domainModel = new Model();
         this.vc = vc;

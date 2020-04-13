@@ -16,7 +16,7 @@ import models.Usuario;
  */
 public class ControllerLogin {
 
-    public ControllerLogin(ViewLogin view) {
+    public ControllerLogin(ViewLogin view) throws InstantiationException, ClassNotFoundException, IllegalAccessException {
         this.domainModel = new Model();
         this.view = view;
         this.view.setController(this);
