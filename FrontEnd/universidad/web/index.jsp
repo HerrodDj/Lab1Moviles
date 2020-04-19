@@ -20,12 +20,12 @@
                             <h5 class="card-title text-center">Bienvenido Nuevamente</h5>
                             <form class="form-signin"  method="POST" action="ServicioLogin">
                                 <div class="form-label-group">
-                                    <input type="text" id="inputUser" name ="inputUser"class="form-control" placeholder="Usuario" required autofocus>
-                                    <label for="User">Usuario</label>
+                                    <input type="text" id="inputUser" name ="inputUser" class="form-control" placeholder="Hola" required>
+                                    <label for="inputUser">Usuario</label>
                                 </div>
 
                                 <div class="form-label-group">
-                                    <input type="password" id="inputPassword" name ="inputPassword"class="form-control" placeholder="Contraseña" required>
+                                    <input type="password" id="inputPassword" name ="inputPassword" class="form-control" placeholder="Contraseña" required>
                                     <label for="inputPassword">Password</label>
                                 </div>
 
