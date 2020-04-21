@@ -49,12 +49,12 @@ protected void processRequest(HttpServletRequest request, HttpServletResponse re
                 if (sc.insertarCarrera(c)) {
                     out.println("<script type=\"text/javascript\">");
                     out.println("alert('Se ha agregado Correctamente');");
-                    out.println("location='listarCurso.jsp';");
+                    out.println("location='listarCarrera.jsp';");
                     out.println("</script>");
                 } else {
                     out.println("<script type=\"text/javascript\">");
                     out.println("alert('No se ha podido agregar');");
-                    out.println("location='agregarCurso.jsp';");
+                    out.println("location='agregarCarrera.jsp';");
                     out.println("</script>");
 
                 }

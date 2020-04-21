@@ -77,7 +77,7 @@
                         </div>
                         <div class="col-4">
                             <select class="form-control" name="carrera" id="carrera" value="${carrera}">
-                                <option>Seleccione una Carrera...</option>
+                                <option value="${carrera}">${carreraC}</option>
                             </select>
                         </div>
                     </div>
