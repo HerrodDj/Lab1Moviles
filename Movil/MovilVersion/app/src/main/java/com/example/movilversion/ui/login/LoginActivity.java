@@ -76,14 +76,12 @@ public class LoginActivity extends AppCompatActivity {
                 }
                 if (loginResult.getSuccess() != null) {
                     updateUiWithUser(loginResult.getSuccess());
-                }
-                if (loginResult.getSuccess() == null) {
-                    showLoginFailed(loginResult.getError());
-                }else {
                     setResult(Activity.RESULT_OK);
                     Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
                     LoginActivity.this.startActivity(intent);
                     finish();
+                }else {
+                    showLoginFailed(loginResult.getError());
                 }
             }
         });

@@ -33,7 +33,6 @@ public class ViewCarreras extends javax.swing.JFrame implements java.util.Observ
     public ViewCarreras() {
         initComponents();
         this.saveEdit.setVisible(false);
-        this.EditL.setVisible(false);
         this.cancelBtn.setVisible(false);
         this.cursosBox.setVisible(false);
         this.Carreras.getTableHeader().setReorderingAllowed(false);
@@ -91,7 +90,6 @@ public class ViewCarreras extends javax.swing.JFrame implements java.util.Observ
         Titulos = new javax.swing.JComboBox<>();
         saveEdit = new javax.swing.JButton();
         cancelBtn = new javax.swing.JButton();
-        EditL = new javax.swing.JLabel();
         cursosBox = new javax.swing.JComboBox<>();
         jPanelBusqueda = new javax.swing.JPanel();
         BuscarL = new javax.swing.JLabel();
@@ -145,7 +143,7 @@ public class ViewCarreras extends javax.swing.JFrame implements java.util.Observ
         AddL.setFont(new java.awt.Font("Georgia", 1, 18)); // NOI18N
         AddL.setText("Agregar Nueva Carrera");
         jPanelAgregar.add(AddL);
-        AddL.setBounds(100, 90, 214, 21);
+        AddL.setBounds(90, 80, 214, 30);
 
         BtnAdd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/icons8-añadir-50.png"))); // NOI18N
         BtnAdd.addActionListener(new java.awt.event.ActionListener() {
@@ -178,11 +176,6 @@ public class ViewCarreras extends javax.swing.JFrame implements java.util.Observ
         });
         jPanelAgregar.add(cancelBtn);
         cancelBtn.setBounds(500, 70, 40, 40);
-
-        EditL.setFont(new java.awt.Font("Georgia", 1, 18)); // NOI18N
-        EditL.setText("Editar una carrera");
-        jPanelAgregar.add(EditL);
-        EditL.setBounds(110, 90, 174, 21);
 
         cursosBox.setMinimumSize(new java.awt.Dimension(100, 100));
         jPanelAgregar.add(cursosBox);
@@ -444,6 +437,7 @@ public class ViewCarreras extends javax.swing.JFrame implements java.util.Observ
             String a = (String) this.Carreras.getValueAt(this.Carreras.getSelectedRow(), 0);
             return a;
         }
+        this.AddL.setText("Editar Carrera");
         return null;
     }
 
@@ -454,11 +448,10 @@ public class ViewCarreras extends javax.swing.JFrame implements java.util.Observ
         this.CodCarreraF.setEditable(false);
         this.saveEdit.setVisible(true);
         this.BtnAdd.setVisible(false);
-        this.EditL.setVisible(true);
         this.BuscarBTN.setEnabled(false);
         this.homeBtn.setEnabled(false);
         this.deleteBtn.setEnabled(false);
-        this.AddL.setVisible(false);
+        this.AddL.setText("Editar Carrera");
         this.cancelBtn.setVisible(true);
     }
 
@@ -466,11 +459,10 @@ public class ViewCarreras extends javax.swing.JFrame implements java.util.Observ
         this.clear();
         this.saveEdit.setVisible(false);
         this.BtnAdd.setVisible(true);
-        this.EditL.setVisible(false);
         this.BuscarBTN.setEnabled(true);
         this.homeBtn.setEnabled(true);
         this.deleteBtn.setEnabled(true);
-        this.AddL.setVisible(true);
+        this.AddL.setText("Agregar Nueva Carrera");
         this.cancelBtn.setVisible(false);
         this.CodCarreraF.setEditable(true);
     }
@@ -505,7 +497,6 @@ public class ViewCarreras extends javax.swing.JFrame implements java.util.Observ
     private javax.swing.JTable Carreras;
     private javax.swing.JTextField CodCarreraF;
     private javax.swing.JLabel CodCarreraL;
-    private javax.swing.JLabel EditL;
     private javax.swing.JTextField NombreCarreraF;
     private javax.swing.JLabel NombreCarreraL;
     private javax.swing.JComboBox<String> Titulos;

@@ -32,7 +32,6 @@ public class ViewCursos extends javax.swing.JFrame implements java.util.Observer
 
     public ViewCursos() {
         initComponents();
-        this.EditL.setVisible(false);
         this.saveEdit.setVisible(false);
         this.cancelBtn.setVisible(false);
         this.CursosT.getTableHeader().setReorderingAllowed(false);
@@ -89,7 +88,6 @@ public class ViewCursos extends javax.swing.JFrame implements java.util.Observer
         creditosBox = new javax.swing.JComboBox<>();
         saveEdit = new javax.swing.JButton();
         cancelBtn = new javax.swing.JButton();
-        EditL = new javax.swing.JLabel();
         cicloBox = new javax.swing.JComboBox<>();
         creditosL = new javax.swing.JLabel();
         horasL = new javax.swing.JLabel();
@@ -149,7 +147,7 @@ public class ViewCursos extends javax.swing.JFrame implements java.util.Observer
         BtnAdd.setBounds(620, 100, 104, 44);
 
         creditosBox.setFont(new java.awt.Font("Georgia", 1, 18)); // NOI18N
-        creditosBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "3", "4" }));
+        creditosBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4" }));
         jPanelAgregar.add(creditosBox);
         creditosBox.setBounds(330, 20, 40, 30);
 
@@ -171,11 +169,6 @@ public class ViewCursos extends javax.swing.JFrame implements java.util.Observer
         jPanelAgregar.add(cancelBtn);
         cancelBtn.setBounds(680, 100, 40, 40);
 
-        EditL.setFont(new java.awt.Font("Georgia", 1, 18)); // NOI18N
-        EditL.setText("Editar un curso");
-        jPanelAgregar.add(EditL);
-        EditL.setBounds(190, 130, 174, 20);
-
         cicloBox.setFont(new java.awt.Font("Georgia", 1, 18)); // NOI18N
         cicloBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2" }));
         jPanelAgregar.add(cicloBox);
@@ -191,7 +184,7 @@ public class ViewCursos extends javax.swing.JFrame implements java.util.Observer
         jPanelAgregar.add(horasL);
         horasL.setBounds(270, 80, 60, 21);
         jPanelAgregar.add(horasF);
-        horasF.setBounds(330, 80, 30, 20);
+        horasF.setBounds(330, 80, 30, 22);
 
         cicloL.setFont(new java.awt.Font("Georgia", 1, 18)); // NOI18N
         cicloL.setText("Ciclo");
@@ -200,7 +193,7 @@ public class ViewCursos extends javax.swing.JFrame implements java.util.Observer
 
         annioBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "2020", "2021", "2022", "2023", "2024" }));
         jPanelAgregar.add(annioBox);
-        annioBox.setBounds(450, 80, 60, 20);
+        annioBox.setBounds(450, 80, 60, 22);
 
         annioL.setFont(new java.awt.Font("Georgia", 1, 18)); // NOI18N
         annioL.setText("Año");
@@ -460,6 +453,7 @@ public class ViewCursos extends javax.swing.JFrame implements java.util.Observer
             String a = (String) this.CursosT.getValueAt(this.CursosT.getSelectedRow(), 0);
             return a;
         }
+        this.AddL.setText("Editar Curso");
         return null;
     }
 
@@ -484,11 +478,10 @@ public class ViewCursos extends javax.swing.JFrame implements java.util.Observer
         this.CodCursoF.setEditable(false);
         this.saveEdit.setVisible(true);
         this.BtnAdd.setVisible(false);
-        this.EditL.setVisible(true);
         this.BuscarBTN.setEnabled(false);
         this.homeBtn.setEnabled(false);
         this.deleteBtn.setEnabled(false);
-        this.AddL.setVisible(false);
+        this.AddL.setText("Editar Curso");
         this.cancelBtn.setVisible(true);
     }
 
@@ -496,11 +489,10 @@ public class ViewCursos extends javax.swing.JFrame implements java.util.Observer
         this.clear();
         this.saveEdit.setVisible(false);
         this.BtnAdd.setVisible(true);
-        this.EditL.setVisible(false);
         this.BuscarBTN.setEnabled(true);
         this.homeBtn.setEnabled(true);
         this.deleteBtn.setEnabled(true);
-        this.AddL.setVisible(true);
+        this.AddL.setText("Agregar Nuevo Curso");
         this.cancelBtn.setVisible(false);
         this.CodCursoF.setEditable(true);
     }
@@ -571,7 +563,6 @@ public class ViewCursos extends javax.swing.JFrame implements java.util.Observer
     private javax.swing.JTextField CodCursoF;
     private javax.swing.JLabel CodCursoL;
     private javax.swing.JTable CursosT;
-    private javax.swing.JLabel EditL;
     private javax.swing.JTextField NombreCursoF;
     private javax.swing.JLabel NombreCursoL;
     private javax.swing.JComboBox<String> annioBox;
