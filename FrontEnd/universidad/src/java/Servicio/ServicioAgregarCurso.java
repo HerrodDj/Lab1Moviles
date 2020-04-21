@@ -46,10 +46,16 @@ public class ServicioAgregarCurso extends HttpServlet {
                 int ciclo= Integer.parseInt(request.getParameter("cicloCurso"));
                 Curso c = new Curso(codigo, nombre, creditos, horas, carrera, ciclo, anio);
                 ServiceMethodsCurso sc = ServiceMethodsCurso.obtenerInstancia();
-                if (sc.insertarCurso(c)) {
-                    response.sendRedirect("listarCurso.jsp");
+                if (sc.insertarCurso(c)) { 
+                   out.println("<script type=\"text/javascript\">");
+                   out.println("alert('Se ha agregado el curso');");
+                   out.println("location='listarCursp.jsp';");
+                   out.println("</script>");
                 } else {
-                    response.sendRedirect("agregarCurso.jsp");
+                   out.println("<script type=\"text/javascript\">");
+                   out.println("alert('No se ha podido agregar el curso');");
+                   out.println("location='listarCurso.jsp';");
+                   out.println("</script>");
 
                 }
 

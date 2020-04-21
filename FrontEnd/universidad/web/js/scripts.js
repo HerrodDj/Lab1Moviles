@@ -76,9 +76,6 @@ function myDeleteTable(tabla) {
     document.getElementById(tabla).deleteRow(0);
 }
 
-
-
-
 //---------------CURSO---------------
 //Agregar curso
 function myOnLoad() {
@@ -117,7 +114,15 @@ function addOptions(domElement, datos) {
     }
 }
 
+function cargarSelectCarreras2(datos){
+    addOptions2("carrera",datos);
+    
+}
 
+function addOptions2(){
+    
+    
+}
 
 //Listar Curso
 
