@@ -3,11 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Modelo;
+package models;
 
 public final class Credenciales {
 
     public static final String BASE_DATOS = "universidad";
     public static final String USUARIO = "root";
-    public static final String CLAVE = "root1234";
+    public static final String CLAVE = "root";
 }

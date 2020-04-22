@@ -33,7 +33,6 @@ public class ViewCarreras extends javax.swing.JFrame implements java.util.Observ
     public ViewCarreras() {
         initComponents();
         this.saveEdit.setVisible(false);
-        this.EditL.setVisible(false);
         this.cancelBtn.setVisible(false);
         this.cursosBox.setVisible(false);
         this.Carreras.getTableHeader().setReorderingAllowed(false);
@@ -91,7 +90,6 @@ public class ViewCarreras extends javax.swing.JFrame implements java.util.Observ
         Titulos = new javax.swing.JComboBox<>();
         saveEdit = new javax.swing.JButton();
         cancelBtn = new javax.swing.JButton();
-        EditL = new javax.swing.JLabel();
         cursosBox = new javax.swing.JComboBox<>();
         jPanelBusqueda = new javax.swing.JPanel();
         BuscarL = new javax.swing.JLabel();
@@ -101,6 +99,7 @@ public class ViewCarreras extends javax.swing.JFrame implements java.util.Observ
         Carreras = new javax.swing.JTable();
         jButton2 = new javax.swing.JButton();
         deleteBtn = new javax.swing.JButton();
+        codnom1 = new javax.swing.JComboBox<>();
         homeBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -145,7 +144,7 @@ public class ViewCarreras extends javax.swing.JFrame implements java.util.Observ
         AddL.setFont(new java.awt.Font("Georgia", 1, 18)); // NOI18N
         AddL.setText("Agregar Nueva Carrera");
         jPanelAgregar.add(AddL);
-        AddL.setBounds(100, 90, 214, 21);
+        AddL.setBounds(90, 80, 214, 30);
 
         BtnAdd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/icons8-añadir-50.png"))); // NOI18N
         BtnAdd.addActionListener(new java.awt.event.ActionListener() {
@@ -179,11 +178,6 @@ public class ViewCarreras extends javax.swing.JFrame implements java.util.Observ
         jPanelAgregar.add(cancelBtn);
         cancelBtn.setBounds(500, 70, 40, 40);
 
-        EditL.setFont(new java.awt.Font("Georgia", 1, 18)); // NOI18N
-        EditL.setText("Editar una carrera");
-        jPanelAgregar.add(EditL);
-        EditL.setBounds(110, 90, 174, 21);
-
         cursosBox.setMinimumSize(new java.awt.Dimension(100, 100));
         jPanelAgregar.add(cursosBox);
         cursosBox.setBounds(590, 70, 150, 30);
@@ -192,7 +186,7 @@ public class ViewCarreras extends javax.swing.JFrame implements java.util.Observ
         jPanelBusqueda.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(14, 98, 133), 4, true));
 
         BuscarL.setFont(new java.awt.Font("Georgia", 1, 18)); // NOI18N
-        BuscarL.setText("Buscar por Codigo");
+        BuscarL.setText("Buscar por:");
 
         BuscarBTN.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/icons8-búsqueda-de-amor-30.png"))); // NOI18N
         BuscarBTN.addActionListener(new java.awt.event.ActionListener() {
@@ -235,6 +229,8 @@ public class ViewCarreras extends javax.swing.JFrame implements java.util.Observ
             }
         });
 
+        codnom1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Codigo", "Nombre" }));
+
         javax.swing.GroupLayout jPanelBusquedaLayout = new javax.swing.GroupLayout(jPanelBusqueda);
         jPanelBusqueda.setLayout(jPanelBusquedaLayout);
         jPanelBusquedaLayout.setHorizontalGroup(
@@ -251,9 +247,11 @@ public class ViewCarreras extends javax.swing.JFrame implements java.util.Observ
                     .addGroup(jPanelBusquedaLayout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(BuscarL)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(18, 18, 18)
+                        .addComponent(codnom1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(36, 36, 36)
                         .addComponent(buscarF, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(60, 60, 60)
+                        .addGap(26, 26, 26)
                         .addComponent(BuscarBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(60, Short.MAX_VALUE))
         );
@@ -264,7 +262,8 @@ public class ViewCarreras extends javax.swing.JFrame implements java.util.Observ
                 .addGroup(jPanelBusquedaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanelBusquedaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(BuscarL)
-                        .addComponent(buscarF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(buscarF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(codnom1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(BuscarBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(jPanelBusquedaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanelBusquedaLayout.createSequentialGroup()
@@ -339,7 +338,8 @@ public class ViewCarreras extends javax.swing.JFrame implements java.util.Observ
     private void BuscarBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BuscarBTNActionPerformed
         try {
             String a = this.buscarF.getText();
-            controller.buscar(a);
+            int sel = this.codnom1.getSelectedIndex();
+            controller.buscar(a,sel);
         } catch (GlobalException ex) {
             Logger.getLogger(ViewCarreras.class.getName()).log(Level.SEVERE, null, ex);
         } catch (Exception ex) {
@@ -444,6 +444,7 @@ public class ViewCarreras extends javax.swing.JFrame implements java.util.Observ
             String a = (String) this.Carreras.getValueAt(this.Carreras.getSelectedRow(), 0);
             return a;
         }
+        this.AddL.setText("Editar Carrera");
         return null;
     }
 
@@ -454,11 +455,10 @@ public class ViewCarreras extends javax.swing.JFrame implements java.util.Observ
         this.CodCarreraF.setEditable(false);
         this.saveEdit.setVisible(true);
         this.BtnAdd.setVisible(false);
-        this.EditL.setVisible(true);
         this.BuscarBTN.setEnabled(false);
         this.homeBtn.setEnabled(false);
         this.deleteBtn.setEnabled(false);
-        this.AddL.setVisible(false);
+        this.AddL.setText("Editar Carrera");
         this.cancelBtn.setVisible(true);
     }
 
@@ -466,11 +466,10 @@ public class ViewCarreras extends javax.swing.JFrame implements java.util.Observ
         this.clear();
         this.saveEdit.setVisible(false);
         this.BtnAdd.setVisible(true);
-        this.EditL.setVisible(false);
         this.BuscarBTN.setEnabled(true);
         this.homeBtn.setEnabled(true);
         this.deleteBtn.setEnabled(true);
-        this.AddL.setVisible(true);
+        this.AddL.setText("Agregar Nueva Carrera");
         this.cancelBtn.setVisible(false);
         this.CodCarreraF.setEditable(true);
     }
@@ -505,12 +504,12 @@ public class ViewCarreras extends javax.swing.JFrame implements java.util.Observ
     private javax.swing.JTable Carreras;
     private javax.swing.JTextField CodCarreraF;
     private javax.swing.JLabel CodCarreraL;
-    private javax.swing.JLabel EditL;
     private javax.swing.JTextField NombreCarreraF;
     private javax.swing.JLabel NombreCarreraL;
     private javax.swing.JComboBox<String> Titulos;
     private javax.swing.JTextField buscarF;
     private javax.swing.JButton cancelBtn;
+    private javax.swing.JComboBox<String> codnom1;
     private javax.swing.JComboBox<String> cursosBox;
     private javax.swing.JButton deleteBtn;
     private javax.swing.JButton homeBtn;

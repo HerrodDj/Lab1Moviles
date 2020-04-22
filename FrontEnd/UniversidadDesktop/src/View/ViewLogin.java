@@ -46,7 +46,7 @@ public class ViewLogin extends javax.swing.JFrame {
         setBounds(new java.awt.Rectangle(0, 0, 0, 0));
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setMinimumSize(new java.awt.Dimension(315, 130));
-        setPreferredSize(new java.awt.Dimension(276, 180));
+        setPreferredSize(new java.awt.Dimension(315, 180));
         setResizable(false);
         getContentPane().setLayout(null);
 

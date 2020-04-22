@@ -69,6 +69,31 @@ CREATE TABLE IF NOT EXISTS `universidad`.`usuarios` (
 ENGINE = InnoDB;
 
 
+
+insert into usuarios (cedula,nombre,apellido1,apellido2,contrasenia) values ('admin','admin','admin1','admin2','admin');
+insert into usuarios (cedula,nombre,apellido1,apellido2,contrasenia) values ('116810263','Diego','Monterrey','Benavides','666');
+insert into usuarios (cedula,nombre,apellido1,apellido2,contrasenia) values ('504210953','Djenane','Hernandez','Rodriguez','777');
+commit;
+
+insert into carrera (codigo,nombre,titulo) values ('EIF123','Informatica','Bachillerato');
+insert into carrera (codigo,nombre,titulo) values ('LIX456','Ingles','Licenciatura');
+insert into carrera (codigo,nombre,titulo) values ('TOP789','Topografia','Mestria');
+insert into carrera (codigo,nombre,titulo) values ('GAS369','Gastronomia','Bachillerato');
+insert into carrera (codigo,nombre,titulo) values ('MED741','Medicina','Maestria');
+commit;
+
+insert into curso (codigo,nombre,creditos,horas,carrera_codigo,ciclo,anio) values ('INF123','Progra 4',4,8,'EIF123',1,2020);
+insert into curso (codigo,nombre,creditos,horas,carrera_codigo,ciclo,anio) values ('ING456','Conversacion 2',3,5,'LIX456',2,2022);
+insert into curso (codigo,nombre,creditos,horas,carrera_codigo,ciclo,anio) values ('TGP789','Suelo 2',4,6,'TOP789',3,2020);
+insert into curso (codigo,nombre,creditos,horas,carrera_codigo,ciclo,anio) values ('COD369','Postres 3',2,4,'GAS369',1,2023);
+insert into curso (codigo,nombre,creditos,horas,carrera_codigo,ciclo,anio) values ('CIR741','Cirugia 5',6,12,'MED741',2,2021);
+commit;
+
+
+
+
+
+
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
