@@ -1,7 +1,7 @@
 package Service;
 
 import GestorSQL.GestorBaseDeDatos;
-import Modelo.Credenciales;
+import models.Credenciales;
 import exceptions.GlobalException;
 import exceptions.NoDataException;
 import java.io.Serializable;
@@ -30,7 +30,7 @@ public class ServiceMethodsCurso implements Serializable {
     private static final String CONEXION
             = "jdbc:mysql://localhost/universidad";
     private static final String USUARIO = "root";
-    private static final String CLAVE = "root1234";
+    private static final String CLAVE = "root";
 
     public ServiceMethodsCurso() throws InstantiationException, ClassNotFoundException, IllegalAccessException {
 
