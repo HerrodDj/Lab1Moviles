@@ -5,6 +5,7 @@
  */
 package Servicio;
 
+import Service.ServiceMethodsCarrera;
 import Service.ServiceMethodsCurso;
 import exceptions.GlobalException;
 import java.io.IOException;
@@ -16,6 +17,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import models.Carrera;
 import models.Curso;
 
 /**
@@ -89,12 +91,15 @@ public class ServicioEditarCurso extends HttpServlet {
             response.setContentType("text/html");
             String c = request.getParameter("codigoC");
             ServiceMethodsCurso sc = ServiceMethodsCurso.obtenerInstancia();
+            ServiceMethodsCarrera sca= ServiceMethodsCarrera.obtenerInstancia();
             Curso curso = sc.buscarCursoPorCodigo(c);
+            Carrera carrera = sca.BuscarCarreraCodigo(curso.getCodigoCarrera());
             request.setAttribute("codigo",curso.getCodigo() );
             request.setAttribute("nombre", curso.getNombre());
             request.setAttribute("creditos", curso.getCreditos());
             request.setAttribute("horas", curso.getHorasSemanales());
             request.setAttribute("carrera", curso.getCodigoCarrera());
+            request.setAttribute("carreraC", carrera.getNombre());
             request.setAttribute("ciclo", curso.getCiclo());
             request.setAttribute("anio", curso.getAnio());
             request.getRequestDispatcher("editarCurso.jsp").forward(request, response);
