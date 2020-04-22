@@ -30,6 +30,8 @@ public class ViewPrincipal extends javax.swing.JFrame {
     private void initComponents() {
 
         jSeparator1 = new javax.swing.JSeparator();
+        jSeparator2 = new javax.swing.JSeparator();
+        jLabel3 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
@@ -38,18 +40,27 @@ public class ViewPrincipal extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Menu Principal");
         setMinimumSize(new java.awt.Dimension(378, 245));
+        setPreferredSize(new java.awt.Dimension(964, 515));
         setResizable(false);
         getContentPane().setLayout(null);
 
         jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
         getContentPane().add(jSeparator1);
-        jSeparator1.setBounds(190, 0, 2, 210);
+        jSeparator1.setBounds(460, 80, 120, 430);
+        getContentPane().add(jSeparator2);
+        jSeparator2.setBounds(0, 80, 960, 10);
 
-        jLabel1.setFont(new java.awt.Font("Georgia", 1, 18)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Georgia", 1, 24)); // NOI18N
+        jLabel3.setText("BIENVENIDO AL GESTOR DE CARRERA Y CURSOS DE LA UNIVERSIDAD");
+        getContentPane().add(jLabel3);
+        jLabel3.setBounds(10, 10, 950, 70);
+
+        jLabel1.setFont(new java.awt.Font("Georgia", 1, 36)); // NOI18N
         jLabel1.setText("Menu de Carreras");
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(10, 10, 170, 20);
+        jLabel1.setBounds(40, 110, 380, 60);
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/icons8-plan-de-estudios-64.png"))); // NOI18N
         jButton1.setText("Acceder");
@@ -60,12 +71,12 @@ public class ViewPrincipal extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton1);
-        jButton1.setBounds(40, 50, 90, 60);
+        jButton1.setBounds(90, 200, 150, 60);
 
-        jLabel2.setFont(new java.awt.Font("Georgia", 1, 18)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Georgia", 1, 36)); // NOI18N
         jLabel2.setText("Menu de Cursos");
         getContentPane().add(jLabel2);
-        jLabel2.setBounds(200, 10, 160, 20);
+        jLabel2.setBounds(540, 110, 320, 50);
 
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/icons8-cursos-64.png"))); // NOI18N
         jButton2.setText("Acceder");
@@ -76,20 +87,20 @@ public class ViewPrincipal extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton2);
-        jButton2.setBounds(230, 50, 90, 60);
+        jButton2.setBounds(660, 200, 150, 60);
 
-        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/icons8-salida-40.png"))); // NOI18N
+        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/icons8-salida-64.png"))); // NOI18N
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton4ActionPerformed(evt);
             }
         });
         getContentPane().add(jButton4);
-        jButton4.setBounds(320, 160, 50, 40);
+        jButton4.setBounds(810, 390, 110, 90);
 
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/turquoise-wood-images-texture-on-260nw-683949346.jpg"))); // NOI18N
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/BackPrim.jpg"))); // NOI18N
         getContentPane().add(jLabel4);
-        jLabel4.setBounds(0, 0, 380, 220);
+        jLabel4.setBounds(0, 0, 960, 500);
 
         pack();
         setLocationRelativeTo(null);
@@ -121,7 +132,9 @@ public class ViewPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JSeparator jSeparator2;
     // End of variables declaration//GEN-END:variables
 }

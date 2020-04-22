@@ -109,6 +109,7 @@ public class ViewCursos extends javax.swing.JFrame implements java.util.Observer
         deleteBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Cursos");
 
         jDesktopPane1.setBackground(new java.awt.Color(115, 183, 175));
 
