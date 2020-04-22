@@ -27,7 +27,19 @@
                 </div>
             </div>
             <div class="row">
-                 <span style="white-space: pre-line"></span>
+                <div class="col-3">
+                    <select id="search" name="search" class="form-control form-control-sm" >
+                        <option value="scodigo">Buscar Codigo</option>
+                        <option value="snombre">Buscar Nombre</option>
+                    </select>
+                </div>
+                <div class="col-3">
+                    <input class="form-control" type="text" id="tipo" name="tipo"/>
+                </div>
+                <div class="col-3">
+                    <a class="btn btn-primary" id ="search"  role="button" onclick="searchCarrera()">Buscar</a>
+                </div>
+                <span style="white-space: pre-line"></span>
                 <br/>
             </div>
             <div class="container">

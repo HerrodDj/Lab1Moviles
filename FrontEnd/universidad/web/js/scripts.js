@@ -105,7 +105,6 @@ function cargarSelectCarreras(datos) {
 // Rutina para agregar opciones a un <select>
 function addOptions(domElement, datos) {
     var select = document.getElementsByName(domElement)[0];
-
     for (var i = 0; i < datos.carreras.length; i++) {
         var option = document.createElement("option");
         option.value=datos.carreras[i].codigo;
@@ -116,11 +115,6 @@ function addOptions(domElement, datos) {
 
 function cargarSelectCarreras2(datos){
     addOptions2("carrera",datos);
-    
-}
-
-function addOptions2(){
-    
     
 }
 
@@ -176,4 +170,40 @@ function cargarTablaCursos(tabla, datos) {
         }
 
     }
+}
+
+
+function optionCicle(){
+    var option = document.getElementById("ciclo");
+    var valor = document.getElementById("ciclo").value;
+    switch(valor){
+        case "1": 
+            option.text = "I ciclo";
+            break;
+        case "2": 
+            option.text = "II ciclo";
+            break;
+        case "3":
+            option.text = "III ciclo (verano)";
+            break;
+        default:
+            option.text="Pendiente";
+            break;
+    }
+    
+    
+} 
+
+function editCurso(){
+    myOnLoad();
+    optionCicle();
+}
+
+
+function searchCarrera() {
+    var search = document.getElementById("search").value;
+    var tipo =document.getElementById("tipo").value;
+    document.getElementById("search").href='ServicioListCarrera?search='+search+'?tipo='+tipo;
+  
+
 }

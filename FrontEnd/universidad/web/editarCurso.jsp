@@ -18,7 +18,7 @@
         <title>Editar Curso </title>
     </head>
 
-    <body onLoad="myOnLoad()">
+    <body onLoad="editCurso()">
         <div>
             <%@include file="menu.jsp" %>
         </div>
@@ -124,7 +124,7 @@
                             <div class="form-group">
                                 <div class="col-sm-8">
                                     <select id ="cicloCurso" name ="cicloCurso" class="form-control form-control-sm" value="${ciclo}"/>
-                                        <option value="${ciclo}" >"${ciclo}"</option>
+                                        <option id="ciclo" name="ciclo" value="${ciclo}" ></option>
                                         <option value ="1" >I ciclo</option>
                                         <option value ="2" >II ciclo</option>
                                         <option value ="3" >III ciclo(verano)</option>

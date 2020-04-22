@@ -74,13 +74,32 @@ public class ServicioListCarrera extends HttpServlet {
             throws ServletException, IOException {
         try {
             processRequest(request, response);
-        } catch (InstantiationException ex) {
+            response.setContentType("text/html");
+
+            String search = request.getParameter("search");
+            String tipo = request.getParameter("tipo");
+
+            if (search == "scodigo") {
+                Carrera c = ServiceMethodsCarrera.obtenerInstancia().BuscarCarreraCodigo(tipo);
+
+                JSONObject r = new JSONObject();
+                JSONArray a = new JSONArray();
+                JSONObject pj = new JSONObject();
+                pj.put("codigo", c.getCodigo());
+                pj.put("nombre", c.getNombre());
+                pj.put("titulo", c.getTitulo());
+                a.put(pj);
+                r.put("carreras", a);
+            }
+            if (search == "snombre") {
+
+            }
+        } catch (InstantiationException 
+                | ClassNotFoundException
+                | IllegalAccessException
+                | GlobalException ex) {
             Logger.getLogger(ServicioListCarrera.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(ServicioListCarrera.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            Logger.getLogger(ServicioListCarrera.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (GlobalException ex) {
+        } catch (Exception ex) {
             Logger.getLogger(ServicioListCarrera.class.getName()).log(Level.SEVERE, null, ex);
         }
     }

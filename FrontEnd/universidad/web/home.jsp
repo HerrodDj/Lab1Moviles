@@ -16,7 +16,7 @@
             <%@include file="menu.jsp" %>
         </div>
         <div aling="center">
-            <h1>Bienvenido al Gestor de Carrera y Cursos de la Univerdiad</h1>
+            <h1>Bienvenido al Gestor de Carrera y Cursos de la Universidad</h1>
         </div>
     </body>
 </html>
