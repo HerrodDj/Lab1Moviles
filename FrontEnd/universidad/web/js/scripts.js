@@ -203,7 +203,7 @@ function editCurso(){
 function searchCarrera() {
     var search = document.getElementById("search").value;
     var tipo =document.getElementById("tipo").value;
-    document.getElementById("search").href='ServicioListCarrera?search='+search+'?tipo='+tipo;
+    location.href='ServicioListCarrera?search='+search+'?tipo='+tipo;
   
 
 }
