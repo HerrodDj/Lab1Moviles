@@ -170,7 +170,7 @@ public class ViewCursos extends javax.swing.JFrame implements java.util.Observer
         cancelBtn.setBounds(680, 100, 40, 40);
 
         cicloBox.setFont(new java.awt.Font("Georgia", 1, 18)); // NOI18N
-        cicloBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2" }));
+        cicloBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3" }));
         jPanelAgregar.add(cicloBox);
         cicloBox.setBounds(460, 30, 40, 34);
 
