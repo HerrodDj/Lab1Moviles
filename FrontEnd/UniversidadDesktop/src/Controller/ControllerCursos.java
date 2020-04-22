@@ -39,13 +39,13 @@ public class ControllerCursos {
         return domainModel.AddCurso(curso);
     }
 
-    public void buscar(String a) throws GlobalException, Exception {
-        switch (a) {
-            case "":
-                this.buscarCursos();
-                break;
-            default:
-                this.buscarCodCurso1(a);
+    public void buscar(String a,int b) throws GlobalException, Exception {
+       if(a.equals("")){
+            this.buscarCursos();
+        }else if(b==0){
+            this.buscarCodCurso1(a);
+        }else if(b==1){
+            this.buscarNomCurso(a);
         }
     }
     
@@ -70,6 +70,18 @@ public class ControllerCursos {
         return cur;
     }
 
+    public boolean buscarNomCurso(String nom) throws Exception {
+        Curso cur = domainModel.buscarNomCurso(nom);
+        if (cur != null) {
+            model.getCursos().clear();
+            model.agregaCurso(cur);
+            model.setTablaCursos(model.getCursos());
+            return true;
+        }
+        model.setTablaCursos(new ArrayList<>());
+        return false;
+    }
+    
     public boolean buscarCodCurso1(String cod) throws Exception {
         Curso cur = domainModel.buscarCodCurso(cod);
         if (cur != null) {

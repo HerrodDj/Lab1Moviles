@@ -36,13 +36,13 @@ public class ControllerCarreras {
         return domainModel.AddCarrera(carrera);
     }
 
-    public void buscar(String a) throws GlobalException, Exception {
-        switch (a) {
-            case "":
-                this.buscarCarreras();
-                break;
-            default:
-                this.buscarCodCarrera1(a);
+    public void buscar(String a, int b) throws GlobalException, Exception {
+        if(a.equals("")){
+            this.buscarCarreras();
+        }else if(b==0){
+            this.buscarCodCarrera1(a);
+        }else if(b==1){
+            this.buscarNomCarrera(a);
         }
     }
     
@@ -65,9 +65,22 @@ public class ControllerCarreras {
         Carrera car = domainModel.buscarCodCarrera(cod);
         return car;
     }
-
+    
     public boolean buscarCodCarrera1(String cod) throws Exception {
         Carrera car = domainModel.buscarCodCarrera(cod);
+        if (car != null) {
+            model.getCarreras().clear();
+            model.agregaCarrera(car);
+            model.setTablaCarreras(model.getCarreras());
+            return true;
+        }
+        model.setTablaCarreras(new ArrayList<>());
+        return false;
+    }
+    
+
+    public boolean buscarNomCarrera(String nom) throws Exception {
+        Carrera car = domainModel.buscarNomCarrera(nom);
         if (car != null) {
             model.getCarreras().clear();
             model.agregaCarrera(car);

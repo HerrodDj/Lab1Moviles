@@ -21,6 +21,7 @@ public class ServiceMethodsCurso implements Serializable {
     private static final String ACTUALIZARCURSO = "{call actualizarCurso(?,?,?,?,?,?,?)}";
     private static final String ELIMINARCURSO = "{call eliminarCurso(?)}";
     private static final String BUSCARCURSOCODIGO = "{call buscarCursoCodigo(?)}";
+    public static final String BUSCARCURSONOMBRE = "{call buscarCursoNombre(?)}";
     private static final String LISTARTODOCURSO = "{call listarTodoCurso()}";
     private static final String LISTARCURSOPORCARRERA = "{call listarCursoPorCarrera(?)}";
 
@@ -78,6 +79,27 @@ public class ServiceMethodsCurso implements Serializable {
             try (Connection cnx = bd.obtenerConexion(Credenciales.BASE_DATOS, Credenciales.USUARIO, Credenciales.CLAVE);
                     PreparedStatement stm = cnx.prepareStatement(BUSCARCURSOCODIGO)) {
                 stm.setString(1, codigo);
+                ResultSet rs = stm.executeQuery();
+                while (rs.next()) {
+                    cur = new Curso(rs.getString("codigo"), rs.getString("nombre"),
+                            rs.getInt("creditos"), rs.getInt("horas"),
+                            rs.getString("carrera_Codigo"), rs.getInt("ciclo"), rs.getInt("anio"));
+                }
+            }
+            bd.cerrarConexion();
+            return cur;
+        } catch (SQLException e) {
+            throw new GlobalException("Error en base de datos");
+        }
+
+    }
+    
+    public Curso buscarCursoPorNombre(String nombre) throws GlobalException, NoDataException, Exception {
+        try {
+            Curso cur = null;
+            try (Connection cnx = bd.obtenerConexion(Credenciales.BASE_DATOS, Credenciales.USUARIO, Credenciales.CLAVE);
+                    PreparedStatement stm = cnx.prepareStatement(BUSCARCURSONOMBRE)) {
+                stm.setString(1, nombre);
                 ResultSet rs = stm.executeQuery();
                 while (rs.next()) {
                     cur = new Curso(rs.getString("codigo"), rs.getString("nombre"),

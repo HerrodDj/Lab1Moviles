@@ -287,9 +287,11 @@
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="BuscarL" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="codnom1" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
                               <Component id="buscarF" min="-2" pref="121" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="60" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
                               <Component id="BuscarBTN" min="-2" pref="86" max="-2" attributes="0"/>
                           </Group>
                       </Group>
@@ -305,6 +307,7 @@
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="BuscarL" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="buscarF" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="codnom1" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Component id="BuscarBTN" min="-2" pref="31" max="-2" attributes="0"/>
                       </Group>
@@ -331,7 +334,7 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Georgia" size="18" style="1"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Buscar por Codigo"/>
+                <Property name="text" type="java.lang.String" value="Buscar por:"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JButton" name="BuscarBTN">
@@ -424,6 +427,19 @@
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="deleteBtnActionPerformed"/>
               </Events>
+            </Component>
+            <Component class="javax.swing.JComboBox" name="codnom1">
+              <Properties>
+                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                  <StringArray count="2">
+                    <StringItem index="0" value="Codigo"/>
+                    <StringItem index="1" value="Nombre"/>
+                  </StringArray>
+                </Property>
+              </Properties>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+              </AuxValues>
             </Component>
           </SubComponents>
         </Container>

@@ -45,6 +45,11 @@ public class Model extends Observable {
         return Nc;
     }
     
+    public Carrera buscarNomCarrera(String nom) throws NoDataException, Exception{
+        Carrera Nc = sc.BuscarCarreraNombre(nom);
+        return Nc;
+    }
+    
     public boolean updateCarrera(Carrera eC) throws SQLException, GlobalException{
         return sc.actualizarCarrera(eC);
     }
@@ -64,6 +69,10 @@ public class Model extends Observable {
 
     public Curso buscarCodCurso(String cod) throws NoDataException, Exception {
         return scu.buscarCursoPorCodigo(cod);
+    }
+    
+     public Curso buscarNomCurso(String nom) throws NoDataException, Exception {
+        return scu.buscarCursoPorNombre(nom);
     }
 
     public boolean updateCurso(Curso cur) throws SQLException, GlobalException {
